@@ -1,4 +1,4 @@
-package input;
+package history;
 
 import guiTeacher.components.AnimatedComponent;
 
