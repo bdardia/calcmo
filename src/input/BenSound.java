@@ -5,10 +5,10 @@ import java.net.URL;
 import javax.sound.sampled.*;
 import javax.swing.*;
 
-public class Sound extends JFrame
+public class BenSound extends JFrame
 {
 
-	public Sound() 
+	public BenSound() 
 	{
 		while (true)
 		{
@@ -107,7 +107,7 @@ public class Sound extends JFrame
 	
 	public static final void main(String[] args)
 	{
-		Sound pong = new Sound();
+		BenSound pong = new BenSound();
 	}
 
 }
