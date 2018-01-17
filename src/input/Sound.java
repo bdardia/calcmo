@@ -34,18 +34,6 @@ public class Sound extends JFrame
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-//					         AudioInputStream audioIn2 = AudioSystem.getAudioInputStream(peep);              
-//					         // Get a sound clip resource.
-//					         Clip clip2 = AudioSystem.getClip();
-//					         // Open audio clip and load samples from the audio input stream.
-//					         clip2.open(audioIn2);
-//					         clip2.start();
-//					         try {
-//								Thread.sleep(600);
-//							} catch (InterruptedException e) {
-//								// TODO Auto-generated catch block
-//								e.printStackTrace();
-//							}
 					      } catch (UnsupportedAudioFileException e) {
 					         e.printStackTrace();
 					      } catch (IOException e) {
@@ -75,18 +63,6 @@ public class Sound extends JFrame
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-//			         AudioInputStream audioIn2 = AudioSystem.getAudioInputStream(peep);              
-//			         // Get a sound clip resource.
-//			         Clip clip2 = AudioSystem.getClip();
-//			         // Open audio clip and load samples from the audio input stream.
-//			         clip2.open(audioIn2);
-//			         clip2.start();
-//			         try {
-//						Thread.sleep(600);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
 			      } catch (UnsupportedAudioFileException e) {
 			         e.printStackTrace();
 			      } catch (IOException e) {
@@ -106,18 +82,6 @@ public class Sound extends JFrame
 		          File beep = new File("resources/ping_pong_8bit_beeep.wav"); //you could also get the sound file with an URL
 		          File plop = new File("resources/ping_pong_8bit_plop.wav");
 		          File peep = new File("resources/ping_pong_8bit_peeeeeep.wav");
-//		          AudioInputStream audioIn = AudioSystem.getAudioInputStream(beep);              
-//		         // Get a sound clip resource.
-//		         Clip clip = AudioSystem.getClip();
-//		         // Open audio clip and load samples from the audio input stream.
-//		         clip.open(audioIn);
-//		         clip.start();
-//		         try {
-//					Thread.sleep(600);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
 		         AudioInputStream audioIn2 = AudioSystem.getAudioInputStream(peep);              
 		         // Get a sound clip resource.
 		         Clip clip2 = AudioSystem.getClip();
