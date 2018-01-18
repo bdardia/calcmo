@@ -1,21 +1,20 @@
 package history;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import guiPlayer.Sampler.SampleScreen;
 import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
+import guiTeacher.userInterfaces.FullFunctionScreen;
 import guiTeacher.userInterfaces.Screen;
 import main.JasMainScreen;
 
-public class JasHistoryScreen extends Screen {
+public class JasHistoryScreen extends FullFunctionScreen {
 
 	public JasHistoryScreen(int width, int height) {
 		super(width, height);
 	}
 
-	public void initObjects(List<Visible> viewObjects) {
+	public void initAllObjects(List<Visible> viewObjects) {
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/histMO.png"));
 		
 		//#3f48cc - color		rectangle - shape
