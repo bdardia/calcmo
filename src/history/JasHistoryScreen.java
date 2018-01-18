@@ -1,27 +1,23 @@
 package history;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import guiTeacher.interfaces.Visible;
-import guiTeacher.userInterfaces.Screen;
+import guiTeacher.userInterfaces.FullFunctionScreen;
 
-public class JasHistoryScreen extends Screen {
+public class JasHistoryScreen extends FullFunctionScreen {
 
 	public JasHistoryScreen(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
 	}
 
-	public JasHistoryScreen(int width, int height, ArrayList<Visible> initWithObjects) {
-		super(width, height, initWithObjects);
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
-	public void initObjects(List<Visible> viewObjects) {
+	public void initAllObjects(List<Visible> viewObjects) {
 		// TODO Auto-generated method stub
-
+		
 	}
+
+
 
 }

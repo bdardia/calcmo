@@ -1,9 +1,18 @@
 package output;
 
-public class OutputScreen {
+import java.util.List;
 
-	public OutputScreen() {
-		// TODO Auto-generated constructor stub
+import guiTeacher.interfaces.Visible;
+import guiTeacher.userInterfaces.FullFunctionScreen;
+
+public class OutputScreen extends FullFunctionScreen {
+
+	public OutputScreen(int width, int height) {
+		super(width, height);
+	}
+
+	public void initAllObjects(List<Visible> viewObjects) {
+
 	}
 
 }
