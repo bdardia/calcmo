@@ -26,7 +26,7 @@ public class JasMainScreen extends GUIApplication {
 	}
 
 	public static void main(String[] args) {
-		main = new JasMainScreen(800, 500);
+		main = new JasMainScreen(518, 696);
 		Thread runner = new Thread(main);
 		runner.start();
 	}
