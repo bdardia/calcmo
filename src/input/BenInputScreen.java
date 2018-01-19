@@ -7,6 +7,8 @@ import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.interfaces.Visible;
 import history.AbidCalculatorScreen;
+import history.JasHistoryScreen;
+import main.JasMain;
 
 public class BenInputScreen extends AbidCalculatorScreen 
 {
@@ -19,6 +21,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static Button derivButton;
 	public static Button linsolveButton;
 	public static Button quadsolveButton;
+	public static Button historyButton;
 	
 	public BenInputScreen(int width, int height) 
 	{
@@ -63,12 +66,23 @@ public class BenInputScreen extends AbidCalculatorScreen
 				System.out.println("quadsolve button pressed");
 			}
 		});
+		// 62, 622, 44, 15
+		historyButton = new Button(62, 623, 44, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				JasMain.main.setScreen(JasMain.historyScreen);
+				
+			}
+		});
 		
 		viewObjects.add(background);
 		viewObjects.add(limButton);
 		viewObjects.add(derivButton);
 		viewObjects.add(linsolveButton);
 		viewObjects.add(quadsolveButton);
+		viewObjects.add(historyButton);
 	}
 
 	

@@ -1,6 +1,7 @@
 package main;
 
 import guiTeacher.GUIApplication;
+import guiTeacher.userInterfaces.Screen;
 import history.JasHistoryScreen;
 import input.BenInputScreen;
 import output.OutputScreen;
