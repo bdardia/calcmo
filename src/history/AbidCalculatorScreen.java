@@ -13,9 +13,6 @@ public abstract class AbidCalculatorScreen extends Screen {
 	}
 
 	@Override
-	public void initObjects(List<Visible> viewObjects) {
-		// TODO Auto-generated method stub
-
-	}
+	public abstract void initObjects(List<Visible> viewObjects);
 
 }
