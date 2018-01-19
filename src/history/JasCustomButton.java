@@ -1,6 +1,6 @@
 package history;
 
-import guiTeacher.components.Action;
+import guiTeacher.components.*;
 import guiTeacher.components.Button;
 
 public abstract class JasCustomButton extends Button {
@@ -9,5 +9,13 @@ public abstract class JasCustomButton extends Button {
 		super(x, y, w, h, text, action);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public static void circleButton(Button b){
+		b.setCurve(90, 90);
+	}
+	
+	public static void triangleButton(Button b) {
 
+	}
+	
 }
