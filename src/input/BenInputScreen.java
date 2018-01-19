@@ -17,6 +17,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static Graphic background;
 	public static Button limButton;
 	public static Button derivButton;
+	public static Button linsolveButton;
 	
 	public BenInputScreen(int width, int height) 
 	{
@@ -45,10 +46,19 @@ public class BenInputScreen extends AbidCalculatorScreen
 				System.out.println("deriv button pressed");
 			}	
 		});
+		linsolveButton = new Button(60, 470, 47, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				System.out.println("linsolve button pressed");
+			}
+		});
 		
 		viewObjects.add(background);
 		viewObjects.add(limButton);
 		viewObjects.add(derivButton);
+		viewObjects.add(linsolveButton);
 	}
 
 	
