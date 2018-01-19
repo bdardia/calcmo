@@ -19,9 +19,7 @@ public class BenSound extends JFrame
 				   {
 					   try {
 					         // Open an audio input stream.           
-					          File beep = new File("resources/ping_pong_8bit_beeep.wav"); //you could also get the sound file with an URL
 					          File plop = new File("resources/ping_pong_8bit_plop.wav");
-					          File peep = new File("resources/ping_pong_8bit_peeeeeep.wav");
 					          AudioInputStream audioIn = AudioSystem.getAudioInputStream(plop);              
 					         // Get a sound clip resource.
 					         Clip clip = AudioSystem.getClip();
@@ -45,12 +43,10 @@ public class BenSound extends JFrame
 				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			      this.setTitle("Test Sound Clip");
 			      this.setSize(300, 200);
-			      this.setVisible(true);       
+			      this.setVisible(false);       
 			      try {
 			         // Open an audio input stream.           
 			          File beep = new File("resources/ping_pong_8bit_beeep.wav"); //you could also get the sound file with an URL
-			          File plop = new File("resources/ping_pong_8bit_plop.wav");
-			          File peep = new File("resources/ping_pong_8bit_peeeeeep.wav");
 			          AudioInputStream audioIn = AudioSystem.getAudioInputStream(beep);              
 			         // Get a sound clip resource.
 			         Clip clip = AudioSystem.getClip();
@@ -72,15 +68,9 @@ public class BenSound extends JFrame
 			      }
 			   rand = Math.random();
 			   
-			}
-			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		      this.setTitle("Test Sound Clip");
-		      this.setSize(300, 200);
-		      this.setVisible(true);       
+			}    
 		      try {
 		         // Open an audio input stream.           
-		          File beep = new File("resources/ping_pong_8bit_beeep.wav"); //you could also get the sound file with an URL
-		          File plop = new File("resources/ping_pong_8bit_plop.wav");
 		          File peep = new File("resources/ping_pong_8bit_peeeeeep.wav");
 		         AudioInputStream audioIn2 = AudioSystem.getAudioInputStream(peep);              
 		         // Get a sound clip resource.
