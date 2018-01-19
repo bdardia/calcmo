@@ -26,13 +26,13 @@ public class JasHistoryScreen extends FullFunctionScreen {
 		});
 		viewObjects.add(goInput);
 		
-		//circle - shape
-		Button select = new Button(375, 615, 93, 45,"Select", new Color(237, 28, 36), new Action() {
+		Button select = new Button(375, 575, 85, 85,"Select", new Color(237, 28, 36), new Action() {
 			//should take the function clicked on by the user, return to the input screen, and enter the function as an input
 			public void act() {
 				
 			}
 		});
+		JasCustomButton.circleButton(select);
 		viewObjects.add(select);
 		
 		//triangle - shape
@@ -44,9 +44,11 @@ public class JasHistoryScreen extends FullFunctionScreen {
 		});
 		viewObjects.add(clear);
 		
+		//will be length of arraylist<history>*2
+		//user input will be black
+		//the output will be gray???	need to think of a way to differintiate between the two
 		ScrollablePane scroll = new ScrollablePane(this, 35, 39, 443, 275);
-		scroll.setBackground(new Color(165, 237, 186));
-		
+		scroll.setBackground(new Color(165, 237, 186));	
 		for(int i=0; i < 10; i++){
 			
 			scroll.addObject(new TextLabel(5,30*i,100,25,"Label "+(i+1)));
