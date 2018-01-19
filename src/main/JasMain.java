@@ -6,14 +6,14 @@ import input.InputScreen;
 import output.OutputScreen;
 
 
-public class JasMainScreen extends GUIApplication {
+public class JasMain extends GUIApplication {
 	
-	public static JasMainScreen main;
+	public static JasMain main;
 	public static JasHistoryScreen historyScreen;
 	public static InputScreen inputScreen;
 	public static OutputScreen outputScreen;
 
-	public JasMainScreen(int width, int height) {
+	public JasMain(int width, int height) {
 		super(width, height);
 		setVisible(true);
 	}
@@ -26,7 +26,7 @@ public class JasMainScreen extends GUIApplication {
 	}
 
 	public static void main(String[] args) {
-		main = new JasMainScreen(518, 696);
+		main = new JasMain(518, 696);
 		Thread runner = new Thread(main);
 		runner.start();
 	}

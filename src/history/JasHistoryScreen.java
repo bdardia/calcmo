@@ -7,7 +7,7 @@ import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import guiTeacher.userInterfaces.Screen;
-import main.JasMainScreen;
+import main.JasMain;
 
 public class JasHistoryScreen extends FullFunctionScreen {
 
@@ -21,7 +21,7 @@ public class JasHistoryScreen extends FullFunctionScreen {
 		Button goInput = new Button(150, 625, 130, 40, "Go Back", new Color(63, 72, 204), new Action() {
 			
 			public void act() {
-				JasMainScreen.main.setScreen(JasMainScreen.inputScreen);
+				JasMain.main.setScreen(JasMain.inputScreen);
 			}
 		});
 		viewObjects.add(goInput);
@@ -45,7 +45,8 @@ public class JasHistoryScreen extends FullFunctionScreen {
 		viewObjects.add(clear);
 		
 		ScrollablePane scroll = new ScrollablePane(this, 35, 39, 443, 275);
-		scroll.setBorderWidth(3);
+		scroll.setBackground(new Color(165, 237, 186));
+		
 		for(int i=0; i < 10; i++){
 			
 			scroll.addObject(new TextLabel(5,30*i,100,25,"Label "+(i+1)));
