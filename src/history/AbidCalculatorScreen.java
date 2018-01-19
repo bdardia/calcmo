@@ -13,6 +13,6 @@ public abstract class AbidCalculatorScreen extends FullFunctionScreen {
 		// TODO Auto-generated constructor stub
 	}
 
-	public abstract void initObjects(List<Visible> viewObjects);
+	public abstract void initAllObjects(List<Visible> viewObjects);
 
 }
