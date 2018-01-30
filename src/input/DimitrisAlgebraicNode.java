@@ -20,8 +20,23 @@ public abstract class DimitrisAlgebraicNode {
 	}
 	
 	
+	DimitrisAlgebraicNode getLhs(){
+		return lhs;
+	}
 	
+	DimitrisAlgebraicNode getRhs(){
+		return rhs;
+	}
 	
+	void Solve(Solver s){
+		s.SolveNode(lhs, rhs);
+	}
 	
+	void ExtractOperation() {
+		
+	}
 	
+	int getOperation() {
+		return 0;
+	}
 }
