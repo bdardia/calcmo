@@ -16,6 +16,7 @@ public class AbidTransitionScreen extends FullFunctionScreen{
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/beemo-transitionScreen"));
+		
 	}
 
 }

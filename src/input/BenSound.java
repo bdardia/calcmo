@@ -19,12 +19,14 @@ public class BenSound extends JFrame
 				   {
 					   try {
 					         // Open an audio input stream.           
-					          File plop = new File("resources/ping_pong_8bit_plop.wav");
+					          File plop = new File("resources/plop_amplified.wav");
 					          AudioInputStream audioIn = AudioSystem.getAudioInputStream(plop);              
 					         // Get a sound clip resource.
 					         Clip clip = AudioSystem.getClip();
 					         // Open audio clip and load samples from the audio input stream.
 					         clip.open(audioIn);
+					         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+					         gainControl.setValue(6.0f);
 					         clip.start();
 					         try {
 								Thread.sleep(200 + (int)(Math.random() * ((600 - 200) + 1)));
@@ -46,12 +48,14 @@ public class BenSound extends JFrame
 			      this.setVisible(false);       
 			      try {
 			         // Open an audio input stream.           
-			          File beep = new File("resources/ping_pong_8bit_beeep.wav"); //you could also get the sound file with an URL
+			          File beep = new File("resources/beeep_distorted.wav"); //you could also get the sound file with an URL
 			          AudioInputStream audioIn = AudioSystem.getAudioInputStream(beep);              
 			         // Get a sound clip resource.
 			         Clip clip = AudioSystem.getClip();
 			         // Open audio clip and load samples from the audio input stream.
 			         clip.open(audioIn);
+			         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			         gainControl.setValue(6.0f);
 			         clip.start();
 			         try {
 						Thread.sleep(600 + (int)(Math.random() * ((1200 - 600) + 1)));
@@ -77,6 +81,8 @@ public class BenSound extends JFrame
 		         Clip clip2 = AudioSystem.getClip();
 		         // Open audio clip and load samples from the audio input stream.
 		         clip2.open(audioIn2);
+		         FloatControl gainControl = (FloatControl) clip2.getControl(FloatControl.Type.MASTER_GAIN);
+		         gainControl.setValue(6.0f);
 		         clip2.start();
 		         try {
 					Thread.sleep(1000);

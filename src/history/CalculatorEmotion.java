@@ -1,8 +1,8 @@
-package output;
+package history;
 
-public abstract class LordEmotion {
+public abstract class CalculatorEmotion {
 
-	public LordEmotion() {
+	public CalculatorEmotion() {
 		/*
 		 * basic emotion information
 		 * used by abid to create each individual Emotion

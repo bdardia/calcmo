@@ -1,18 +1,22 @@
 package main;
 
 import guiTeacher.GUIApplication;
+import guiTeacher.userInterfaces.FullFunctionScreen;
 import guiTeacher.userInterfaces.Screen;
+import history.AbidTransitionScreen;
 import history.JasHistoryScreen;
+import history.SwitchScreen;
 import input.BenInputScreen;
 import output.OutputScreen;
 
 
-public class JasMain extends GUIApplication {
+public class JasMain extends GUIApplication implements SwitchScreen{
 	
 	public static JasMain main;
 	public static JasHistoryScreen historyScreen;
 	public static BenInputScreen inputScreen;
 	public static OutputScreen outputScreen;
+	public static AbidTransitionScreen transitionScreen;
 
 	public JasMain(int width, int height) {
 		super(width, height);
@@ -23,6 +27,7 @@ public class JasMain extends GUIApplication {
 		historyScreen = new JasHistoryScreen(getWidth(), getHeight());
 		inputScreen = new BenInputScreen(getWidth(), getHeight());
 		outputScreen = new OutputScreen(getWidth(), getHeight());
+		transitionScreen = new AbidTransitionScreen(getWidth(),getHeight());
 		setScreen(inputScreen);
 	}
 
@@ -30,6 +35,12 @@ public class JasMain extends GUIApplication {
 		main = new JasMain(518, 696);
 		Thread runner = new Thread(main);
 		runner.start();
+	}
+
+	@Override
+	public void switchScreen(FullFunctionScreen s) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

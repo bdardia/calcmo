@@ -22,6 +22,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static Button linsolveButton;
 	public static Button quadsolveButton;
 	public static Button historyButton;
+	public static Button exponentButton;
 	
 	public BenInputScreen(int width, int height) 
 	{
@@ -66,7 +67,15 @@ public class BenInputScreen extends AbidCalculatorScreen
 				System.out.println("quadsolve button pressed");
 			}
 		});
-		// 62, 622, 44, 15
+		// 60, 527, 84, 15
+		exponentButton = new Button(60, 527, 84, 15, "", new Action( ) {
+			
+			@Override
+			public void act() 
+			{
+				System.out.println("exponentsolve button pressed");
+			}
+		});
 		historyButton = new Button(62, 623, 44, 15, "", new Action() {
 			
 			@Override
@@ -82,6 +91,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 		viewObjects.add(derivButton);
 		viewObjects.add(linsolveButton);
 		viewObjects.add(quadsolveButton);
+		viewObjects.add(exponentButton);
 		viewObjects.add(historyButton);
 	}
 
