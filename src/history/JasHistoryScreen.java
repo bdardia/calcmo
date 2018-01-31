@@ -45,6 +45,7 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		viewObjects.add(clear);
 		
 		//will be length of arraylist<history>*2
+		//make the array list all button so when the user clicks on it, it will return to the input screen with the function entered
 		//user input will be black
 		//the output will be gray???	need to think of a way to differintiate between the two
 		ScrollablePane scroll = new ScrollablePane(this, 35, 39, 443, 275);
@@ -59,6 +60,7 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		 
 		
 		//need dpad to scroll (left right does nothing)(up down scrolls the scrollpane)
+		
 	}
 
 }

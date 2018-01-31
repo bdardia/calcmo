@@ -15,9 +15,10 @@ public abstract class AbidCalculatorScreen extends FullFunctionScreen{
 	public abstract void initAllObjects(List<Visible> viewObjects);
 	
 	public void switchScreen(AbidCalculatorScreen s) {
-		CalcMoMain.main.setScreen(new AbidTransitionScreen(getWidth(),getHeight()));
+		AbidTransitionScreen tt = new AbidTransitionScreen(getWidth(), getHeight());
+		tt.s = s;
+		Thread t = new Thread(tt);
+		t.start();
 		CalcMoMain.main.setScreen(s);
 	}
-
-
 }

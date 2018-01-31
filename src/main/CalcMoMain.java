@@ -10,7 +10,7 @@ import input.BenInputScreen;
 import output.OutputScreen;
 
 
-public class CalcMoMain extends GUIApplication implements SwitchScreen{
+public class CalcMoMain extends GUIApplication{
 	
 	public static CalcMoMain main;
 	public static JasHistoryScreen historyScreen;
@@ -35,11 +35,4 @@ public class CalcMoMain extends GUIApplication implements SwitchScreen{
 		Thread runner = new Thread(main);
 		runner.start();
 	}
-
-	@Override
-	public void switchScreen(FullFunctionScreen s) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
