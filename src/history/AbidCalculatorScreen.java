@@ -6,19 +6,18 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 import guiTeacher.userInterfaces.Screen;
 import main.CalcMoMain;
 
-public abstract class AbidCalculatorScreen extends FullFunctionScreen implements SwitchScreen{
-
-	private AbidTransitionScreen transitionScreen;
+public abstract class AbidCalculatorScreen extends FullFunctionScreen{
+	
 	public AbidCalculatorScreen(int width, int height) {
 		super(width, height);
-		// TODO Auto-generated constructor stub
 	}
 
 	public abstract void initAllObjects(List<Visible> viewObjects);
 	
-	public void switchScreen(Screen s) {
-		setScreen(transitionScreen);
-		setScreen(s);
-	};
+	public void switchScreen(AbidCalculatorScreen s) {
+		CalcMoMain.main.setScreen(new AbidTransitionScreen(getWidth(),getHeight()));
+		CalcMoMain.main.setScreen(s);
+	}
+
 
 }

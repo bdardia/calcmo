@@ -9,7 +9,7 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 import guiTeacher.userInterfaces.Screen;
 import main.CalcMoMain;
 
-public class JasHistoryScreen extends FullFunctionScreen {
+public class JasHistoryScreen extends AbidCalculatorScreen {
 
 	public JasHistoryScreen(int width, int height) {
 		super(width, height);
@@ -21,7 +21,7 @@ public class JasHistoryScreen extends FullFunctionScreen {
 		Button goInput = new Button(150, 625, 130, 40, "Go Back", new Color(63, 72, 204), new Action() {
 			
 			public void act() {
-				CalcMoMain.main.setScreen(CalcMoMain.inputScreen);
+				switchScreen(CalcMoMain.inputScreen);
 			}
 		});
 		viewObjects.add(goInput);

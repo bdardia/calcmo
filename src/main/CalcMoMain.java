@@ -27,7 +27,6 @@ public class CalcMoMain extends GUIApplication implements SwitchScreen{
 		historyScreen = new JasHistoryScreen(getWidth(), getHeight());
 		inputScreen = new BenInputScreen(getWidth(), getHeight());
 		outputScreen = new OutputScreen(getWidth(), getHeight());
-		transitionScreen = new AbidTransitionScreen(getWidth(),getHeight());
 		setScreen(inputScreen);
 	}
 
