@@ -8,7 +8,7 @@ import guiTeacher.components.Graphic;
 import guiTeacher.interfaces.Visible;
 import history.AbidCalculatorScreen;
 import history.JasHistoryScreen;
-import main.JasMain;
+import main.CalcMoMain;
 
 public class BenInputScreen extends AbidCalculatorScreen 
 {
@@ -81,7 +81,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				JasMain.main.setScreen(JasMain.historyScreen);
+				CalcMoMain.main.setScreen(CalcMoMain.historyScreen);
 				
 			}
 		});

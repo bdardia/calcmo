@@ -10,15 +10,15 @@ import input.BenInputScreen;
 import output.OutputScreen;
 
 
-public class JasMain extends GUIApplication implements SwitchScreen{
+public class CalcMoMain extends GUIApplication implements SwitchScreen{
 	
-	public static JasMain main;
+	public static CalcMoMain main;
 	public static JasHistoryScreen historyScreen;
 	public static BenInputScreen inputScreen;
 	public static OutputScreen outputScreen;
 	public static AbidTransitionScreen transitionScreen;
 
-	public JasMain(int width, int height) {
+	public CalcMoMain(int width, int height) {
 		super(width, height);
 		setVisible(true);
 	}
@@ -32,7 +32,7 @@ public class JasMain extends GUIApplication implements SwitchScreen{
 	}
 
 	public static void main(String[] args) {
-		main = new JasMain(518, 696);
+		main = new CalcMoMain(518, 696);
 		Thread runner = new Thread(main);
 		runner.start();
 	}

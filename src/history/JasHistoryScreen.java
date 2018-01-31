@@ -7,7 +7,7 @@ import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import guiTeacher.userInterfaces.Screen;
-import main.JasMain;
+import main.CalcMoMain;
 
 public class JasHistoryScreen extends FullFunctionScreen {
 
@@ -21,7 +21,7 @@ public class JasHistoryScreen extends FullFunctionScreen {
 		Button goInput = new Button(150, 625, 130, 40, "Go Back", new Color(63, 72, 204), new Action() {
 			
 			public void act() {
-				JasMain.main.setScreen(JasMain.inputScreen);
+				CalcMoMain.main.setScreen(CalcMoMain.inputScreen);
 			}
 		});
 		viewObjects.add(goInput);

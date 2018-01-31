@@ -2,10 +2,11 @@ package history;
 
 import java.util.List;
 import guiTeacher.interfaces.Visible;
+import guiTeacher.userInterfaces.FullFunctionScreen;
 import guiTeacher.userInterfaces.Screen;
-import main.JasMain;
+import main.CalcMoMain;
 
-public abstract class AbidCalculatorScreen extends JasMain implements SwitchScreen{
+public abstract class AbidCalculatorScreen extends FullFunctionScreen implements SwitchScreen{
 
 	private AbidTransitionScreen transitionScreen;
 	public AbidCalculatorScreen(int width, int height) {
