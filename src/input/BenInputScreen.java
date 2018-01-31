@@ -7,7 +7,6 @@ import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.interfaces.Visible;
 import history.AbidCalculatorScreen;
-import history.JasHistoryScreen;
 import main.CalcMoMain;
 
 public class BenInputScreen extends AbidCalculatorScreen 
@@ -23,6 +22,8 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static Button quadsolveButton;
 	public static Button historyButton;
 	public static Button exponentButton;
+	public static Button logSolveButton;
+	public static Button summationButton;
 	
 	public BenInputScreen(int width, int height) 
 	{
@@ -67,7 +68,6 @@ public class BenInputScreen extends AbidCalculatorScreen
 				System.out.println("quadsolve button pressed");
 			}
 		});
-		// 60, 527, 84, 15
 		exponentButton = new Button(60, 527, 84, 15, "", new Action( ) {
 			
 			@Override
@@ -76,15 +76,34 @@ public class BenInputScreen extends AbidCalculatorScreen
 				System.out.println("exponentsolve button pressed");
 			}
 		});
+		logSolveButton = new Button(60, 559, 57, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				System.out.println("logsolve button pressed");
+			}
+		});
 		historyButton = new Button(62, 623, 44, 15, "", new Action() {
 			
 			@Override
 			public void act() 
 			{
-				CalcMoMain.main.setScreen(CalcMoMain.historyScreen);
-				
+				switchScreen(CalcMoMain.historyScreen);
 			}
 		});
+		// 60, 591, 63, 15
+		summationButton = new Button(60, 598, 70, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				System.out.println("summation button pressed");
+			}
+		});
+		
+		Thread cleanUp = new Thread(new BenSound());
+		Runtime.getRuntime().addShutdownHook(cleanUp);
 		
 		viewObjects.add(background);
 		viewObjects.add(limButton);
@@ -93,7 +112,11 @@ public class BenInputScreen extends AbidCalculatorScreen
 		viewObjects.add(quadsolveButton);
 		viewObjects.add(exponentButton);
 		viewObjects.add(historyButton);
+		viewObjects.add(logSolveButton);
+		viewObjects.add(summationButton);
 	}
+
+
 
 	
 }

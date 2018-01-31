@@ -5,11 +5,23 @@ import java.net.URL;
 import javax.sound.sampled.*;
 import javax.swing.*;
 
-public class BenSound extends JFrame
+public class BenSound extends JFrame implements Runnable
 {
 
 	public BenSound() 
 	{
+		
+	}
+	
+	public void run()
+	{
+		try {
+			// 60000 + (int)(Math.random() * ((300000 - 60000) + 1))
+			Thread.sleep(60000 + (int)(Math.random() * ((300000 - 60000) + 1)));
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		while (true)
 		{
 			double rand = Math.random();
@@ -98,6 +110,7 @@ public class BenSound extends JFrame
 		         e.printStackTrace();
 		      }
 		}
+		
 		
 	}
 	
