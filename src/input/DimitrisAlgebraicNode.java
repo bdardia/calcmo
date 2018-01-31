@@ -1,22 +1,38 @@
 package input;
 
-public abstract class DimitrisAlgebraicNode {
+public class DimitrisAlgebraicNode {
 	
 	public DimitrisAlgebraicNode lhs;
 	public DimitrisAlgebraicNode rhs;
 	
-	public double value;
+	public Solver solver;
+	
+	private double value;
 	public boolean isEvaluated;
 	
-	DimitrisAlgebraicNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs){
+	public String varName;
+	public boolean isVariable;
+	
+	public static Solver[] solverArray; //set up in main
+	
+	
+	
+	
+	
+	public DimitrisAlgebraicNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs){
 		this.lhs = lhs;
 		this.rhs = rhs;
 		this.isEvaluated = false;
 	}
 	
-	DimitrisAlgebraicNode(double value){
+	public DimitrisAlgebraicNode(double value){
 		this.value = value;
 		this.isEvaluated = true;
+	}
+	
+	public DimitrisAlgebraicNode(String varName) {
+		isVariable = true;
+		this.varName = varName;
 	}
 	
 	
@@ -28,15 +44,15 @@ public abstract class DimitrisAlgebraicNode {
 		return rhs;
 	}
 	
-	void Solve(Solver s){
-		s.SolveNode(lhs, rhs);
+	void addSolver(Solver s){
+		solver = s;
 	}
 	
-	void ExtractOperation() {
-		
+	void Solve() {
+		this.value = solver.solveNode(lhs, rhs);
 	}
 	
-	int getOperation() {
-		return 0;
+	public static void main(String[] args) {
+		DimitrisAlgebraicNode test = new DimitrisAlgebraicNode(10.0);
 	}
 }

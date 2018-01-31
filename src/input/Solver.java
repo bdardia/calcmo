@@ -1,5 +1,8 @@
 package input;
 
 public interface Solver {
-	void SolveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs);
+	double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs);
+	String getOperation();
+	int getPrecedence(); //higher number means more important
+	Solver getInverse();
 }
