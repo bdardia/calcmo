@@ -87,18 +87,27 @@ public class OutputScreen extends AbidCalculatorScreen {
 		
 		inputButton = new Button(100, 100, 100, 100, "GO BACK TO INPUT", new Action() {
 			public void act() {
+				
+				switchScreen(CalcMoMain.inputScreen);
+				
 				System.out.println("Input button pressed");
 			}
 		});
 		
 		historyButton = new Button(200, 100, 100, 100, "GO TO HISTORY", new Action() {
 			public void act() {
+				
+				switchScreen(CalcMoMain.historyScreen);
+				
 				System.out.println("History button pressed");
 			}
 		});
 		
 		tableButton = new Button(300, 100, 100, 100, "GO TO TABLE", new Action() {
 			public void act() {
+				
+				//switchScreen(CalcMoMain.tableScreen);
+				
 				System.out.println("Table button pressed");
 			}
 		});

@@ -3,6 +3,7 @@ package main;
 import guiTeacher.GUIApplication;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import guiTeacher.userInterfaces.Screen;
+import history.AbidTableScreen;
 import history.AbidTransitionScreen;
 import history.JasHistoryScreen;
 import history.SwitchScreen;
@@ -17,6 +18,7 @@ public class CalcMoMain extends GUIApplication{
 	public static BenInputScreen inputScreen;
 	public static OutputScreen outputScreen;
 	public static AbidTransitionScreen transitionScreen;
+	public static AbidTableScreen tableScreen;
 
 	public CalcMoMain(int width, int height) {
 		super(width, height);
