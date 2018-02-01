@@ -16,8 +16,8 @@ public class BenSound extends JFrame implements Runnable
 	public void run()
 	{
 		try {
-			// 60000 + (int)(Math.random() * ((300000 - 60000) + 1))
-			Thread.sleep(60000 + (int)(Math.random() * ((300000 - 60000) + 1)));
+			// 300000 + (int)(Math.random() * ((1200000 - 300000) + 1))
+			Thread.sleep(300000 + (int)(Math.random() * ((1200000 - 300000) + 1)));
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
