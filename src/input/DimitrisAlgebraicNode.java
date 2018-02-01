@@ -1,5 +1,7 @@
 package input;
 
+import output.*;
+
 public class DimitrisAlgebraicNode {
 	
 	public DimitrisAlgebraicNode lhs;
@@ -13,7 +15,7 @@ public class DimitrisAlgebraicNode {
 	public String varName;
 	public boolean isVariable;
 	
-	public static Solver[] solverArray; //set up in main
+	public static Solver[] solverArray = {new AdditionSolver(), new MultiplicationSolver(), new DivisionSolver()}; //set up in main
 	
 	
 	
@@ -32,6 +34,7 @@ public class DimitrisAlgebraicNode {
 		isVariable = true;
 		this.varName = varName;
 	}
+	
 	
 	
 	void Solve() {

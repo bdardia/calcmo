@@ -2,11 +2,11 @@ package input;
 
 import java.util.ArrayList;
 
-public class DimitrisParser {
+public class DimitrisNodeBuilder {
 	
 	String currentText;
 
-	public DimitrisParser() {
+	public DimitrisNodeBuilder() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -15,10 +15,16 @@ public class DimitrisParser {
 		int start = 0;
 		for(int index = 0; index < currentText.length(); index++) {
 			String currentSubString = currentText.substring(start, index);
-			int nodeIndex = getAlgebraicNode(currentSubString);
-			if(nodeIndex != -1) {
-				parsedArray.add(new DimitrisAlgebraicNode(DimitrisAlgebraicNode.solverArray[nodeIndex]));
-				start = index;
+			try {
+				parsedArray.add(new DimitrisAlgebraicNode(Double.parseDouble(currentSubString)));
+				
+			}
+			catch(Exception e) {
+				int nodeIndex = getAlgebraicNode(currentSubString);
+				if(nodeIndex != -1) {
+					parsedArray.add(new DimitrisAlgebraicNode(DimitrisAlgebraicNode.solverArray[nodeIndex]));
+					start = index;
+				}
 			}
 		}
 		return parsedArray;
@@ -33,6 +39,15 @@ public class DimitrisParser {
 			}
 		}
 		return -1;
+	}
+	
+	
+	
+	DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray) {
+		int lhsPrecedence = parsedArray.get(0).solver.getPrecedence();
+		int rhsPrecedence = parsedArray.get(1).solver.getPrecedence();
+		int indexOfLowestPrecedence = 0;
+		
 	}
 	
 

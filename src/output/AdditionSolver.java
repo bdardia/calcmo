@@ -13,7 +13,7 @@ public class AdditionSolver implements Solver {
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "A";
+		return "+";
 	}
 
 	@Override

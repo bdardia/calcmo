@@ -14,7 +14,7 @@ public class DivisionSolver implements Solver {
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "D";
+		return "/";
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class DivisionSolver implements Solver {
 	@Override
 	public Solver getInverse() {
 		// TODO Auto-generated method stub
-		return null;
+		return new MultiplicationSolver();
 	}
 
 }
