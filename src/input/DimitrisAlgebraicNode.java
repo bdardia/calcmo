@@ -19,10 +19,8 @@ public class DimitrisAlgebraicNode {
 	
 	
 	
-	public DimitrisAlgebraicNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs){
-		this.lhs = lhs;
-		this.rhs = rhs;
-		this.isEvaluated = false;
+	public DimitrisAlgebraicNode(Solver s){
+		this.solver = s;
 	}
 	
 	public DimitrisAlgebraicNode(double value){
@@ -35,18 +33,6 @@ public class DimitrisAlgebraicNode {
 		this.varName = varName;
 	}
 	
-	
-	DimitrisAlgebraicNode getLhs(){
-		return lhs;
-	}
-	
-	DimitrisAlgebraicNode getRhs(){
-		return rhs;
-	}
-	
-	void addSolver(Solver s){
-		solver = s;
-	}
 	
 	void Solve() {
 		this.value = solver.solveNode(lhs, rhs);
