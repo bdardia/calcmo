@@ -4,11 +4,14 @@ public class BenVariableStorage
 {
 	
 	private String name;
-	private int value;
+	private double value;
+	private boolean isSet;
 	
-	public BenVariableStorage(String name)
+	public BenVariableStorage(String name, double value, boolean isSet)
 	{
 		this.name = name;
+		this.value = value;
+		this.isSet = isSet;
 	}
 	
 	public String getName()
@@ -21,13 +24,23 @@ public class BenVariableStorage
 		this.name = name;
 	}
 	
-	public int getValue()
+	public double getValue()
 	{
 		return this.value;
 	}
 	
-	public void setValue(int value)
+	public void setValue(double value)
 	{
 		this.value = value;
+	}
+	
+	public void setSet(boolean isSet)
+	{
+		this.isSet = isSet;
+	}
+	
+	public boolean getSet()
+	{
+		return this.isSet;
 	}
 }

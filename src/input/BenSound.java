@@ -2,12 +2,16 @@ package input;
 
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
+
 import javax.sound.sampled.*;
 import javax.swing.*;
 
 public class BenSound extends JFrame implements Runnable
 {
 
+	public static ArrayList<BenVariableStorage> variables = new ArrayList<BenVariableStorage>();
+	
 	public BenSound() 
 	{
 		
@@ -24,6 +28,7 @@ public class BenSound extends JFrame implements Runnable
 		}
 		while (true)
 		{
+			
 			double rand = Math.random();
 			while (rand > .05)
 			{

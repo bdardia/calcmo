@@ -23,7 +23,7 @@ public class AbidTransitionScreen extends AbidCalculatorScreen implements Runnab
 	public void run() {
 		CalcMoMain.main.setScreen(new AbidTransitionScreen(getWidth(),getHeight()));
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(1500);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
