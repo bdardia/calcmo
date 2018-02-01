@@ -55,4 +55,11 @@ public class DimitrisAlgebraicNode {
 	public static void main(String[] args) {
 		DimitrisAlgebraicNode test = new DimitrisAlgebraicNode(10.0);
 	}
+
+	public int solveNode() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 }
