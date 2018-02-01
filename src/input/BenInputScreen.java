@@ -31,6 +31,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static Button summationButton;
 	public static Button oneButton;
 	public static Button twoButton;
+	public static Button threeButton;
 	public static Button normalSolveButton;
 	public static ArrayList<BenVariableStorage> variables;
 	
@@ -111,6 +112,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 				System.out.println("summation button pressed");
 			}
 		});
+		// add 42 to x
 		oneButton = new Button(278, 385, 15, 15, "", new Action() {
 			
 			@Override
