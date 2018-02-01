@@ -30,6 +30,8 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static Button logSolveButton;
 	public static Button summationButton;
 	public static Button oneButton;
+	public static Button twoButton;
+	public static Button normalSolveButton;
 	public static ArrayList<BenVariableStorage> variables;
 	
 	public BenInputScreen(int width, int height) 
@@ -109,7 +111,6 @@ public class BenInputScreen extends AbidCalculatorScreen
 				System.out.println("summation button pressed");
 			}
 		});
-		// 275, 382, 8, 15
 		oneButton = new Button(278, 385, 15, 15, "", new Action() {
 			
 			@Override
@@ -118,7 +119,23 @@ public class BenInputScreen extends AbidCalculatorScreen
 				inputArea.setText(inputArea.getText() + "1");
 			}
 		});
-		
+		twoButton = new Button(318, 385, 15, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "1");
+			}
+		});
+		normalSolveButton = new Button(240, 540, 91, 131, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				System.out.println("normal solve");
+			}
+		});
+				
 		Thread cleanUp = new Thread(new BenSound());
 		Runtime.getRuntime().addShutdownHook(cleanUp);
 		
@@ -133,6 +150,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 		viewObjects.add(logSolveButton);
 		viewObjects.add(summationButton);
 		viewObjects.add(oneButton);
+		viewObjects.add(normalSolveButton);
 	}
 
 
