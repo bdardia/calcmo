@@ -119,12 +119,12 @@ public class BenInputScreen extends AbidCalculatorScreen
 				inputArea.setText(inputArea.getText() + "1");
 			}
 		});
-		twoButton = new Button(318, 385, 15, 15, "", new Action() {
+		twoButton = new Button(320, 385, 15, 15, "", new Action() {
 			
 			@Override
 			public void act() 
 			{
-				inputArea.setText(inputArea.getText() + "1");
+				inputArea.setText(inputArea.getText() + "2");
 			}
 		});
 		normalSolveButton = new Button(240, 540, 91, 131, "", new Action() {
@@ -150,6 +150,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 		viewObjects.add(logSolveButton);
 		viewObjects.add(summationButton);
 		viewObjects.add(oneButton);
+		viewObjects.add(twoButton);
 		viewObjects.add(normalSolveButton);
 	}
 
