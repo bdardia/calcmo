@@ -1,21 +1,22 @@
 package history;
 
 import java.awt.Color;
-import java.util.List;
+import java.util.*;
 
 import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
-import guiTeacher.userInterfaces.FullFunctionScreen;
-import guiTeacher.userInterfaces.Screen;
 import main.CalcMoMain;
 
 public class JasHistoryScreen extends AbidCalculatorScreen {
+	
+	private ArrayList<AbedHistoryNode> fx;
 
 	public JasHistoryScreen(int width, int height) {
 		super(width, height);
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
+		
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/histMO.png"));
 		
 		Button goInput = new Button(150, 625, 130, 40, "Go Back", new Color(63, 72, 204), new Action() {
@@ -37,9 +38,10 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		
 		//triangle - shape
 		Button clear = new Button(375, 515, 93, 45, "Clear", new Color(153, 217, 234), new Action() {
-			//should clear the history(remove all items from arraylist) and update screen
+
 			public void act() {
-				
+				clear(fx);
+				update();
 			}
 		});
 		viewObjects.add(clear);
@@ -56,11 +58,12 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		}
 		scroll.update();
 		
-		viewObjects.add(scroll);
-		 
-		
-		//need dpad to scroll (left right does nothing)(up down scrolls the scrollpane)
-		
+		viewObjects.add(scroll);		
+	}
+	
+	public void clear(ArrayList<AbedHistoryNode> arr) {
+		arr.clear();
+		arr.trimToSize();
 	}
 
 }

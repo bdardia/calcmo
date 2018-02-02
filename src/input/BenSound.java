@@ -17,6 +17,31 @@ public class BenSound extends JFrame implements Runnable
 		
 	}
 	
+	public void playSound(String fileName)
+	{
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(false);
+		
+		File sound = new File("resources/" + fileName);
+		try {
+			AudioInputStream inStream = AudioSystem.getAudioInputStream(sound);
+			Clip clip = AudioSystem.getClip();
+			clip.open(inStream);
+			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+	        gainControl.setValue(6.0f);
+	        clip.start(); 
+		} catch (UnsupportedAudioFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void run()
 	{
 		try {
