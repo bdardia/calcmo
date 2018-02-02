@@ -81,7 +81,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 				solverPress();
 			}	
 		});
-		linsolveButton = new Button(60, 470, 47, 15, "", new Action() {
+		linsolveButton = new Button(60, 475, 47, 15, "", new Action() {
 			
 			@Override
 			public void act() 
@@ -90,7 +90,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 				buttonPress();
 			}
 		});
-		quadsolveButton = new Button(60, 498, 66, 15, "", new Action() {
+		quadsolveButton = new Button(60, 508, 66, 15, "", new Action() {
 			
 			@Override
 			public void act() 
@@ -99,7 +99,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 				buttonPress();
 			}
 		});
-		exponentButton = new Button(60, 527, 84, 15, "", new Action( ) {
+		exponentButton = new Button(60, 537, 84, 15, "", new Action( ) {
 			
 			@Override
 			public void act() 
@@ -108,7 +108,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 				buttonPress();
 			}
 		});
-		logSolveButton = new Button(60, 559, 57, 15, "", new Action() {
+		logSolveButton = new Button(60, 569, 57, 15, "", new Action() {
 			
 			@Override
 			public void act() 
@@ -126,7 +126,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 				switchPress();
 			}
 		});
-		summationButton = new Button(60, 598, 70, 15, "", new Action() {
+		summationButton = new Button(60, 603, 70, 15, "", new Action() {
 			
 			@Override
 			public void act() 
