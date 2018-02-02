@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class DimitrisNodeBuilder {
 	
-	String currentText;
+	
 
 	public DimitrisNodeBuilder() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	ArrayList<DimitrisAlgebraicNode> parse() {
+	ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
 		ArrayList<DimitrisAlgebraicNode> parsedArray = new ArrayList<DimitrisAlgebraicNode>();
 		int start = 0;
 		for(int index = 0; index < currentText.length(); index++) {
@@ -44,10 +44,32 @@ public class DimitrisNodeBuilder {
 	
 	
 	DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray) {
-		int lhsPrecedence = parsedArray.get(0).solver.getPrecedence();
-		int rhsPrecedence = parsedArray.get(1).solver.getPrecedence();
-		int indexOfLowestPrecedence = 0;
+		if(parsedArray.size() > 1) {
+			DimitrisAlgebraicNode lhs = parsedArray.get(0);
+			DimitrisAlgebraicNode rhs = parsedArray.get(1);
+			int lhsPrecedence = lhs.solver.getPrecedence();
+			int rhsPrecedence = rhs.solver.getPrecedence();
+			
+			if(lhsPrecedence < rhsPrecedence) {
+				rhs.lhs = lhs;
+				parsedArray.remove(lhs);
+				return buildTree(parsedArray);
+			}else {
+				parsedArray.remove(rhs);
+				lhs.rhs = buildTree(parsedArray);
+				return lhs;
+			}
+			
+		}else {
+			return parsedArray.get(0);
+		}
+				
 		
+	}
+	
+	
+	DimitrisAlgebraicNode compileProgram(String program) {
+		return buildTree(parse(program));
 	}
 	
 
