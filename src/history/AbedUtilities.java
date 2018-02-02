@@ -8,13 +8,16 @@ public class AbedUtilities
 	{
 		for(int i = 0; i < h.size();i++)
 		{
-			if(h.get(i).print().get(0).equals(t))
+			if(h.get(i).equals(t))
 			{
 				return true;
 			}
 		}
 		return false; 
-		
 	}
-	
+	public ArrayList<AbedHistoryNode> sort(ArrayList<AbedHistoryNode> a)
+	{
+		
+		return a;
+	}
 }
