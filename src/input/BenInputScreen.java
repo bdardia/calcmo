@@ -44,11 +44,13 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static Button normalSolveButton;
 	public static Button addVariableButton;
 	public static BenSound soundControl;
+	public static boolean inputValid;
 	public static ArrayList<BenVariableStorage> variables = new ArrayList<BenVariableStorage>();
 	
 	public BenInputScreen(int width, int height) 
 	{
 		super(width, height);
+		inputValid = false;
 	}
 	
 	// make arraylist for variable entry
@@ -84,8 +86,8 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				System.out.println("linsolve button pressed");
-				solverPress();
+				inputArea.setText(inputArea.getText() + "+");
+				buttonPress();
 			}
 		});
 		quadsolveButton = new Button(60, 498, 66, 15, "", new Action() {
@@ -93,8 +95,8 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				System.out.println("quadsolve button pressed");
-				solverPress();
+				inputArea.setText(inputArea.getText() + "-");
+				buttonPress();
 			}
 		});
 		exponentButton = new Button(60, 527, 84, 15, "", new Action( ) {
@@ -102,8 +104,8 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				System.out.println("exponentsolve button pressed");
-				solverPress();
+				inputArea.setText(inputArea.getText() + "*");
+				buttonPress();
 			}
 		});
 		logSolveButton = new Button(60, 559, 57, 15, "", new Action() {
@@ -111,8 +113,8 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				System.out.println("logsolve button pressed");
-				solverPress();
+				inputArea.setText(inputArea.getText() + "/");
+				buttonPress();
 			}
 		});
 		historyButton = new Button(62, 623, 44, 15, "", new Action() {
@@ -129,8 +131,8 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				System.out.println("summation button pressed");
-				solverPress();
+				inputArea.setText(inputArea.getText() + ";");
+				buttonPress();
 			}
 		});
 		// add 42 to x
@@ -212,6 +214,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public void solverPress()
 	{
 		soundControl.playSound("beeep_distorted.wav");
+		
 	}
 	
 	public void switchPress()
