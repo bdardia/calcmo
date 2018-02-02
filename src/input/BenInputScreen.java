@@ -135,7 +135,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 				buttonPress();
 			}
 		});
-		// add 42 to x
+		// add 42 to x, 32 to y
 		oneButton = new Button(278, 385, 15, 15, "", new Action() {
 			
 			@Override
@@ -160,6 +160,60 @@ public class BenInputScreen extends AbidCalculatorScreen
 			public void act() 
 			{
 				inputArea.setText(inputArea.getText() + "3");
+				buttonPress();
+			}
+		});
+		fourButton = new Button(278, 417, 15, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "4");
+				buttonPress();
+			}
+		});
+		fiveButton = new Button(320, 417, 15, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "5");
+				buttonPress();
+			}
+		});
+		sixButton = new Button(362, 417, 15, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "6");
+				buttonPress();
+			}
+		});
+		sevenButton = new Button(278, 449, 15, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "7");
+				buttonPress();
+			}
+		});
+		eightButton = new Button(320, 449, 15, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "8");
+				buttonPress();
+			}
+		});
+		nineButton = new Button(362, 449, 15, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "9");
 				buttonPress();
 			}
 		});
@@ -202,6 +256,12 @@ public class BenInputScreen extends AbidCalculatorScreen
 		viewObjects.add(oneButton);
 		viewObjects.add(twoButton);
 		viewObjects.add(threeButton);
+		viewObjects.add(fourButton);
+		viewObjects.add(fiveButton);
+		viewObjects.add(sixButton);
+		viewObjects.add(sevenButton);
+		viewObjects.add(eightButton);
+		viewObjects.add(nineButton);
 		viewObjects.add(normalSolveButton);
 		viewObjects.add(addVariableButton);
 	}
