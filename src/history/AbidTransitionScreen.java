@@ -17,7 +17,7 @@ public class AbidTransitionScreen extends AbidCalculatorScreen implements Runnab
 
 	public void initAllObjects(List<Visible> viewObjects) {
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/beemo-transitionScreen.png"));
-		
+		viewObjects.add(new AbidAnimations(150, 400, 200, 200));
 	}
 	
 	public void run() {
