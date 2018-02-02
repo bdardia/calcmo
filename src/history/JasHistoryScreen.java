@@ -55,13 +55,17 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		//make the array list all button so when the user clicks on it, it will return to the input screen with the function entered
 		ScrollablePane scroll = new ScrollablePane(this, 35, 39, 443, 275);
 		scroll.setBackground(new Color(165, 237, 186));	
-		for(int i=0; i < 10; i++){
+		for(int i = 0; i < fx.size(); i++){
 			
-			scroll.addObject(new TextLabel(5,30*i,100,25,"Label "+(i+1)));
-		}
+			scroll.addObject(new Button(5,30*i,100,25,fx.get(i).getInput(), new Action() {
+
+				public void act() {
+					switchScreen(CalcMoMain.inputScreen);
+				}
+			}));		}
 		scroll.update();
 		
-		viewObjects.add(scroll);		
+		viewObjects.add(scroll);	
 	}
 	
 	public void clearHist(ArrayList<AbedHistoryNode> arr) {
@@ -74,4 +78,16 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		arr.trimToSize();
 	}
 
+/*
+ * Failed Attempt to make scrollpane of button
+ * ^
+ * |
+ * Probably because the arraylist is empty
+ * scroll.addObject(new Button(5,30*i,100,25,fx.get(i).getInput(), new Action() {
+
+				public void act() {
+					switchScreen(CalcMoMain.inputScreen);
+				}
+			}));
+ */
 }
