@@ -62,7 +62,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 		background = new Graphic(0, 0, "resources/calcmoscreen.png");
 		inputArea = new TextLabel(37, 37, 400, 37, "");
 		variableArea = new TextBox(193, 403, 30, 30, "");
-		// add 7 to y value
+		// usually add 7 to y value
 		limButton = new Button(60, 405, 26, 15, "", new Action() {
 			
 			@Override
