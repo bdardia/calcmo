@@ -286,8 +286,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				System.out.println("normal solve");
-				switchScreen(CalcMoMain.outputScreen);
+				DimitrisNodeBuilder.compileProgram(inputArea.getText());
 				solverPress();
 			}
 		});
