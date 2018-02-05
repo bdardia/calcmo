@@ -13,13 +13,19 @@ public class AbidAnimations extends AnimatedComponent{
 		go.start();
 	}
 	public void randomAnimation() {
-		int  n = (int)(Math.random() * 3)+1;
+		int  n = (int)(Math.random() * 6)+1;
 		if(n == 1) 
-			addSequence("resources/beemo-sprite.png",110,20,20,120,120,4);
+			addSequence("resources/beemo-sprite.png",300,20,20,120,120,4);
 		if(n == 2)
-			addSequence("resources/beemo-sprite.png",200,0,770,130,124,4);
+			addSequence("resources/beemo-sprite.png",300,0,770,130,124,4);
 		if(n == 3)
-			addSequence("resources/beemo-sprite.png",200,128,528,128,107,4);
+			addSequence("resources/beemo-sprite.png",300,128,528,128,107,4);
+		if(n == 4)
+			addSequence("resources/beemo-sprite.png",300,128,400,128,112,3);
+		if(n == 5)
+			addSequence("resources/beemo-sprite.png",300,256,257,128,125,3);
+		if(n == 6)
+			addSequence("resources/beemo-sprite.png",300,8,642,128,125,3);
 	}
 
 }

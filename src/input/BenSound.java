@@ -53,7 +53,6 @@ public class BenSound extends JFrame implements Runnable
 		}
 		while (true)
 		{
-			
 			double rand = Math.random();
 			while (rand > .05)
 			{
