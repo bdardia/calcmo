@@ -4,13 +4,7 @@ import java.util.ArrayList;
 
 public class DimitrisNodeBuilder {
 	
-	
-
-	public DimitrisNodeBuilder() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
+	static ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
 		ArrayList<DimitrisAlgebraicNode> parsedArray = new ArrayList<DimitrisAlgebraicNode>();
 		int start = 0;
 		for(int index = 0; index < currentText.length(); index++) {
@@ -31,7 +25,7 @@ public class DimitrisNodeBuilder {
 	}
 	
 
-	int getAlgebraicNode(String operation){
+	static int getAlgebraicNode(String operation){
 		for(int i = 0; i < DimitrisAlgebraicNode.solverArray.length; i++) {
 			Solver s = DimitrisAlgebraicNode.solverArray[i];
 			if(s.getOperation() == operation) {
@@ -43,7 +37,7 @@ public class DimitrisNodeBuilder {
 	
 	
 	
-	DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int precedence) {
+	static DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int precedence) {
 		if(parsedArray.size() > 1) {
 			DimitrisAlgebraicNode lhs = parsedArray.get(0);
 			DimitrisAlgebraicNode rhs = parsedArray.get(1);
@@ -82,7 +76,7 @@ public class DimitrisNodeBuilder {
 	}
 	
 	
-	DimitrisAlgebraicNode compileProgram(String program) {
+	static DimitrisAlgebraicNode compileProgram(String program) {
 		return buildTree(parse(program),0);
 	}
 	
