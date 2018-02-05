@@ -10,12 +10,16 @@ import main.CalcMoMain;
 public class JasHistoryScreen extends AbidCalculatorScreen {
 	
 	private ArrayList<AbedHistoryNode> fx;
+	private ArrayList<Button> hist;
 
 	public JasHistoryScreen(int width, int height) {
 		super(width, height);
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
+		
+		fx = new ArrayList<AbedHistoryNode>();
+		hist = new ArrayList<Button>();
 		
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/histMO.png"));
 		
@@ -40,7 +44,8 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		Button clear = new Button(375, 515, 93, 45, "Clear", new Color(153, 217, 234), new Action() {
 
 			public void act() {
-				clear(fx);
+				clearHist(fx);
+				clearPane(hist);
 				update();
 			}
 		});
@@ -48,22 +53,41 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		
 		//will be length of arraylist<history>*2
 		//make the array list all button so when the user clicks on it, it will return to the input screen with the function entered
-		//user input will be black
-		//the output will be gray???	need to think of a way to differintiate between the two
 		ScrollablePane scroll = new ScrollablePane(this, 35, 39, 443, 275);
 		scroll.setBackground(new Color(165, 237, 186));	
-		for(int i=0; i < 10; i++){
+		for(int i = 0; i < fx.size(); i++){
 			
-			scroll.addObject(new TextLabel(5,30*i,100,25,"Label "+(i+1)));
-		}
+			scroll.addObject(new Button(5,30*i,100,25,fx.get(i).getInput(), new Action() {
+
+				public void act() {
+					switchScreen(CalcMoMain.inputScreen);
+				}
+			}));		}
 		scroll.update();
 		
-		viewObjects.add(scroll);		
+		viewObjects.add(scroll);	
 	}
 	
-	public void clear(ArrayList<AbedHistoryNode> arr) {
+	public void clearHist(ArrayList<AbedHistoryNode> arr) {
+		arr.clear();
+		arr.trimToSize();
+	}
+	
+	public void clearPane(ArrayList<Button> arr) {
 		arr.clear();
 		arr.trimToSize();
 	}
 
+/*
+ * Failed Attempt to make scrollpane of button
+ * ^
+ * |
+ * Probably because the arraylist is empty
+ * scroll.addObject(new Button(5,30*i,100,25,fx.get(i).getInput(), new Action() {
+
+				public void act() {
+					switchScreen(CalcMoMain.inputScreen);
+				}
+			}));
+ */
 }

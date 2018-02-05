@@ -44,11 +44,13 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static Button normalSolveButton;
 	public static Button addVariableButton;
 	public static BenSound soundControl;
+	public static boolean inputValid;
 	public static ArrayList<BenVariableStorage> variables = new ArrayList<BenVariableStorage>();
 	
 	public BenInputScreen(int width, int height) 
 	{
 		super(width, height);
+		inputValid = false;
 	}
 	
 	// make arraylist for variable entry
@@ -60,7 +62,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 		background = new Graphic(0, 0, "resources/calcmoscreen.png");
 		inputArea = new TextLabel(37, 37, 400, 37, "");
 		variableArea = new TextBox(193, 403, 30, 30, "");
-		// add 7 to y value
+		// usually add 7 to y value
 		limButton = new Button(60, 405, 26, 15, "", new Action() {
 			
 			@Override
@@ -79,40 +81,40 @@ public class BenInputScreen extends AbidCalculatorScreen
 				solverPress();
 			}	
 		});
-		linsolveButton = new Button(60, 470, 47, 15, "", new Action() {
+		linsolveButton = new Button(60, 475, 47, 15, "", new Action() {
 			
 			@Override
 			public void act() 
 			{
-				System.out.println("linsolve button pressed");
-				solverPress();
+				inputArea.setText(inputArea.getText() + "+");
+				buttonPress();
 			}
 		});
-		quadsolveButton = new Button(60, 498, 66, 15, "", new Action() {
+		quadsolveButton = new Button(60, 508, 66, 15, "", new Action() {
 			
 			@Override
 			public void act() 
 			{
-				System.out.println("quadsolve button pressed");
-				solverPress();
+				inputArea.setText(inputArea.getText() + "-");
+				buttonPress();
 			}
 		});
-		exponentButton = new Button(60, 527, 84, 15, "", new Action( ) {
+		exponentButton = new Button(60, 537, 84, 15, "", new Action( ) {
 			
 			@Override
 			public void act() 
 			{
-				System.out.println("exponentsolve button pressed");
-				solverPress();
+				inputArea.setText(inputArea.getText() + "*");
+				buttonPress();
 			}
 		});
-		logSolveButton = new Button(60, 559, 57, 15, "", new Action() {
+		logSolveButton = new Button(60, 569, 57, 15, "", new Action() {
 			
 			@Override
 			public void act() 
 			{
-				System.out.println("logsolve button pressed");
-				solverPress();
+				inputArea.setText(inputArea.getText() + "/");
+				buttonPress();
 			}
 		});
 		historyButton = new Button(62, 623, 44, 15, "", new Action() {
@@ -124,16 +126,16 @@ public class BenInputScreen extends AbidCalculatorScreen
 				switchPress();
 			}
 		});
-		summationButton = new Button(60, 598, 70, 15, "", new Action() {
+		summationButton = new Button(60, 603, 70, 15, "", new Action() {
 			
 			@Override
 			public void act() 
 			{
-				System.out.println("summation button pressed");
-				solverPress();
+				inputArea.setText(inputArea.getText() + ";");
+				buttonPress();
 			}
 		});
-		// add 42 to x
+		// add 42 to x, 32 to y
 		oneButton = new Button(278, 385, 15, 15, "", new Action() {
 			
 			@Override
@@ -158,6 +160,60 @@ public class BenInputScreen extends AbidCalculatorScreen
 			public void act() 
 			{
 				inputArea.setText(inputArea.getText() + "3");
+				buttonPress();
+			}
+		});
+		fourButton = new Button(278, 417, 15, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "4");
+				buttonPress();
+			}
+		});
+		fiveButton = new Button(320, 417, 15, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "5");
+				buttonPress();
+			}
+		});
+		sixButton = new Button(362, 417, 15, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "6");
+				buttonPress();
+			}
+		});
+		sevenButton = new Button(278, 449, 15, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "7");
+				buttonPress();
+			}
+		});
+		eightButton = new Button(320, 449, 15, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "8");
+				buttonPress();
+			}
+		});
+		nineButton = new Button(362, 449, 15, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "9");
 				buttonPress();
 			}
 		});
@@ -200,6 +256,12 @@ public class BenInputScreen extends AbidCalculatorScreen
 		viewObjects.add(oneButton);
 		viewObjects.add(twoButton);
 		viewObjects.add(threeButton);
+		viewObjects.add(fourButton);
+		viewObjects.add(fiveButton);
+		viewObjects.add(sixButton);
+		viewObjects.add(sevenButton);
+		viewObjects.add(eightButton);
+		viewObjects.add(nineButton);
 		viewObjects.add(normalSolveButton);
 		viewObjects.add(addVariableButton);
 	}
@@ -212,6 +274,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public void solverPress()
 	{
 		soundControl.playSound("beeep_distorted.wav");
+		
 	}
 	
 	public void switchPress()
