@@ -16,14 +16,9 @@ import main.CalcMoMain;
 
 public class OutputScreen extends AbidCalculatorScreen {
 	
-	
-	
 	private Graphic background;
-	
 	private Button inputButton;
-	
 	private Button historyButton;
-	
 	private Button tableButton;
 	
 
@@ -65,6 +60,8 @@ public class OutputScreen extends AbidCalculatorScreen {
 				System.out.println("Table button pressed");
 			}
 		});
+		
+		
 		JasCustomButton.circleButton(tableButton);
 		
 		viewObjects.add(background);
