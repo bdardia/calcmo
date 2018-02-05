@@ -83,7 +83,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		
 */		
 		
-		background = new Graphic(0, 0, "resources/blankface.png");
+		background = new Graphic(0, 0, "resources/outputscreen.png");
 		
 		inputButton = new Button(100, 100, 100, 100, "GO BACK TO INPUT", new Action() {
 			public void act() {
