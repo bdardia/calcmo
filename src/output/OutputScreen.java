@@ -1,5 +1,6 @@
 package output;
 
+import java.awt.Color;
 import java.util.List;
 
 
@@ -9,40 +10,13 @@ import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.interfaces.Visible;
 import history.AbidCalculatorScreen;
+import history.JasCustomButton;
 import history.JasHistoryScreen;
 import main.CalcMoMain;
 
 public class OutputScreen extends AbidCalculatorScreen {
 	
-	/*
 	
-	private Button addButton;
-	private Button subtractButton;
-	private Button multiplyButton;
-	private Button divideButton;
-	private Button enterButton;
-	
-	private Button sinButton;
-	private Button cosButton;
-	private Button tanButton;
-	private Button arcsinButton;
-	private Button arccosButton;
-	private Button arctanButton;
-	
-	
-	private Button eButton;
-	private Button piButton;
-	private Button xButton;
-	private Button powerButton;
-	private Button percentButton;
-	private Button negativeButton;
-	private Button openParenthesisButton;
-	private Button closeParenthesisButton;
-	private Button decimalButton;
-	private Button lnButton;
-	private Button logButton;
-	
-	*/
 	
 	private Graphic background;
 	
@@ -59,33 +33,11 @@ public class OutputScreen extends AbidCalculatorScreen {
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
-/*
-		addButton = new Button(100, 100, 100, 100, "ADD");
+
 		
-		subtractButton = new Button();
+		background = new Graphic(0, 0, "resources/outputscreen.png");
 		
-		multiplyButton = new Button();
-		
-		divideButton = new Button();
-		
-		enterButton = new Button();
-		
-		sinButton = new Button(100, 100, 100, 100, "ADD");
-	
-		cosButton = new Button(100, 100, 100, 100, "ADD");
-		
-		addButton = new Button(100, 100, 100, 100, "ADD");
-		
-		addButton = new Button(100, 100, 100, 100, "ADD");
-		
-		
-		
-		
-*/		
-		
-		background = new Graphic(0, 0, "resources/blankface.png");
-		
-		inputButton = new Button(100, 100, 100, 100, "GO BACK TO INPUT", new Action() {
+		inputButton = new Button(100, 400, 100, 100, "Initial Screen", Color.RED, new Action() {
 			public void act() {
 				
 				switchScreen(CalcMoMain.inputScreen);
@@ -93,8 +45,9 @@ public class OutputScreen extends AbidCalculatorScreen {
 				System.out.println("Input button pressed");
 			}
 		});
+		JasCustomButton.circleButton(inputButton);
 		
-		historyButton = new Button(200, 100, 100, 100, "GO TO HISTORY", new Action() {
+		historyButton = new Button(200, 400, 100, 100, "History", Color.BLUE, new Action() {
 			public void act() {
 				
 				switchScreen(CalcMoMain.historyScreen);
@@ -102,8 +55,9 @@ public class OutputScreen extends AbidCalculatorScreen {
 				System.out.println("History button pressed");
 			}
 		});
+		JasCustomButton.circleButton(historyButton);
 		
-		tableButton = new Button(300, 100, 100, 100, "GO TO TABLE", new Action() {
+		tableButton = new Button(300, 400, 100, 100, "Table", Color.GRAY, new Action() {
 			public void act() {
 				
 				//switchScreen(CalcMoMain.tableScreen);
@@ -111,13 +65,13 @@ public class OutputScreen extends AbidCalculatorScreen {
 				System.out.println("Table button pressed");
 			}
 		});
+		JasCustomButton.circleButton(tableButton);
 		
+		viewObjects.add(background);
 		
 		viewObjects.add(inputButton);
 		viewObjects.add(historyButton);
 		viewObjects.add(tableButton);
-		
-		viewObjects.add(background);
 	}
 
 }
