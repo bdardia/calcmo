@@ -43,22 +43,36 @@ public class DimitrisNodeBuilder {
 	
 	
 	
-	DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray) {
+	DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int precedence) {
 		if(parsedArray.size() > 1) {
 			DimitrisAlgebraicNode lhs = parsedArray.get(0);
 			DimitrisAlgebraicNode rhs = parsedArray.get(1);
 			int lhsPrecedence = lhs.solver.getPrecedence();
 			int rhsPrecedence = rhs.solver.getPrecedence();
 			
-			if(lhsPrecedence < rhsPrecedence) {
-				rhs.lhs = lhs;
-				parsedArray.remove(lhs);
-				return buildTree(parsedArray);
+			if(lhsPrecedence < rhsPrecedence ) {
+				if(rhsPrecedence > precedence) {
+					rhs.lhs = lhs;
+					parsedArray.remove(lhs);
+					return buildTree(parsedArray, rhsPrecedence);
+				}else {
+					throw new NullPointerException("array cannot be simplified into one node");
+				}
+				
 			}else {
-				parsedArray.remove(rhs);
-				lhs.rhs = buildTree(parsedArray);
+				
+				try {
+					lhs.rhs = buildTree((ArrayList<DimitrisAlgebraicNode>) parsedArray.subList(1, parsedArray.size()), lhsPrecedence);
+				}
+				catch(Exception e){// array cannot be simplified into one node
+					lhs.rhs = rhs;
+					parsedArray.remove(rhs);
+					return buildTree(parsedArray, lhsPrecedence);
+				}
+				
 				return lhs;
-			}
+				
+			}			
 			
 		}else {
 			return parsedArray.get(0);
@@ -69,7 +83,7 @@ public class DimitrisNodeBuilder {
 	
 	
 	DimitrisAlgebraicNode compileProgram(String program) {
-		return buildTree(parse(program));
+		return buildTree(parse(program),0);
 	}
 	
 
