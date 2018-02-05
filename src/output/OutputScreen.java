@@ -30,7 +30,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 
 		
-		background = new Graphic(0, 0, "resources/blankface.png");
+		background = new Graphic(0, 0, "resources/outputscreen.png");
 		
 		inputButton = new Button(100, 400, 100, 100, "Initial Screen", Color.RED, new Action() {
 			public void act() {

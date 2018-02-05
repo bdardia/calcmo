@@ -50,5 +50,18 @@ public class DimitrisAlgebraicNode {
 		return 0;
 	}
 
-	
+	public String toString(int indentation) {
+		String tabs = "";
+		for(int i = 0; i < indentation; i++) {
+			tabs += "\t";
+		}
+		
+		
+		if(isVariable) {
+			return tabs + Double.toString(this.value);
+		}else {
+			return tabs + this.solver.getOperation() + "\n" + lhs.toString(indentation+1) + "\n" + rhs.toString(indentation+1);
+			
+		}
+	}
 }

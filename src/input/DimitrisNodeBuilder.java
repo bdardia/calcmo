@@ -4,13 +4,7 @@ import java.util.ArrayList;
 
 public class DimitrisNodeBuilder {
 	
-	
-
-	public DimitrisNodeBuilder() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
+	static ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
 		ArrayList<DimitrisAlgebraicNode> parsedArray = new ArrayList<DimitrisAlgebraicNode>();
 		int start = 0;
 		for(int index = 0; index < currentText.length(); index++) {
@@ -31,7 +25,7 @@ public class DimitrisNodeBuilder {
 	}
 	
 
-	int getAlgebraicNode(String operation){
+	static int getAlgebraicNode(String operation){
 		for(int i = 0; i < DimitrisAlgebraicNode.solverArray.length; i++) {
 			Solver s = DimitrisAlgebraicNode.solverArray[i];
 			if(s.getOperation() == operation) {
@@ -43,22 +37,36 @@ public class DimitrisNodeBuilder {
 	
 	
 	
-	DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray) {
+	static DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int precedence) {
 		if(parsedArray.size() > 1) {
 			DimitrisAlgebraicNode lhs = parsedArray.get(0);
 			DimitrisAlgebraicNode rhs = parsedArray.get(1);
 			int lhsPrecedence = lhs.solver.getPrecedence();
 			int rhsPrecedence = rhs.solver.getPrecedence();
 			
-			if(lhsPrecedence < rhsPrecedence) {
-				rhs.lhs = lhs;
-				parsedArray.remove(lhs);
-				return buildTree(parsedArray);
+			if(lhsPrecedence < rhsPrecedence ) {
+				if(rhsPrecedence > precedence) {
+					rhs.lhs = lhs;
+					parsedArray.remove(lhs);
+					return buildTree(parsedArray, rhsPrecedence);
+				}else {
+					throw new NullPointerException("array cannot be simplified into one node");
+				}
+				
 			}else {
-				parsedArray.remove(rhs);
-				lhs.rhs = buildTree(parsedArray);
+				
+				try {
+					lhs.rhs = buildTree((ArrayList<DimitrisAlgebraicNode>) parsedArray.subList(1, parsedArray.size()), lhsPrecedence);
+				}
+				catch(Exception e){// array cannot be simplified into one node
+					lhs.rhs = rhs;
+					parsedArray.remove(rhs);
+					return buildTree(parsedArray, lhsPrecedence);
+				}
+				
 				return lhs;
-			}
+				
+			}			
 			
 		}else {
 			return parsedArray.get(0);
@@ -67,9 +75,10 @@ public class DimitrisNodeBuilder {
 		
 	}
 	
-	
-	DimitrisAlgebraicNode compileProgram(String program) {
-		return buildTree(parse(program));
+	static DimitrisAlgebraicNode compileProgram(String program) {
+		DimitrisAlgebraicNode returnNode = buildTree(parse(program),0);
+		System.out.println(returnNode.toString(0));;
+		return returnNode;
 	}
 	
 
