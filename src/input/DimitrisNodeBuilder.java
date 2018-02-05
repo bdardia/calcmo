@@ -75,9 +75,10 @@ public class DimitrisNodeBuilder {
 		
 	}
 	
-	
 	static DimitrisAlgebraicNode compileProgram(String program) {
-		return buildTree(parse(program),0);
+		DimitrisAlgebraicNode returnNode = buildTree(parse(program),0);
+		System.out.println(returnNode.toString(0));;
+		return returnNode;
 	}
 	
 
