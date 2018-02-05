@@ -58,9 +58,10 @@ public class DimitrisAlgebraicNode {
 		
 		
 		if(isVariable) {
-			return tabs + Double.toString(this.value) + "\n" + lhs.toString(indentation+1) + "\n" + rhs.toString(indentation+1);
+			return tabs + Double.toString(this.value);
 		}else {
-			return tabs + this.solver.getOperation();
+			return tabs + this.solver.getOperation() + "\n" + lhs.toString(indentation+1) + "\n" + rhs.toString(indentation+1);
+			
 		}
 	}
 }
