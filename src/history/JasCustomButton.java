@@ -20,8 +20,6 @@ public abstract class JasCustomButton extends Button {
 		b.setCurve(90, 90);
 	}
 	
-	public static void triangleButton(Button b) {
-
-	}
+	//public static void triangleButton(Button b) {}
 	
 }
