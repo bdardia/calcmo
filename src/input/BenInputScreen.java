@@ -41,6 +41,9 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static Button sevenButton;
 	public static Button eightButton;
 	public static Button nineButton;
+	public static Button zeroButton;
+	public static Button dotButton;
+	public static Button dashButton;
 	public static Button normalSolveButton;
 	public static Button addVariableButton;
 	public static BenSound soundControl;
@@ -223,6 +226,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			public void act() 
 			{
 				System.out.println("normal solve");
+				switchScreen(CalcMoMain.outputScreen);
 				solverPress();
 			}
 		});
@@ -274,7 +278,6 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public void solverPress()
 	{
 		soundControl.playSound("beeep_distorted.wav");
-		
 	}
 	
 	public void switchPress()
