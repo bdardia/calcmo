@@ -111,13 +111,11 @@ public class OutputScreen extends AbidCalculatorScreen {
 				System.out.println("Table button pressed");
 			}
 		});
-		
+		viewObjects.add(background);
 		
 		viewObjects.add(inputButton);
 		viewObjects.add(historyButton);
 		viewObjects.add(tableButton);
-		
-		viewObjects.add(background);
 	}
 
 }
