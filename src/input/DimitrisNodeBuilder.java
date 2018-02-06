@@ -10,9 +10,12 @@ public class DimitrisNodeBuilder {
 		for(int index = 1; index <= currentText.length(); index++) {
 			
 			String currentSubString = currentText.substring(start, index);
-			System.out.println(currentSubString);
+			//System.out.println(currentSubString);
 			try {
-				parsedArray.add(new DimitrisAlgebraicNode(Double.parseDouble(currentSubString)));
+				DimitrisAlgebraicNode n = new DimitrisAlgebraicNode(Double.parseDouble(currentSubString));
+				n.solver = new ConstantSolver(n);
+				n.isConstant = true;
+				parsedArray.add(n);
 				start = index;
 				
 			}

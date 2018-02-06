@@ -9,11 +9,12 @@ public class DimitrisAlgebraicNode {
 	
 	public Solver solver;
 	
-	private double value;
+	public double value;
+	public boolean isConstant = false;
 	public boolean isEvaluated;
 	
 	public String varName;
-	public boolean isVariable;
+	public boolean isVariable = false;
 	
 	public static Solver[] solverArray = {new AdditionSolver(), new MultiplicationSolver(), new DivisionSolver()}; //set up in main
 	
@@ -57,7 +58,7 @@ public class DimitrisAlgebraicNode {
 		}
 		
 		
-		if(isVariable) {
+		if(isVariable || isConstant) {
 			return tabs + Double.toString(this.value);
 		}else {
 			return tabs + this.solver.getOperation() + "\n" + lhs.toString(indentation+1) + "\n" + rhs.toString(indentation+1);
