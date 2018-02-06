@@ -29,10 +29,11 @@ public class DimitrisNodeBuilder {
 						int nodeIndex = getAlgebraicNode(currentSubString);
 						if(nodeIndex != -1) {
 							parsedArray.add(new DimitrisAlgebraicNode(DimitrisAlgebraicNode.solverArray[nodeIndex]));
-							start = i - 1;
+							start = index;
 						}
 					}
 					else { //number has been found
+						System.out.println(number);
 						DimitrisAlgebraicNode n = new DimitrisAlgebraicNode(number);
 						n.solver = new ConstantSolver(n);
 						n.isConstant = true;
