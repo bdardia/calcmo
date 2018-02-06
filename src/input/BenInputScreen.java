@@ -65,6 +65,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static Button logButton;
 	public static Button lnButton;
 	public static Button absButton;
+	public static Button backspaceButton;
 	public static BenSound soundControl;
 	public static boolean inputValid;
 	public static ArrayList<BenVariableStorage> variables = new ArrayList<BenVariableStorage>();
@@ -383,6 +384,10 @@ public class BenInputScreen extends AbidCalculatorScreen
 				buttonPress();
 			}
 		});
+		
+		Thread cleanUp = new Thread(new BenSound());
+		Runtime.getRuntime().addShutdownHook(cleanUp);
+		
 		cotButton = new Button(435, 579, 30, 15, "", new Action() {
 
 			@Override
@@ -458,9 +463,20 @@ public class BenInputScreen extends AbidCalculatorScreen
 				buttonPress();
 			}
 		});
-				
-		Thread cleanUp = new Thread(new BenSound());
-		Runtime.getRuntime().addShutdownHook(cleanUp);
+		// 122, 481, 79, 23
+		backspaceButton = new Button(122, 488, 79, 23, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				if (inputArea.getText().length() > 0)
+				{
+					inputArea.setText(inputArea.getText().substring(0, inputArea.getText().length() - 1));	
+				}
+				buttonPress();
+			}
+		});		
+		
 		
 		viewObjects.add(background);
 		viewObjects.add(inputArea);
@@ -505,6 +521,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 		viewObjects.add(logButton);
 		viewObjects.add(lnButton);
 		viewObjects.add(absButton);
+		viewObjects.add(backspaceButton);
 		viewObjects.add(normalSolveButton);
 		viewObjects.add(addVariableButton);
 	}
