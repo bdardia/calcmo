@@ -28,4 +28,10 @@ public class AdditionSolver implements Solver {
 		return null;
 	}
 
+	@Override
+	public void addParent(DimitrisAlgebraicNode n) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

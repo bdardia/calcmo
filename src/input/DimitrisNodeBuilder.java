@@ -7,10 +7,16 @@ public class DimitrisNodeBuilder {
 	static ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
 		ArrayList<DimitrisAlgebraicNode> parsedArray = new ArrayList<DimitrisAlgebraicNode>();
 		int start = 0;
-		for(int index = 0; index < currentText.length(); index++) {
+		for(int index = 1; index <= currentText.length(); index++) {
+			
 			String currentSubString = currentText.substring(start, index);
+			//System.out.println(currentSubString);
 			try {
-				parsedArray.add(new DimitrisAlgebraicNode(Double.parseDouble(currentSubString)));
+				DimitrisAlgebraicNode n = new DimitrisAlgebraicNode(Double.parseDouble(currentSubString));
+				n.solver = new ConstantSolver(n);
+				n.isConstant = true;
+				parsedArray.add(n);
+				start = index;
 				
 			}
 			catch(Exception e) {
@@ -28,7 +34,7 @@ public class DimitrisNodeBuilder {
 	static int getAlgebraicNode(String operation){
 		for(int i = 0; i < DimitrisAlgebraicNode.solverArray.length; i++) {
 			Solver s = DimitrisAlgebraicNode.solverArray[i];
-			if(s.getOperation() == operation) {
+			if(s.getOperation().equals(operation)) {
 				return i;
 			}
 		}

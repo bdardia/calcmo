@@ -29,4 +29,10 @@ public class MultiplicationSolver implements Solver {
 		return new DivisionSolver();
 	}
 
+	@Override
+	public void addParent(DimitrisAlgebraicNode n) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
