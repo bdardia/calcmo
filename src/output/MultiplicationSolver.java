@@ -8,7 +8,9 @@ public class MultiplicationSolver implements Solver {
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		// TODO Auto-generated method stub
-		return lhs.solveNode() * rhs.solveNode();
+		lhs.solve();
+		rhs.solve();
+		return lhs.value * rhs.value;
 	}
 
 	@Override

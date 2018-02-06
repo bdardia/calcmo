@@ -7,7 +7,9 @@ public class AdditionSolver implements Solver {
 
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		return lhs.solveNode() + rhs.solveNode();
+		lhs.solveNode();
+		rhs.solveNode();
+		return lhs.value + rhs.value;
 	}
 
 	@Override

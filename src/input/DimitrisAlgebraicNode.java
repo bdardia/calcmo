@@ -38,7 +38,7 @@ public class DimitrisAlgebraicNode {
 	
 	
 	
-	void Solve() {
+	public void solve() {
 		this.value = solver.solveNode(lhs, rhs);
 	}
 	
@@ -46,10 +46,7 @@ public class DimitrisAlgebraicNode {
 		DimitrisAlgebraicNode test = new DimitrisAlgebraicNode(10.0);
 	}
 
-	public int solveNode() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	public String toString(int indentation) {
 		String tabs = "";

@@ -10,22 +10,48 @@ public class DimitrisNodeBuilder {
 		for(int index = 1; index <= currentText.length(); index++) {
 			
 			String currentSubString = currentText.substring(start, index);
+			
+			System.out.println("main loop");
 			//System.out.println(currentSubString);
-			try {
-				DimitrisAlgebraicNode n = new DimitrisAlgebraicNode(Double.parseDouble(currentSubString));
-				n.solver = new ConstantSolver(n);
-				n.isConstant = true;
-				parsedArray.add(n);
-				start = index;
-				
-			}
-			catch(Exception e) {
-				int nodeIndex = getAlgebraicNode(currentSubString);
-				if(nodeIndex != -1) {
-					parsedArray.add(new DimitrisAlgebraicNode(DimitrisAlgebraicNode.solverArray[nodeIndex]));
-					start = index;
+			
+			Double number = (Double)null;
+			for(int i = start + 1; i <= currentText.length(); i++) {
+				String numberSubString = currentText.substring(start, i);
+				try {
+					number = Double.parseDouble(numberSubString);
+					System.out.println(number);
+				}
+				catch(Exception e){
+					System.out.println("caught exeption");
+					System.out.println("currentSubString: " + currentSubString);
+					System.out.println("numberSubString: " + numberSubString);
+					if(number == null ) { //no number has been found
+						int nodeIndex = getAlgebraicNode(currentSubString);
+						if(nodeIndex != -1) {
+							parsedArray.add(new DimitrisAlgebraicNode(DimitrisAlgebraicNode.solverArray[nodeIndex]));
+							start = i - 1;
+						}
+					}
+					else { //number has been found
+						DimitrisAlgebraicNode n = new DimitrisAlgebraicNode(number);
+						n.solver = new ConstantSolver(n);
+						n.isConstant = true;
+						parsedArray.add(n);
+						start = index;
+					}
+					
+					
+					System.out.println("result substring:" + currentText.substring(start, index));
+					break;
 				}
 			}
+
+				
+				
+			
+			
+			
+
 		}
 		return parsedArray;
 	}
