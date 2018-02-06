@@ -9,7 +9,8 @@ public class AbedHistoryNode
 	private String output;
 	private ArrayList<String> xCoordinate;
 	private ArrayList<String> yCoordinate;
-	
+	private AbidAnimations animate;
+	private int count;
 
 	public AbedHistoryNode(String input,String output)
 	{
@@ -21,6 +22,11 @@ public class AbedHistoryNode
 		this.input = input;
 		this.xCoordinate = xCoordinate;
 		this.yCoordinate = yCoordinate;
+	}
+	public AbedHistoryNode(int count,AbidAnimations animate)
+	{
+		this.count = count;
+		this.animate = animate;
 	}
 	
 	public String getInput()
