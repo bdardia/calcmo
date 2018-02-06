@@ -3,10 +3,13 @@ package history;
 import java.awt.Color;
 
 import guiTeacher.components.*;
-import guiTeacher.components.Button;
 
 public abstract class JasCustomButton extends Button {
-
+	
+	private static Color a = new Color(153, 217, 234);
+	private static Color b = new Color(241, 75, 84);
+	private static Color c = new Color(111, 119, 217);
+	
 	public JasCustomButton(int x, int y, int w, int h, String text, Action action) {
 		super(x, y, w, h, text, action);
 	}
@@ -19,7 +22,16 @@ public abstract class JasCustomButton extends Button {
 		b.setDimensions(b.getWidth(), b.getWidth());
 		b.setCurve(90, 90);
 	}
-	
-	//public static void triangleButton(Button b) {}
-	
+
+	public static Color getA() {
+		return a;
+	}
+
+	public static Color getB() {
+		return b;
+	}
+
+	public static Color getC() {
+		return c;
+	}
 }
