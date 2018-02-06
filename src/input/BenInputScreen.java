@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.org.apache.bcel.internal.classfile.Field;
-
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
@@ -47,12 +45,26 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static Button xButton;
 	public static Button eButton;
 	public static Button piButton;
+	public static Button multiplyButton;
 	public static Button openParenthesisButton;
 	public static Button closeParenthesisButton;
 	public static Button normalSolveButton;
 	public static Button addVariableButton;
 	public static Button ceButton;
 	public static Button equalsButton;
+	public static Button sinButton;
+	public static Button cosButton;
+	public static Button tanButton;
+	public static Button cscButton;
+	public static Button secButton;
+	public static Button cotButton;
+	public static Button arcsinButton;
+	public static Button arccosButton;
+	public static Button arctanButton;
+	public static Button logButton;
+	public static Button lnButton;
+	public static Button absButton;
+	public static Button backspaceButton;
 	public static BenSound soundControl;
 	public static boolean inputValid;
 	public static ArrayList<BenVariableStorage> variables = new ArrayList<BenVariableStorage>();
@@ -78,7 +90,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				System.out.println("lim button pressed");
+				DimitrisNodeBuilder.compileProgram("lim(" + inputArea.getText() + ")");
 				solverPress();
 			}
 		});
@@ -87,7 +99,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				System.out.println("deriv button pressed");
+				DimitrisNodeBuilder.compileProgram("deriv(" + inputArea.getText() + ")");
 				solverPress();
 			}	
 		});
@@ -106,6 +118,15 @@ public class BenInputScreen extends AbidCalculatorScreen
 			public void act() 
 			{
 				inputArea.setText(inputArea.getText() + "-");
+				buttonPress();
+			}
+		});
+		multiplyButton = new Button(61, 540, 57, 15, "", new Action() {
+
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "*");
 				buttonPress();
 			}
 		});
@@ -308,7 +329,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 				buttonPress();
 			}
 		});
-		ceButton = new Button(446, 456, 30, 15, "", new Action() {
+		ceButton = new Button(446, 458, 30, 15, "", new Action() {
 
 			@Override
 			public void act() 
@@ -317,12 +338,124 @@ public class BenInputScreen extends AbidCalculatorScreen
 				solverPress();
 			}
 		});
-		equalsButton = new Button(446, 488, 15, 15, "", new Action() {
+		equalsButton = new Button(450, 488, 15, 15, "", new Action() {
 
 			@Override
 			public void act() 
 			{
 				inputArea.setText(inputArea.getText() + "=");
+				buttonPress();
+			}
+		});
+		sinButton = new Button(347, 547, 30, 15, "", new Action() {
+			
+			@Override
+			public void act() 
+			{	
+				inputArea.setText(inputArea.getText() + "sin(");
+				buttonPress();
+			}
+		});
+		cosButton = new Button(391, 547, 30, 15, "", new Action() {
+
+			@Override
+			public void act() 
+			{	
+				inputArea.setText(inputArea.getText() + "cos(");
+				buttonPress();
+			}
+		});
+		tanButton = new Button(435, 547, 30, 15, "", new Action() {
+
+			@Override
+			public void act() 
+			{	
+				inputArea.setText(inputArea.getText() + "tan(");
+				buttonPress();
+			}
+		});
+		cscButton = new Button(347, 579, 30, 15, "", new Action() {
+
+			@Override
+			public void act() 
+			{	
+				inputArea.setText(inputArea.getText() + "sin(");
+				buttonPress();
+			}
+		});
+		secButton = new Button(391, 579, 30, 15, "", new Action() {
+
+			@Override
+			public void act() 
+			{	
+				inputArea.setText(inputArea.getText() + "cos(");
+				buttonPress();
+			}
+		});
+		
+		Thread cleanUp = new Thread(new BenSound());
+		Runtime.getRuntime().addShutdownHook(cleanUp);
+		
+		cotButton = new Button(435, 579, 30, 15, "", new Action() {
+
+			@Override
+			public void act() 
+			{	
+				inputArea.setText(inputArea.getText() + "tan(");
+				buttonPress();
+			}
+		});
+		arcsinButton = new Button(347, 611, 30, 15, "", new Action() {
+
+			@Override
+			public void act() 
+			{	
+				inputArea.setText(inputArea.getText() + "arcsin(");
+				buttonPress();
+			}
+		});
+		arccosButton = new Button(391, 611, 30, 15, "", new Action() {
+
+			@Override
+			public void act() 
+			{	
+				inputArea.setText(inputArea.getText() + "arccos(");
+				buttonPress();
+			}
+		});
+		arctanButton = new Button(435, 611, 30, 15, "", new Action() {
+
+			@Override
+			public void act() 
+			{	
+				inputArea.setText(inputArea.getText() + "arctan(");
+				buttonPress();
+			}
+		});
+		logButton = new Button(347, 643, 30, 15, "", new Action() {
+
+			@Override
+			public void act() 
+			{	
+				inputArea.setText(inputArea.getText() + "log(");
+				buttonPress();
+			}
+		});
+		lnButton = new Button(391, 643, 30, 15, "", new Action() {
+
+			@Override
+			public void act() 
+			{	
+				inputArea.setText(inputArea.getText() + "ln(");
+				buttonPress();
+			}
+		});
+		absButton = new Button(435, 643, 30, 15, "", new Action() {
+
+			@Override
+			public void act() 
+			{	
+				inputArea.setText(inputArea.getText() + "abs(");
 				buttonPress();
 			}
 		});
@@ -338,9 +471,19 @@ public class BenInputScreen extends AbidCalculatorScreen
 				buttonPress();
 			}
 		});
-				
-		Thread cleanUp = new Thread(new BenSound());
-		Runtime.getRuntime().addShutdownHook(cleanUp);
+		backspaceButton = new Button(122, 488, 79, 23, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				if (inputArea.getText().length() > 0)
+				{
+					inputArea.setText(inputArea.getText().substring(0, inputArea.getText().length() - 1));	
+				}
+				buttonPress();
+			}
+		});		
+		
 		
 		viewObjects.add(background);
 		viewObjects.add(inputArea);
@@ -373,6 +516,20 @@ public class BenInputScreen extends AbidCalculatorScreen
 		viewObjects.add(closeParenthesisButton);
 		viewObjects.add(ceButton);
 		viewObjects.add(equalsButton);
+		viewObjects.add(sinButton);
+		viewObjects.add(cosButton);
+		viewObjects.add(tanButton);
+		viewObjects.add(cscButton);
+		viewObjects.add(secButton);
+		viewObjects.add(cotButton);
+		viewObjects.add(arcsinButton);
+		viewObjects.add(arccosButton);
+		viewObjects.add(arctanButton);
+		viewObjects.add(logButton);
+		viewObjects.add(lnButton);
+		viewObjects.add(absButton);
+		viewObjects.add(multiplyButton);
+		viewObjects.add(backspaceButton);
 		viewObjects.add(normalSolveButton);
 		viewObjects.add(addVariableButton);
 	}

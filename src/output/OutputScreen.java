@@ -32,7 +32,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		
 		background = new Graphic(0, 0, "resources/outputscreen.png");
 		
-		inputButton = new Button(100, 400, 100, 100, "Initial Screen", Color.RED, new Action() {
+		inputButton = new Button(100, 400, 100, 100, "Initial Screen", JasCustomButton.getA(), new Action() {
 			public void act() {
 				
 				switchScreen(CalcMoMain.inputScreen);
@@ -42,7 +42,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		});
 		JasCustomButton.circleButton(inputButton);
 		
-		historyButton = new Button(200, 400, 100, 100, "History", Color.BLUE, new Action() {
+		historyButton = new Button(200, 400, 100, 100, "History", JasCustomButton.getB(), new Action() {
 			public void act() {
 				
 				switchScreen(CalcMoMain.historyScreen);
@@ -52,7 +52,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		});
 		JasCustomButton.circleButton(historyButton);
 		
-		tableButton = new Button(300, 400, 100, 100, "Table", Color.GRAY, new Action() {
+		tableButton = new Button(300, 400, 100, 100, "Table", JasCustomButton.getC(), new Action() {
 			public void act() {
 				
 				//switchScreen(CalcMoMain.tableScreen);

@@ -1,15 +1,16 @@
 package input;
 
 public class ConstantSolver implements Solver {
-
-	public ConstantSolver() {
+	DimitrisAlgebraicNode parent;
+	
+	public ConstantSolver(DimitrisAlgebraicNode self) {
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		// TODO Auto-generated method stub
-		return (Double) null; //should not be called
+		return parent.value; //should not be called
 	}
 
 	@Override
@@ -28,6 +29,12 @@ public class ConstantSolver implements Solver {
 	public Solver getInverse() {
 		// TODO Auto-generated method stub
 		return null; //there should never be an inverse
+	}
+
+	@Override
+	public void addParent(DimitrisAlgebraicNode n) {
+		parent = n;
+		
 	}
 
 }

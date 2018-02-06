@@ -5,4 +5,6 @@ public interface Solver {
 	String getOperation();
 	int getPrecedence(); //higher number means more important
 	Solver getInverse();
+	
+	void addParent(DimitrisAlgebraicNode n);
 }
