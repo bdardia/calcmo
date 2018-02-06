@@ -1,6 +1,7 @@
 package history;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.util.*;
 
 import guiTeacher.components.*;
@@ -24,17 +25,16 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/histMO.png"));
 		
-		Button goInput = new Button(250, 575, 75, 50, "Go Back", new Color(237, 28, 36), new Action() {
+		Button goInput = new Button(250, 575, 75, 50, "Go Back", JasCustomButton.getA(), new Action() {
 			
 			public void act() {
-				switchScreen(CalcMoMain.inputScreen);
+				switchScreen(CalcMoMain.outputScreen);
 			}
 		});
 		JasCustomButton.circleButton(goInput);
 		viewObjects.add(goInput);
-				
-		//triangle - shape
-		Button clear = new Button(375, 515, 93, 45, "Clear", new Color(153, 217, 234), new Action() {
+		
+		Button clear = new Button(375, 515, 93, 45, "Clear", JasCustomButton.getB(), new Action() {
 
 			public void act() {
 				clearHist(fx);
