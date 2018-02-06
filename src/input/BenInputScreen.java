@@ -47,6 +47,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static Button xButton;
 	public static Button eButton;
 	public static Button piButton;
+	public static Button multiplyButton;
 	public static Button openParenthesisButton;
 	public static Button closeParenthesisButton;
 	public static Button normalSolveButton;
@@ -119,6 +120,15 @@ public class BenInputScreen extends AbidCalculatorScreen
 			public void act() 
 			{
 				inputArea.setText(inputArea.getText() + "-");
+				buttonPress();
+			}
+		});
+		multiplyButton = new Button(61, 540, 57, 15, "", new Action() {
+
+			@Override
+			public void act() 
+			{
+				inputArea.setText(inputArea.getText() + "*");
 				buttonPress();
 			}
 		});
@@ -520,6 +530,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 		viewObjects.add(logButton);
 		viewObjects.add(lnButton);
 		viewObjects.add(absButton);
+		viewObjects.add(multiplyButton);
 		viewObjects.add(backspaceButton);
 		viewObjects.add(normalSolveButton);
 		viewObjects.add(addVariableButton);
