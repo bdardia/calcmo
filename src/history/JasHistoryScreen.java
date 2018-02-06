@@ -7,13 +7,13 @@ import java.util.*;
 import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
 import input.BenInputScreen;
+import input.BenVariableStorage;
 import main.CalcMoMain;
 
 public class JasHistoryScreen extends AbidCalculatorScreen {
 	
 	private ArrayList<AbedHistoryNode> fx;
-	private ArrayList<Button> hist;
-
+	
 	public JasHistoryScreen(int width, int height) {
 		super(width, height);
 	}
@@ -21,14 +21,14 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		
 		fx = new ArrayList<AbedHistoryNode>();
-		hist = new ArrayList<Button>();
+		new ArrayList<Button>();
 		
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/histMO.png"));
 		
 		Button goInput = new Button(250, 575, 75, 50, "Go Back", JasCustomButton.getA(), new Action() {
 			
 			public void act() {
-				switchScreen(CalcMoMain.outputScreen);
+				switchScreen(CalcMoMain.inputScreen);
 			}
 		});
 		JasCustomButton.circleButton(goInput);
@@ -38,7 +38,6 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 
 			public void act() {
 				clearHist(fx);
-				clearPane(hist);
 				update();
 			}
 		});
@@ -51,7 +50,7 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 			String in = fx.get(i).getInput();
 			String out = fx.get(i).getOutput();
 			
-			scroll.addObject(new Button(5, 30 * i + 10, 100, 25, in, new Action() {
+			scroll.addObject(new Button(5, yCo(i, true), 100, 25, i + ": " + in, new Action() {
 
 				public void act() {
 					BenInputScreen.inputArea.setText(in);
@@ -59,7 +58,7 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 				}
 			}));	
 			
-			scroll.addObject(new Button(35, 30 * i + 25, 100, 25, out, new Action() {
+			scroll.addObject(new Button(35, yCo(i, false), 100, 25, out, new Action() {
 
 				public void act() {
 					BenInputScreen.inputArea.setText(out);
@@ -71,15 +70,34 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		scroll.update();
 		
 		viewObjects.add(scroll);	
+		
+		TextBox variableArea = new TextBox(435, 600, 30, 30, "");
+		viewObjects.add(variableArea);
+		
+		Button delete = new Button(350, 600, 85, 30, "Delete", JasCustomButton.getC(), new Action() {
+			public void act() 
+			{
+				fx.remove(Integer.parseInt(variableArea.getText()));
+				variableArea.setText("");
+				update();
+			}
+		});
+		viewObjects.add(delete);
 	}
 	
 	public void clearHist(ArrayList<AbedHistoryNode> arr) {
 		arr.clear();
-		arr.trimToSize();
+		update();
 	}
 	
-	public void clearPane(ArrayList<Button> arr) {
-		arr.clear();
-		arr.trimToSize();
+	public int yCo(int x, boolean in) {
+		if(in) {
+			return 30 * (x-1) + 10;
+		}
+		return 30 * (x-1) + 25;
+	}
+	
+	public void remove(ArrayList<AbedHistoryNode> arr, int x) {
+		arr.remove(x);
 	}
 }
