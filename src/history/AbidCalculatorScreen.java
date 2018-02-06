@@ -19,6 +19,5 @@ public abstract class AbidCalculatorScreen extends FullFunctionScreen{
 		tt.s = s;
 		Thread t = new Thread(tt);
 		t.start();
-		CalcMoMain.main.setScreen(s);
 	}
 }
