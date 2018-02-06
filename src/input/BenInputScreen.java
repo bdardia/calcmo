@@ -91,7 +91,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				System.out.println("lim button pressed");
+				DimitrisNodeBuilder.compileProgram("lim(" + inputArea.getText() + ")");
 				solverPress();
 			}
 		});
@@ -100,7 +100,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				System.out.println("deriv button pressed");
+				DimitrisNodeBuilder.compileProgram("deriv(" + inputArea.getText() + ")");
 				solverPress();
 			}	
 		});
@@ -463,7 +463,6 @@ public class BenInputScreen extends AbidCalculatorScreen
 				buttonPress();
 			}
 		});
-		// 122, 481, 79, 23
 		backspaceButton = new Button(122, 488, 79, 23, "", new Action() {
 			
 			@Override
