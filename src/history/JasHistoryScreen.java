@@ -1,13 +1,139 @@
+/*
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ * a
+ */
 package history;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.util.*;
 
 import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
 import input.BenInputScreen;
-import input.BenVariableStorage;
 import main.CalcMoMain;
 
 public class JasHistoryScreen extends AbidCalculatorScreen {
