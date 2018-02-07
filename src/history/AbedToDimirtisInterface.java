@@ -2,7 +2,7 @@ package history;
 
 import java.util.ArrayList;
 
-public interface AbedToDimirtiInterface
+public interface AbedToDimirtisInterface
 {	
 	///Create an instance and fill in the node with ur respective info
 	AbedHistoryNode createNode(String input,String output);
