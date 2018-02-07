@@ -10,7 +10,7 @@ public class DimitrisNodeBuilder {
 		int startIndex = 0;
 		for(int index = currentText.length(); index >= 0; index--) {
 			
-			if(startIndex == index) {
+			if(startIndex == currentText.length()) {
 				break;
 			}
 			
@@ -37,13 +37,25 @@ public class DimitrisNodeBuilder {
 					index = currentText.length() + 1;
 					
 				}else {
-					//parse variables
+					if(startIndex == index) {
+						System.out.println("found variable");
+						String varName = currentText.substring(startIndex, currentText.length());
+						parsedArray.add(new DimitrisAlgebraicNode(varName));
+						
+						startIndex += varName.length();
+						index = currentText.length() + 1;
+					}
 				}
 			}
 		}
 		
 		for(DimitrisAlgebraicNode n : parsedArray) {
-			System.out.println(n.solver.getOperation());
+			if(!n.isVariable) {
+				System.out.println(n.solver.getOperation());
+			}else {
+				System.out.println(n.varName);
+			}
+			
 		}
 		return parsedArray;
 	}

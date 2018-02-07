@@ -37,6 +37,7 @@ public class DimitrisAlgebraicNode {
 	public DimitrisAlgebraicNode(String varName) {
 		isVariable = true;
 		this.varName = varName;
+		this.solver = new VariableSolver(this);
 	}
 	
 	
@@ -44,11 +45,6 @@ public class DimitrisAlgebraicNode {
 	public void solve() {
 		this.value = solver.solveNode(lhs, rhs);
 	}
-	
-	public static void main(String[] args) {
-		DimitrisAlgebraicNode test = new DimitrisAlgebraicNode(10.0);
-	}
-
 
 
 	public String toString(int indentation) {
@@ -59,6 +55,8 @@ public class DimitrisAlgebraicNode {
 		
 		
 		if(isVariable || isConstant) {
+			return tabs + this.varName;
+		}else if(isConstant){
 			return tabs + Double.toString(this.value);
 		}else {
 			return tabs + this.solver.getOperation() + "\n" + lhs.toString(indentation+1) + "\n" + rhs.toString(indentation+1);

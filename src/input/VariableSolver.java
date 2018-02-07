@@ -1,27 +1,28 @@
-package output;
+package input;
 
-import input.DimitrisAlgebraicNode;
-import input.Solver;
+public class VariableSolver implements Solver {
 
-public class AdditionSolver implements Solver {
+	private DimitrisAlgebraicNode node;
+	
+	public VariableSolver(DimitrisAlgebraicNode n) {
+		node = n;
+	}
 
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		lhs.solve();
-		rhs.solve();
-		return lhs.value + rhs.value;
+		return node.value;
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "+";
+		return node.varName;
 	}
 
 	@Override
 	public int getPrecedence() {
 		// TODO Auto-generated method stub
-		return 2;
+		return -1;
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class AdditionSolver implements Solver {
 	@Override
 	public void addParent(DimitrisAlgebraicNode n) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
