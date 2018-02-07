@@ -6,59 +6,50 @@ public class DimitrisNodeBuilder {
 	
 	static ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
 		ArrayList<DimitrisAlgebraicNode> parsedArray = new ArrayList<DimitrisAlgebraicNode>();
-		int start = 0;
-		for(int index = 1; index <= currentText.length(); index++) {
+
+		int startIndex = 0;
+		for(int index = currentText.length(); index >= 0; index--) {
 			
-			String currentSubString = currentText.substring(start, index);
+			if(startIndex == index) {
+				break;
+			}
 			
-			System.out.println("main loop");
-			//System.out.println(currentSubString);
-			
-			Double number = (Double)null;
-			for(int i = start + 1; i <= currentText.length(); i++) {
-				String numberSubString = currentText.substring(start, i);
-				try {
-					number = Double.parseDouble(numberSubString);
-					System.out.println(number);
+			String currentString = currentText.substring(startIndex, index);
+			System.out.println("currentString:" + currentString);
+			try {
+				double number = Double.parseDouble(currentString);
+				
+				if(currentString.substring(0, 1).equals("+")) {
+					throw new Exception("missing plus sign is found");
 				}
-				catch(Exception e){
-					System.out.println("caught exeption");
-					System.out.println("currentSubString: " + currentSubString);
-					System.out.println("numberSubString: " + numberSubString);
-					if(number == null ) { //no number has been found
-						int nodeIndex = getAlgebraicNode(currentSubString);
-						if(nodeIndex != -1) {
-							parsedArray.add(new DimitrisAlgebraicNode(DimitrisAlgebraicNode.solverArray[nodeIndex]));
-							start = index;
-						}
-					}
-					else { //number has been found
-						System.out.println(number);
-						DimitrisAlgebraicNode n = new DimitrisAlgebraicNode(number);
-						n.solver = new ConstantSolver(n);
-						n.isConstant = true;
-						parsedArray.add(n);
-						start = index;
-					}
+				parsedArray.add(new DimitrisAlgebraicNode(number));
+				System.out.println(number);
+				startIndex += currentString.length();
+				index = currentText.length() + 1;
+			}
+			catch(Exception e){
+				int solverIndex = getSolverIndex(currentString);
+				if(solverIndex != -1) {
+					parsedArray.add( new DimitrisAlgebraicNode(DimitrisAlgebraicNode.solverArray[solverIndex]));
+					System.out.println(DimitrisAlgebraicNode.solverArray[solverIndex].getOperation());
 					
+					startIndex  += currentString.length();
+					index = currentText.length() + 1;
 					
-					System.out.println("result substring:" + currentText.substring(start, index));
-					break;
+				}else {
+					//parse variables
 				}
 			}
-
-				
-				
-			
-			
-			
-
+		}
+		
+		for(DimitrisAlgebraicNode n : parsedArray) {
+			System.out.println(n.solver.getOperation());
 		}
 		return parsedArray;
 	}
 	
 
-	static int getAlgebraicNode(String operation){
+	static int getSolverIndex(String operation){
 		for(int i = 0; i < DimitrisAlgebraicNode.solverArray.length; i++) {
 			Solver s = DimitrisAlgebraicNode.solverArray[i];
 			if(s.getOperation().equals(operation)) {
