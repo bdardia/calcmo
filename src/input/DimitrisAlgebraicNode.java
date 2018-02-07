@@ -29,6 +29,9 @@ public class DimitrisAlgebraicNode {
 	public DimitrisAlgebraicNode(double value){
 		this.value = value;
 		this.isEvaluated = true;
+		this.isConstant = true;
+		
+		this.solver = new ConstantSolver(this);
 	}
 	
 	public DimitrisAlgebraicNode(String varName) {
