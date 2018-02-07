@@ -71,18 +71,31 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		
 		viewObjects.add(scroll);	
 		
-		TextBox variableArea = new TextBox(435, 600, 30, 30, "");
-		viewObjects.add(variableArea);
+		TextBox deleteArea = new TextBox(435, 600, 30, 30, "");
+		viewObjects.add(deleteArea);
 		
 		Button delete = new Button(350, 600, 85, 30, "Delete", JasCustomButton.getC(), new Action() {
 			public void act() 
 			{
-				fx.remove(Integer.parseInt(variableArea.getText()));
-				variableArea.setText("");
+				fx.remove(Integer.parseInt(deleteArea.getText()));
+				deleteArea.setText("");
 				update();
 			}
 		});
 		viewObjects.add(delete);
+		
+		TextBox duplicateArea = new TextBox(435, 635, 30, 30, "");
+		viewObjects.add(duplicateArea);
+		
+		Button duplicate = new Button(350, 635, 85, 30, "Duplicate", JasCustomButton.getC(), new Action() {
+			public void act() 
+			{
+				fx.remove(Integer.parseInt(duplicateArea.getText()));
+				duplicateArea.setText("");
+				update();
+			}
+		});
+		viewObjects.add(duplicate);
 	}
 	
 	public void clearHist(ArrayList<AbedHistoryNode> arr) {
@@ -99,5 +112,9 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 	
 	public void remove(ArrayList<AbedHistoryNode> arr, int x) {
 		arr.remove(x);
+	}
+	
+	public void duplicate(ArrayList<AbedHistoryNode> arr, int x) {
+		arr.add(arr.get(x));
 	}
 }
