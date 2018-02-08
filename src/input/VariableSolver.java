@@ -37,4 +37,10 @@ public class VariableSolver implements Solver {
 
 	}
 
+	@Override
+	public boolean urinaryFunction() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

@@ -30,7 +30,13 @@ public class DimitrisNodeBuilder {
 			catch(Exception e){
 				int solverIndex = getSolverIndex(currentString);
 				if(solverIndex != -1) {
-					parsedArray.add( new DimitrisAlgebraicNode(DimitrisAlgebraicNode.solverArray[solverIndex]));
+					Solver s = DimitrisAlgebraicNode.solverArray[solverIndex];
+					if(s.urinaryFunction() == true) {
+						DimitrisAlgebraicNode placeHolder = new DimitrisAlgebraicNode(-1);
+						parsedArray.add(placeHolder);
+					}
+					
+					parsedArray.add( new DimitrisAlgebraicNode(s));
 					System.out.println(DimitrisAlgebraicNode.solverArray[solverIndex].getOperation());
 					
 					startIndex  += currentString.length();
