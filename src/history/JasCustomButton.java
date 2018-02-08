@@ -15,12 +15,10 @@ public abstract class JasCustomButton extends Button {
 	
 	public JasCustomButton(int x, int y, int w, int h, String text, Action action) {
 		super(x, y, w, h, text, getA(), action);
-		setFont();
 	}
 	
 	public JasCustomButton(int x, int y, int w, int h, String text, Color color, Action action) {
 		super(x, y, w, h, text, color, action);
-		setFont();
 	}
 	
 	public static void circleButton(Button b){
@@ -40,15 +38,15 @@ public abstract class JasCustomButton extends Button {
 		return c;
 	}
 	
-	public static void setFont() {
+	public static void setFont(String fof) {
 		try {
-			File fontFile = new File("resources//font.ttf");
+			File fontFile = new File(fof);
 			
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 			
 			Font baseFont=font.deriveFont(20f);
 			
-			Button.setBaseFont(baseFont);
+			StyledComponent.setBaseFont(baseFont);
 			
 		} catch (Exception e) {
 			

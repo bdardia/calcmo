@@ -17,7 +17,7 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
-		JasCustomButton.setFont();
+		JasCustomButton.setFont("resources//font.ttf");
 		fx = new ArrayList<AbedHistoryNode>();
 		new ArrayList<Button>();
 		
