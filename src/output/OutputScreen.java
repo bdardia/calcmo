@@ -23,9 +23,9 @@ public class OutputScreen extends AbidCalculatorScreen {
 	private Button inputButton;
 	private Button historyButton;
 	private Button tableButton;
-	private TextLabel outputArea;
+	private static TextLabel outputArea;
 
-	public double output;
+	public static double output;
 	
 	
 	public OutputScreen(int width, int height) {
