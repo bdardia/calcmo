@@ -8,10 +8,13 @@ import java.util.List;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
+import guiTeacher.components.TextArea;
+import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import history.AbidCalculatorScreen;
 import history.JasCustomButton;
 import history.JasHistoryScreen;
+import input.DimitrisAlgebraicNode;
 import main.CalcMoMain;
 
 public class OutputScreen extends AbidCalculatorScreen {
@@ -20,11 +23,21 @@ public class OutputScreen extends AbidCalculatorScreen {
 	private Button inputButton;
 	private Button historyButton;
 	private Button tableButton;
-	
+	private TextLabel outputArea;
 
+	public double output;
+	
 	
 	public OutputScreen(int width, int height) {
 		super(width, height);
+	}
+	
+	
+	public void recieveTopNode(DimitrisAlgebraicNode n) {
+		n.solve();
+		System.out.println(n.value); 
+		
+		output = n.value;
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
@@ -60,6 +73,8 @@ public class OutputScreen extends AbidCalculatorScreen {
 				System.out.println("Table button pressed");
 			}
 		});
+		
+		
 		
 		
 		JasCustomButton.circleButton(tableButton);

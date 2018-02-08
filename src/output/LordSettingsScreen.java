@@ -1,9 +1,17 @@
 package output;
 
-public abstract class LordSettingsScreen {
+import guiTeacher.components.Button;
+import guiTeacher.components.Graphic;
+import history.AbidCalculatorScreen;
 
-	public LordSettingsScreen() {
-		// TODO Auto-generated constructor stub
+public abstract class LordSettingsScreen extends AbidCalculatorScreen {
+
+	private Graphic background;
+	private Button backButton;
+	
+	
+	public LordSettingsScreen(int width, int height) {
+		super(width,height);
 	}
 
 }
