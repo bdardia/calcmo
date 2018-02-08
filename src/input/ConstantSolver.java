@@ -4,13 +4,13 @@ public class ConstantSolver implements Solver {
 	DimitrisAlgebraicNode parent;
 	
 	public ConstantSolver(DimitrisAlgebraicNode self) {
-		// TODO Auto-generated constructor stub
+		parent = self;
 	}
 
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		// TODO Auto-generated method stub
-		return parent.value; //should not be called
+		return parent.value; 
 	}
 
 	@Override

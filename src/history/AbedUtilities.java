@@ -17,7 +17,13 @@ public class AbedUtilities
 	}
 	public ArrayList<AbedHistoryNode> sort(ArrayList<AbedHistoryNode> a)
 	{
-		
+		for(int i = 0; i < a.size(); i++)
+		{
+			if(a.get(i).getInput().compareTo(a.get(i+1).getInput()) > 0)
+			{
+				
+			}
+		}
 		return a;
 	}
 }

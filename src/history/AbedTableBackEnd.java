@@ -2,7 +2,6 @@ package history;
 
 public class AbedTableBackEnd 
 {
-
 	
 	public AbedTableBackEnd() 
 	{
