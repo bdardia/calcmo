@@ -1,131 +1,3 @@
-/*
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- * a
- */
 package history;
 
 import java.awt.Color;
@@ -145,13 +17,13 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
-		
+		JasCustomButton.setFont();
 		fx = new ArrayList<AbedHistoryNode>();
 		new ArrayList<Button>();
 		
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/histMO.png"));
 		
-		Button goInput = new Button(250, 575, 75, 50, "Go Back", JasCustomButton.getA(), new Action() {
+		Button goInput = new Button(250, 575, 75, 50, "GO BACK", JasCustomButton.getA(), new Action() {
 			
 			public void act() {
 				switchScreen(CalcMoMain.inputScreen);
@@ -160,7 +32,7 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		JasCustomButton.circleButton(goInput);
 		viewObjects.add(goInput);
 		
-		Button clear = new Button(375, 515, 93, 45, "Clear", JasCustomButton.getB(), new Action() {
+		Button clear = new Button(375, 515, 93, 45, "CLEAR", JasCustomButton.getB(), new Action() {
 
 			public void act() {
 				clearHist(fx);
@@ -200,7 +72,7 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		TextBox deleteArea = new TextBox(435, 600, 30, 30, "");
 		viewObjects.add(deleteArea);
 		
-		Button delete = new Button(350, 600, 85, 30, "Delete", JasCustomButton.getC(), new Action() {
+		Button delete = new Button(350, 600, 85, 30, "DELETE", JasCustomButton.getC(), new Action() {
 			public void act() 
 			{
 				fx.remove(Integer.parseInt(deleteArea.getText()));
@@ -213,7 +85,7 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		TextBox duplicateArea = new TextBox(435, 635, 30, 30, "");
 		viewObjects.add(duplicateArea);
 		
-		Button duplicate = new Button(350, 635, 85, 30, "Duplicate", JasCustomButton.getC(), new Action() {
+		Button duplicate = new Button(350, 635, 85, 30, "DUPLICATE", JasCustomButton.getC(), new Action() {
 			public void act() 
 			{
 				fx.remove(Integer.parseInt(duplicateArea.getText()));
@@ -222,6 +94,17 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 			}
 		});
 		viewObjects.add(duplicate);
+		
+		TextBox tableArea = new TextBox(435, 565, 30, 30, "");
+		viewObjects.add(tableArea);
+		
+		Button table = new Button(350, 565, 85, 30, "TABLE", JasCustomButton.getC(), new Action() {
+			public void act() 
+			{
+				//function selected goes to table screen and displays table
+			}
+		});
+		viewObjects.add(table);
 	}
 	
 	public void clearHist(ArrayList<AbedHistoryNode> arr) {
