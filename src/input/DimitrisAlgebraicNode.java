@@ -54,7 +54,7 @@ public class DimitrisAlgebraicNode {
 		}
 		
 		
-		if(isVariable || isConstant) {
+		if(isVariable) {
 			return tabs + this.varName;
 		}else if(isConstant){
 			return tabs + Double.toString(this.value);

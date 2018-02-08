@@ -12,6 +12,7 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import history.AbidCalculatorScreen;
 import main.CalcMoMain;
+import output.OutputScreen;
 
 public class BenInputScreen extends AbidCalculatorScreen 
 {
@@ -307,8 +308,9 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				DimitrisNodeBuilder.compileProgram(inputArea.getText());
+				
 				solverPress();
+				OutputScreen.recieveTopNode(DimitrisNodeBuilder.compileProgram(inputArea.getText()));
 			}
 		});
 		openParenthesisButton = new Button(446, 385, 30, 15, "", new Action() {
