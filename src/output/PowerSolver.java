@@ -34,5 +34,11 @@ public class PowerSolver implements Solver {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean urinaryFunction() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }
