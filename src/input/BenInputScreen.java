@@ -311,6 +311,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 				
 				solverPress();
 				OutputScreen.recieveTopNode(DimitrisNodeBuilder.compileProgram(inputArea.getText()));
+				switchScreen(CalcMoMain.outputScreen);
 			}
 		});
 		openParenthesisButton = new Button(446, 385, 30, 15, "", new Action() {
