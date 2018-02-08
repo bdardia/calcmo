@@ -33,17 +33,22 @@ public class OutputScreen extends AbidCalculatorScreen {
 	}
 	
 	
-	public void recieveTopNode(DimitrisAlgebraicNode n) {
+	public static void recieveTopNode(DimitrisAlgebraicNode n) {
 		n.solve();
 		System.out.println(n.value); 
 		
 		output = n.value;
+		outputArea.setText(outputArea.getText() + n.value);
 	}
+	
+	
 
 	public void initAllObjects(List<Visible> viewObjects) {
 
 		
 		background = new Graphic(0, 0, "resources/outputscreen.png");
+		
+		outputArea = new TextLabel(37, 37, 400, 37, "Answer: ");
 		
 		inputButton = new Button(100, 400, 100, 100, "Initial Screen", JasCustomButton.getA(), new Action() {
 			public void act() {
@@ -51,6 +56,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 				switchScreen(CalcMoMain.inputScreen);
 				
 				System.out.println("Input button pressed");
+				outputArea.setText("Answer: ");
 			}
 		});
 		JasCustomButton.circleButton(inputButton);
@@ -61,6 +67,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 				switchScreen(CalcMoMain.historyScreen);
 				
 				System.out.println("History button pressed");
+				outputArea.setText("Answer: ");
 			}
 		});
 		JasCustomButton.circleButton(historyButton);
@@ -71,6 +78,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 				//switchScreen(CalcMoMain.tableScreen);
 				
 				System.out.println("Table button pressed");
+				outputArea.setText("Answer: ");
 			}
 		});
 		
@@ -80,6 +88,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		JasCustomButton.circleButton(tableButton);
 		
 		viewObjects.add(background);
+		viewObjects.add(outputArea);
 		
 		viewObjects.add(inputButton);
 		viewObjects.add(historyButton);
