@@ -7,8 +7,8 @@ public class SinSolver implements Solver {
 
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		// TODO Auto-generated method stub
-		return 0;
+		double var = (double) Math.sin(lhs);
+		return var;
 	}
 
 	@Override
