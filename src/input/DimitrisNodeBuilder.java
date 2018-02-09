@@ -93,8 +93,8 @@ public class DimitrisNodeBuilder {
 		
 		
 		if(parsedArray.size() >= 3) {
-			int nodesLeft = parsedArray.size() - index ;
-			if(nodesLeft == 0) {
+			int nodesLeft = parsedArray.size() - index  - 2;
+			if(nodesLeft <= 0) {
 				return buildTree(parsedArray, 0);
 			}else {
 				
@@ -112,21 +112,8 @@ public class DimitrisNodeBuilder {
 				
 				
 				
-				if(middlePrecedence >= lhsPrecedence) {
-					middle.lhs = lhs;
-					parsedArray.remove(lhsIndex);
-					return buildTree(parsedArray, index+1);
-				}
-				else if(middlePrecedence < lhsPrecedence) {
-					if(lhsPrecedence > rhsPrecedence) {
-						lhs.rhs = middle;
-						parsedArray.remove(middleIndex);
-						return buildTree(parsedArray, index+1);
-					}else {
-						rhs.lhs = middle; //rhs, by logic must have greater precedence than middle
-						parsedArray.remove(middleIndex);
-						return buildTree(parsedArray, index + 1);
-					}
+				if(lhsPrecedence < middlePrecedence) {
+					return buildTree(parsedArray, middleIndex);
 				}
 			}
 			

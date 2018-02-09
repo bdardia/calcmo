@@ -22,7 +22,7 @@ public class ConstantSolver implements Solver {
 	@Override
 	public int getPrecedence() {
 		// TODO Auto-generated method stub
-		return -1;
+		return 20;
 	}
 
 	@Override
