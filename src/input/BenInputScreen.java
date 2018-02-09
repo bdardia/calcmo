@@ -17,7 +17,7 @@ import history.JasHistoryScreen;
 import main.CalcMoMain;
 import output.OutputScreen;
 
-public class BenInputScreen extends AbidCalculatorScreen implements AbedHistoryTransfer
+public class BenInputScreen extends AbidCalculatorScreen 
 {
 	/**
 	 * 
@@ -315,7 +315,7 @@ public class BenInputScreen extends AbidCalculatorScreen implements AbedHistoryT
 				solverPress();
 				OutputScreen.recieveTopNode(DimitrisNodeBuilder.compileProgram(inputArea.getText()));
 				switchScreen(CalcMoMain.outputScreen);
-				transferNode(new AbedHistoryNode(inputArea.getText(),0.0),OutputScreen.unfinishedNodes);
+				//transferNode(new AbedHistoryNode(inputArea.getText(),0.0),OutputScreen.unfinishedNodes);
 				
 			}
 		});
@@ -556,12 +556,11 @@ public class BenInputScreen extends AbidCalculatorScreen implements AbedHistoryT
 	{
 		soundControl.playSound("ping_pong_8bit_peeeeeep.wav");
 	}
-
-	@Override
-	public void transferNode(AbedHistoryNode a, ArrayList<AbedHistoryNode> s) 
-	{
-		s.add(a);		
-	}
+	
+//	public void transferNode(AbedHistoryNode a, ArrayList<AbedHistoryNode> s) 
+//	{
+//		s.add(a);		
+//	}
 
 	
 

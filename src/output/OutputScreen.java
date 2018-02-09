@@ -43,9 +43,9 @@ public class OutputScreen extends AbidCalculatorScreen {
 		
 		output = n.value;
 		outputArea.setText(outputArea.getText() + n.value);
-		AbedHistoryNode completeNode = unfinishedNodes.get(unfinishedNodes.size()-1);
-		completeNode.setOut(output);
-		JasHistoryScreen.fx.add(completeNode);
+//		AbedHistoryNode completeNode = unfinishedNodes.get(unfinishedNodes.size()-1);
+//		completeNode.setOut(output);
+//		JasHistoryScreen.fx.add(completeNode);
 	}
 	
 	
