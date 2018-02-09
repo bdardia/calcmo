@@ -79,7 +79,7 @@ public class DimitrisNodeBuilder {
 	
 	
 	
-	static DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int precedence) {
+	static DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int index) {
 		System.out.println("parsedArraylen:" + parsedArray.size());
 		for(DimitrisAlgebraicNode n : parsedArray) {
 			
@@ -92,43 +92,67 @@ public class DimitrisNodeBuilder {
 		}
 		
 		
-		if(parsedArray.size() > 1) {
-			DimitrisAlgebraicNode lhs = parsedArray.get(0);
-			DimitrisAlgebraicNode rhs = parsedArray.get(1);
-			int lhsPrecedence = lhs.solver.getPrecedence();
-			int rhsPrecedence = rhs.solver.getPrecedence();
-			
-			if(lhsPrecedence <= rhsPrecedence ) {
-				if(rhsPrecedence >= precedence) {
-					
-					System.out.println("lhs absorbed");
-					rhs.lhs = lhs;
-					parsedArray.remove(lhs);
-					return buildTree(parsedArray, 0);
-				}else {
-					throw new NullPointerException("array cannot be simplified into one node");
-				}
-				
+		if(parsedArray.size() >= 3) {
+			int nodesLeft = parsedArray.size() - index ;
+			if(nodesLeft == 0) {
+				return buildTree(parsedArray, 0);
 			}else {
 				
-				try {
-					lhs.rhs = buildTree((ArrayList<DimitrisAlgebraicNode>) parsedArray.subList(1, parsedArray.size()), lhsPrecedence);
-					parsedArray.removeAll( parsedArray.subList(1, parsedArray.size()));
-					System.out.println("rhs built into tree and absorbed");
-					return lhs;
-				}
-				catch(Exception e){// array cannot be simplified into one node
-					System.out.println("rhs absorbed");
-					lhs.rhs = rhs;
-					parsedArray.remove(rhs);
-					return buildTree(parsedArray, lhsPrecedence);
-				}
+				int lhsIndex = index;
+				int middleIndex = index + 1;
+				int rhsIndex = index + 2;
 				
-			}			
+				DimitrisAlgebraicNode lhs = parsedArray.get(lhsIndex);
+				DimitrisAlgebraicNode middle = parsedArray.get(middleIndex);
+				DimitrisAlgebraicNode rhs = parsedArray.get(rhsIndex);
+				
+				int lhsPrecedence = lhs.solver.getPrecedence();
+				int middlePrecedence = middle.solver.getPrecedence();
+				int rhsPrecedence = rhs.solver.getPrecedence();
+				
+				
+				
+				if(middlePrecedence >= lhsPrecedence) {
+					middle.lhs = lhs;
+					parsedArray.remove(lhsIndex);
+					return buildTree(parsedArray, index+1);
+				}
+				else if(middlePrecedence < lhsPrecedence) {
+					if(lhsPrecedence > rhsPrecedence) {
+						lhs.rhs = middle;
+						parsedArray.remove(middleIndex);
+						return buildTree(parsedArray, index+1);
+					}else {
+						rhs.lhs = middle; //rhs, by logic must have greater precedence than middle
+						parsedArray.remove(middleIndex);
+						return buildTree(parsedArray, index + 1);
+					}
+				}
+			}
+			
 			
 		}else {
-			return parsedArray.get(0);
+			if(parsedArray.size() == 2) {
+				DimitrisAlgebraicNode lhs = parsedArray.get(0);
+				DimitrisAlgebraicNode rhs = parsedArray.get(1);
+				
+				if(lhs.solver.getPrecedence() < rhs.solver.getPrecedence()) {
+					rhs.lhs = lhs;
+					return rhs;
+				}else {
+					lhs.rhs = rhs;
+					return lhs;
+				}
+			}
+			else {
+				
+				System.out.println("error");
+				return (DimitrisAlgebraicNode)null;
+			}
 		}
+		
+		System.out.println("unreachable");
+		return null;
 				
 		
 	}
