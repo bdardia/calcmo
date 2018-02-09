@@ -19,7 +19,7 @@ public class DimitrisNodeBuilder {
 			try {
 				double number = Double.parseDouble(currentString);
 				
-				if(currentString.substring(0, 1).equals("+")) {
+				if(currentString.substring(0, 1).equals("+") || currentString.substring(0, 1).equals("-")) {
 					throw new Exception("missing plus sign is found");
 				}
 				parsedArray.add(new DimitrisAlgebraicNode(number));

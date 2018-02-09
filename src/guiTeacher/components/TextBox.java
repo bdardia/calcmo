@@ -577,7 +577,7 @@ public class TextBox extends TextField{
 			int x = fm.stringWidth(lines.get(cursorLine).getShownLine().substring(0,end))+X_MARGIN;			
 			g.drawLine(x, y-fm.getHeight(), x, y);
 		}catch (StringIndexOutOfBoundsException e){
-			System.out.println("Cursor moved out of bounds in line. Click to redraw");
+//			System.out.println("Cursor moved out of bounds in line. Click to redraw");
 		}
 	}
 
