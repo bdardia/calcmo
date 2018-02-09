@@ -11,11 +11,17 @@ public class AbedHistoryNode
 	private ArrayList<String> yCoordinate;
 	private AbidAnimations animate;
 	private int count;
+	private double out;
 
 	public AbedHistoryNode(String input,String output)
 	{
 		this.input = input;
 		this.output = output;
+	}
+	public AbedHistoryNode(String input,double out)
+	{
+		this.input = input;
+		this.out = out;
 	}
 	public AbedHistoryNode(String input, ArrayList<String> xCoordinate,ArrayList<String> yCoordinate)
 	{
@@ -48,5 +54,10 @@ public class AbedHistoryNode
 	{
 		this.output = output;
 	}
+	public void setOut(double out)
+	{
+		this.out = out;
+	}
+	
 	
 }

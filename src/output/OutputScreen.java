@@ -1,6 +1,7 @@
 package output;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -11,6 +12,7 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
+import history.AbedHistoryNode;
 import history.AbidCalculatorScreen;
 import history.JasCustomButton;
 import history.JasHistoryScreen;
@@ -24,7 +26,9 @@ public class OutputScreen extends AbidCalculatorScreen {
 	private Button historyButton;
 	private Button tableButton;
 	private static TextLabel outputArea;
-
+	
+	public static ArrayList<AbedHistoryNode> unfinishedNodes;
+	
 	public static double output;
 	
 	
@@ -39,6 +43,9 @@ public class OutputScreen extends AbidCalculatorScreen {
 		
 		output = n.value;
 		outputArea.setText(outputArea.getText() + n.value);
+		AbedHistoryNode completeNode = unfinishedNodes.get(unfinishedNodes.size()-1);
+		completeNode.setOut(output);
+		JasHistoryScreen.fx.add(completeNode);
 	}
 	
 	

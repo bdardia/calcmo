@@ -315,7 +315,8 @@ public class BenInputScreen extends AbidCalculatorScreen implements AbedHistoryT
 				solverPress();
 				OutputScreen.recieveTopNode(DimitrisNodeBuilder.compileProgram(inputArea.getText()));
 				switchScreen(CalcMoMain.outputScreen);
-				transferNode(new AbedHistoryNode(inputArea.getText(),""));
+				transferNode(new AbedHistoryNode(inputArea.getText(),""),);
+				
 			}
 		});
 		openParenthesisButton = new Button(446, 385, 30, 15, "", new Action() {
@@ -557,10 +558,15 @@ public class BenInputScreen extends AbidCalculatorScreen implements AbedHistoryT
 	}
 
 	@Override
-	public void transferNode(AbedHistoryNode a) 
+	public void transferNode(AbedHistoryNode a, ArrayList<AbedHistoryNode> s) 
 	{
-		JasHistoryScreen.fx.add(a);
+		s.add(a);		
 	}
+
+	
+
+	
+	
 	
 }
 
