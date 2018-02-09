@@ -55,14 +55,14 @@ public class DimitrisNodeBuilder {
 			}
 		}
 		
-		for(DimitrisAlgebraicNode n : parsedArray) {
-			if(!n.isVariable) {
-				System.out.println(n.solver.getOperation());
-			}else {
-				System.out.println(n.varName);
-			}
-			
-		}
+//		for(DimitrisAlgebraicNode n : parsedArray) {
+//			if(!n.isVariable) {
+//				System.out.println(n.solver.getOperation());
+//			}else {
+//				System.out.println(n.varName);
+//			}
+//			
+//		}
 		return parsedArray;
 	}
 	
@@ -80,17 +80,31 @@ public class DimitrisNodeBuilder {
 	
 	
 	static DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int precedence) {
+		System.out.println("parsedArraylen:" + parsedArray.size());
+		for(DimitrisAlgebraicNode n : parsedArray) {
+			
+			if(!n.isVariable) {
+				System.out.println(n.solver.getOperation());
+			}else {
+				System.out.println(n.varName);
+			}
+		
+		}
+		
+		
 		if(parsedArray.size() > 1) {
 			DimitrisAlgebraicNode lhs = parsedArray.get(0);
 			DimitrisAlgebraicNode rhs = parsedArray.get(1);
 			int lhsPrecedence = lhs.solver.getPrecedence();
 			int rhsPrecedence = rhs.solver.getPrecedence();
 			
-			if(lhsPrecedence < rhsPrecedence ) {
-				if(rhsPrecedence > precedence) {
+			if(lhsPrecedence <= rhsPrecedence ) {
+				if(rhsPrecedence >= precedence) {
+					
+					System.out.println("lhs absorbed");
 					rhs.lhs = lhs;
 					parsedArray.remove(lhs);
-					return buildTree(parsedArray, rhsPrecedence);
+					return buildTree(parsedArray, 0);
 				}else {
 					throw new NullPointerException("array cannot be simplified into one node");
 				}
@@ -99,14 +113,16 @@ public class DimitrisNodeBuilder {
 				
 				try {
 					lhs.rhs = buildTree((ArrayList<DimitrisAlgebraicNode>) parsedArray.subList(1, parsedArray.size()), lhsPrecedence);
+					parsedArray.removeAll( parsedArray.subList(1, parsedArray.size()));
+					System.out.println("rhs built into tree and absorbed");
+					return lhs;
 				}
 				catch(Exception e){// array cannot be simplified into one node
+					System.out.println("rhs absorbed");
 					lhs.rhs = rhs;
 					parsedArray.remove(rhs);
 					return buildTree(parsedArray, lhsPrecedence);
 				}
-				
-				return lhs;
 				
 			}			
 			
@@ -119,7 +135,9 @@ public class DimitrisNodeBuilder {
 	
 	static DimitrisAlgebraicNode compileProgram(String program) {
 		DimitrisAlgebraicNode returnNode = buildTree(parse(program),0);
-		System.out.println(returnNode.toString(0));;
+		System.out.println(returnNode.toString(0));
+		returnNode.solve();
+		System.out.println("evaluation:" + returnNode.value);
 		return returnNode;
 	}
 	

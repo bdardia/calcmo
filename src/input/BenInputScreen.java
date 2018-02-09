@@ -10,8 +10,12 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextBox;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
+import history.AbedHistoryNode;
+import history.AbedHistoryTransfer;
 import history.AbidCalculatorScreen;
+import history.JasHistoryScreen;
 import main.CalcMoMain;
+import output.OutputScreen;
 
 public class BenInputScreen extends AbidCalculatorScreen 
 {
@@ -307,8 +311,12 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				DimitrisNodeBuilder.compileProgram(inputArea.getText());
+				
 				solverPress();
+				OutputScreen.recieveTopNode(DimitrisNodeBuilder.compileProgram(inputArea.getText()));
+				switchScreen(CalcMoMain.outputScreen);
+				//transferNode(new AbedHistoryNode(inputArea.getText(),0.0),OutputScreen.unfinishedNodes);
+				
 			}
 		});
 		openParenthesisButton = new Button(446, 385, 30, 15, "", new Action() {
@@ -548,6 +556,16 @@ public class BenInputScreen extends AbidCalculatorScreen
 	{
 		soundControl.playSound("ping_pong_8bit_peeeeeep.wav");
 	}
+	
+//	public void transferNode(AbedHistoryNode a, ArrayList<AbedHistoryNode> s) 
+//	{
+//		s.add(a);		
+//	}
+
+	
+
+	
+	
 	
 }
 

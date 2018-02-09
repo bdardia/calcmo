@@ -37,4 +37,10 @@ public class MultiplicationSolver implements Solver {
 		
 	}
 
+	@Override
+	public boolean urinaryFunction() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
