@@ -10,7 +10,7 @@ import main.CalcMoMain;
 
 public class JasHistoryScreen extends AbidCalculatorScreen {
 	
-	private ArrayList<AbedHistoryNode> fx;
+	public static ArrayList<AbedHistoryNode> fx;
 	
 	public JasHistoryScreen(int width, int height) {
 		super(width, height);
