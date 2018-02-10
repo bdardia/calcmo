@@ -6,14 +6,14 @@ import java.util.ArrayList;
 public class AbedHistoryNode 
 {
 	private String input;
-	private String output;
+	private ArrayList<String> output;
 	private ArrayList<String> xCoordinate;
 	private ArrayList<String> yCoordinate;
 	private AbidAnimations animate;
 	private int count;
 	private double out;
 
-	public AbedHistoryNode(String input,String output)
+	public AbedHistoryNode(String input,ArrayList<String> output)
 	{
 		this.input = input;
 		this.output = output;
