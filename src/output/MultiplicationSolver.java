@@ -4,7 +4,7 @@ import input.DimitrisAlgebraicNode;
 import input.Solver;
 
 public class MultiplicationSolver implements Solver {
-	private int precedence = 4;
+	private int precedence = Solver.PrecedenceConstants.multiplicationSolver;
 	
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
@@ -42,6 +42,11 @@ public class MultiplicationSolver implements Solver {
 	public void increasePrecedence(int amount) {
 		precedence += amount;
 		
+	}
+
+	@Override
+	public Solver createNew() {
+		return new MultiplicationSolver();
 	}
 
 }

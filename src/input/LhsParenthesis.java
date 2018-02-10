@@ -36,8 +36,11 @@ public class LhsParenthesis implements Solver {
 
 	@Override
 	public void increasePrecedence(int amount) {
-		// TODO Auto-generated method stub
-		
+	}
+
+	@Override
+	public Solver createNew() {
+		return new LhsParenthesis();
 	}
 
 }

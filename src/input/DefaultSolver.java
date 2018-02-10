@@ -1,8 +1,10 @@
 package input;
 
 public class DefaultSolver implements Solver {
-
-	public DefaultSolver() {
+	private int precedence;
+	
+	public DefaultSolver(int precedence) {
+		this.precedence = precedence;
 	}
 
 	@Override
@@ -17,32 +19,33 @@ public class DefaultSolver implements Solver {
 
 	@Override
 	public int getPrecedence() {
-		// TODO Auto-generated method stub
-		return 0;
+		return precedence;
 	}
 
 	@Override
 	public void addParent(DimitrisAlgebraicNode n) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Solver getInverse() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean urinaryFunction() {
-		// TODO Auto-generated method stub
-		return false;
+		return false; //keep false unless you like segfaults --> check NodeBuilder, a new DefaultSolver is created for each unary function
 	}
 
 	@Override
 	public void increasePrecedence(int amount) {
-		// TODO Auto-generated method stub
+		precedence += amount;
 		
+	}
+
+	@Override
+	public Solver createNew() {
+		return new DefaultSolver(Solver.PrecedenceConstants.defaultSolver);
 	}
 
 }

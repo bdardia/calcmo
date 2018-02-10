@@ -2,7 +2,7 @@ package input;
 
 public class ConstantSolver implements Solver {
 	DimitrisAlgebraicNode parent;
-	int precedence = 20;
+	int precedence = Solver.PrecedenceConstants.constantSolver;
 	
 	public ConstantSolver(DimitrisAlgebraicNode self) {
 		parent = self;
@@ -43,6 +43,11 @@ public class ConstantSolver implements Solver {
 	public void increasePrecedence(int amount) {
 		precedence += amount;
 		
+	}
+
+	@Override
+	public Solver createNew() { //not nessisary because constants are created each time
+		return null;
 	}
 
 }

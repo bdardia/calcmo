@@ -3,7 +3,7 @@ package input;
 public class VariableSolver implements Solver {
 
 	private DimitrisAlgebraicNode node;
-	private int precedence = 20;
+	private int precedence = Solver.PrecedenceConstants.variableSolver;
 	
 	public VariableSolver(DimitrisAlgebraicNode n) {
 		node = n;
@@ -41,6 +41,11 @@ public class VariableSolver implements Solver {
 	@Override
 	public void increasePrecedence(int amount) {
 		precedence += 20;
+	}
+
+	@Override
+	public Solver createNew() {
+		return null; //never called, all vars are new
 	}
 
 }

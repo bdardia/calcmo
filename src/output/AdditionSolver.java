@@ -5,7 +5,7 @@ import input.Solver;
 
 public class AdditionSolver implements Solver {
 	
-	int precedence = 2;
+	int precedence = Solver.PrecedenceConstants.additionSolver;
 
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
@@ -48,6 +48,11 @@ public class AdditionSolver implements Solver {
 	public void increasePrecedence(int amount) {
 		precedence += amount;
 		
+	}
+
+	@Override
+	public Solver createNew() {
+		return new AdditionSolver();
 	}
 
 }

@@ -1,7 +1,7 @@
 package input;
 
 public class CosineSolver implements Solver {
-	int precedence = 10;
+	int precedence = Solver.PrecedenceConstants.cosineSolver;
 	
 	public CosineSolver() {
 		// TODO Auto-generated constructor stub
@@ -43,6 +43,11 @@ public class CosineSolver implements Solver {
 	public void increasePrecedence(int amount) {
 		precedence += amount;
 		
+	}
+
+	@Override
+	public Solver createNew() {
+		return new CosineSolver();
 	}
 
 }

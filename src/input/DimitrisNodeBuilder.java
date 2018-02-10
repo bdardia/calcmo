@@ -37,11 +37,12 @@ public class DimitrisNodeBuilder {
 					if(s.urinaryFunction() == true) {
 						DimitrisAlgebraicNode placeHolder = new DimitrisAlgebraicNode(-1);
 						placeHolder.isPlaceHolder = true;
+						placeHolder.solver = new DefaultSolver(getMaxPrecedence()); //the placeholder needs the correct precedence to properly work with parenthesis
 						parsedArray.add(placeHolder);
 						logger += "added placeHolder" + "\n";
 					}
 					
-					parsedArray.add( new DimitrisAlgebraicNode(s));
+					parsedArray.add( new DimitrisAlgebraicNode(s.createNew()));
 					logger += DimitrisAlgebraicNode.solverArray[solverIndex].getOperation() + "\n";
 					
 					startIndex  += currentString.length();
@@ -83,21 +84,24 @@ public class DimitrisNodeBuilder {
 	}
 	
 	private static ArrayList<DimitrisAlgebraicNode> reduceParenthesis(ArrayList<DimitrisAlgebraicNode> preprocessedArray){
+		logger += "started reduction of parenthesis" + "\n";
 		int precedenceIncrease = 0;
 		int precedenceInterval = getMaxPrecedence();
 		
 		//increase precedences
 		for(int i = 0; i < preprocessedArray.size(); i++) {
 			Solver currentSolver = preprocessedArray.get(i).solver;
-			
-			if(currentSolver.getOperation() == "(") {
+			logger += "i:" + i + "\n";
+			logger += "precedenceIncrease:" + precedenceIncrease + "\n";
+			if(currentSolver.getOperation().equals("(")) {
 				precedenceIncrease += precedenceInterval;
 				preprocessedArray.remove(i);
 				i--;
-			}else if(currentSolver.getOperation() == ")") {
+			}else if(currentSolver.getOperation().equals(")")) {
 				precedenceIncrease -= precedenceInterval;
 				preprocessedArray.remove(i);
 				i--;
+
 			}else {
 				currentSolver.increasePrecedence(precedenceIncrease);
 			}
@@ -109,15 +113,15 @@ public class DimitrisNodeBuilder {
 	
 	
 	private static int getMaxPrecedence() {
-		return 40;
+		return 60;
 	}
 
 
 	private static DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int index) {
 
 		
-		System.out.println("parsedArraylen:" + parsedArray.size());
-		System.out.println("index:" + index);
+		logger += "parsedArraylen:" + parsedArray.size() + "\n";
+		logger += "index:" + index + "\n";
 		for(DimitrisAlgebraicNode n : parsedArray) {
 			logger += n + "\n";
 		
@@ -239,7 +243,14 @@ public class DimitrisNodeBuilder {
 	}
 	
 	public static void main(String[] args) {
+		String testString = "1*3+cos(10)";
 		debug = true;
-		compileProgram("5*(1+cos(0+0))");
+//		ArrayList<DimitrisAlgebraicNode> parsedArray = reduceParenthesis(parse(testString));
+//		System.out.println(logger);
+//		for(DimitrisAlgebraicNode n : parsedArray) {
+//			System.out.println(n.toString() + " " + n.solver.getPrecedence());
+//		}
+		
+		compileProgram(testString);
 	}
 }
