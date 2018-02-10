@@ -3,6 +3,8 @@ package input;
 import java.util.ArrayList;
 
 public class DimitrisNodeBuilder {
+	static String logger = "";
+	static boolean debug = true;
 	
 	static ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
 		ArrayList<DimitrisAlgebraicNode> parsedArray = new ArrayList<DimitrisAlgebraicNode>();
@@ -80,11 +82,12 @@ public class DimitrisNodeBuilder {
 	
 	
 	static DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int index) {
+
+		
 		System.out.println("parsedArraylen:" + parsedArray.size());
 		System.out.println("index:" + index);
 		for(DimitrisAlgebraicNode n : parsedArray) {
-			
-			System.out.println(n);
+			logger += n + "\n";
 		
 		}
 		
@@ -95,7 +98,7 @@ public class DimitrisNodeBuilder {
 				DimitrisAlgebraicNode rhs = parsedArray.get(parsedArray.size() - 1);
 				if(lhs.solver.getPrecedence() <= rhs.solver.getPrecedence()) {
 					lhs.rhs = rhs;
-					System.out.println("fold right end");
+					logger += "fold right end" + "\n";
 					parsedArray.remove(rhs);
 				}
 				
@@ -104,11 +107,11 @@ public class DimitrisNodeBuilder {
 				
 				if(lhs.solver.getPrecedence() > rhs.solver.getPrecedence()){
 					rhs.lhs = lhs;
-					System.out.println("fold left end");
+					logger += "fold left end" + "\n";
 					parsedArray.remove(lhs);
 					
 				}
-				System.out.println("reset");
+				logger += "reset" + "\n";
 				return buildTree(parsedArray, 0);
 				
 			}else {
@@ -127,12 +130,12 @@ public class DimitrisNodeBuilder {
 				
 				
 				if(lhsPrecedence < middlePrecedence && lhsPrecedence > rhsPrecedence) {
-					System.out.println("folded into left");
+					logger += "folded into left" + "\n";
 					lhs.rhs = middle;
 					parsedArray.remove(middleIndex);
 					return buildTree(parsedArray, index + 1);
 				}else if(rhsPrecedence < middlePrecedence && rhsPrecedence > lhsPrecedence) {
-					System.out.println("folded right");
+					logger += "folded right" + "\n";
 					rhs.lhs = middle;
 					parsedArray.remove(middleIndex);
 					return buildTree(parsedArray, index + 1);
@@ -144,12 +147,12 @@ public class DimitrisNodeBuilder {
 							lhs.rhs = rhs;
 							parsedArray.remove(rhs);
 							parsedArray.remove(middle);
-							System.out.println("folded complete to the left");
+							logger += "folded complete to the left" +"\n";
 							buildTree(parsedArray, index+1);
 						}
 					}
 					
-					System.out.println("default");
+					logger += "default" + "\n";
 					return buildTree(parsedArray, index+1);
 				}
 			}
@@ -178,9 +181,16 @@ public class DimitrisNodeBuilder {
 	
 	static DimitrisAlgebraicNode compileProgram(String program) {
 		DimitrisAlgebraicNode returnNode = buildTree(parse(program),0);
-		System.out.println(returnNode.toString(0));
-		returnNode.solve();
-		System.out.println("evaluation:" + returnNode.value);
+		
+		if(debug) {
+			System.out.println("printing logger");
+			System.out.println(logger);
+			System.out.println("printing final tree");
+			System.out.println(returnNode.toString(0));
+			returnNode.solve();
+			System.out.println("evaluation:" + returnNode.value);
+		}
+
 		return returnNode;
 	}
 	
