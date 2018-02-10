@@ -36,4 +36,10 @@ public class RhsParenthesis implements Solver {
 		return false;
 	}
 
+	@Override
+	public void increasePrecedence(int amount) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

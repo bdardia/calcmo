@@ -7,7 +7,7 @@ public class DimitrisAlgebraicNode {
 	public DimitrisAlgebraicNode lhs;
 	public DimitrisAlgebraicNode rhs;
 	
-	public Solver solver = new ExampleSolver();
+	public Solver solver = new DefaultSolver();
 	
 	public double value;
 	public boolean isConstant = false;

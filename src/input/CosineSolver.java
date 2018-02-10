@@ -26,19 +26,16 @@ public class CosineSolver implements Solver {
 
 	@Override
 	public void addParent(DimitrisAlgebraicNode n) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Solver getInverse() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean urinaryFunction() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

@@ -1,14 +1,12 @@
 package input;
 
-public class ExampleSolver implements Solver {
+public class DefaultSolver implements Solver {
 
-	public ExampleSolver() {
-		// TODO Auto-generated constructor stub
+	public DefaultSolver() {
 	}
 
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -39,6 +37,12 @@ public class ExampleSolver implements Solver {
 	public boolean urinaryFunction() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void increasePrecedence(int amount) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -3,6 +3,7 @@ package input;
 public class VariableSolver implements Solver {
 
 	private DimitrisAlgebraicNode node;
+	private int precedence = 20;
 	
 	public VariableSolver(DimitrisAlgebraicNode n) {
 		node = n;
@@ -15,32 +16,31 @@ public class VariableSolver implements Solver {
 
 	@Override
 	public String getOperation() {
-		// TODO Auto-generated method stub
 		return node.varName;
 	}
 
 	@Override
 	public int getPrecedence() {
-		// TODO Auto-generated method stub
-		return 20;
+		return precedence;
 	}
 
 	@Override
 	public Solver getInverse() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void addParent(DimitrisAlgebraicNode n) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public boolean urinaryFunction() {
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void increasePrecedence(int amount) {
+		precedence += 20;
 	}
 
 }

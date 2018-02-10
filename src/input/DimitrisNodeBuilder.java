@@ -240,6 +240,6 @@ public class DimitrisNodeBuilder {
 	
 	public static void main(String[] args) {
 		debug = true;
-		compileProgram("1+cos0");
+		compileProgram("5*(1+cos(0+0))");
 	}
 }
