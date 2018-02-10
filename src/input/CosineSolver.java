@@ -1,7 +1,8 @@
 package input;
 
 public class CosineSolver implements Solver {
-
+	int precedence = Solver.PrecedenceConstants.cosineSolver;
+	
 	public CosineSolver() {
 		// TODO Auto-generated constructor stub
 	}
@@ -20,26 +21,33 @@ public class CosineSolver implements Solver {
 
 	@Override
 	public int getPrecedence() {
-		// TODO Auto-generated method stub
-		return 10;
+		return precedence;
 	}
 
 	@Override
 	public void addParent(DimitrisAlgebraicNode n) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Solver getInverse() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean urinaryFunction() {
-		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public void increasePrecedence(int amount) {
+		precedence += amount;
+		
+	}
+
+	@Override
+	public Solver createNew() {
+		return new CosineSolver();
 	}
 
 }

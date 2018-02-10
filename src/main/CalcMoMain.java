@@ -1,12 +1,9 @@
 package main;
 
 import guiTeacher.GUIApplication;
-import guiTeacher.userInterfaces.FullFunctionScreen;
-import guiTeacher.userInterfaces.Screen;
 import history.AbidTableScreen;
 import history.AbidTransitionScreen;
 import history.JasHistoryScreen;
-import history.SwitchScreen;
 import input.BenInputScreen;
 import output.OutputScreen;
 

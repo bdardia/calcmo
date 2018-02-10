@@ -8,7 +8,9 @@ public class SubtractionSolver implements Solver{
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		// TODO Auto-generated method stub
-		return lhs.solveNode() - rhs.solveNode();
+		lhs.solve();
+		rhs.solve();
+		return lhs.value - rhs.value;
 	}
 
 	@Override
@@ -26,7 +28,7 @@ public class SubtractionSolver implements Solver{
 	@Override
 	public Solver getInverse() {
 		// TODO Auto-generated method stub
-		return new MultiplicationSolver();
+		return new AdditionSolver();
 	}
 
 	@Override

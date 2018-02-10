@@ -2,6 +2,7 @@ package input;
 
 public class ConstantSolver implements Solver {
 	DimitrisAlgebraicNode parent;
+	int precedence = Solver.PrecedenceConstants.constantSolver;
 	
 	public ConstantSolver(DimitrisAlgebraicNode self) {
 		parent = self;
@@ -9,25 +10,21 @@ public class ConstantSolver implements Solver {
 
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		// TODO Auto-generated method stub
 		return parent.value; 
 	}
 
 	@Override
 	public String getOperation() {
-		// TODO Auto-generated method stub
 		return ""; //the empty string will never match and never thow a null pointer exeption
 	}
 
 	@Override
 	public int getPrecedence() {
-		// TODO Auto-generated method stub
-		return -1;
+		return precedence;
 	}
 
 	@Override
 	public Solver getInverse() {
-		// TODO Auto-generated method stub
 		return null; //there should never be an inverse
 	}
 
@@ -39,8 +36,18 @@ public class ConstantSolver implements Solver {
 
 	@Override
 	public boolean urinaryFunction() {
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void increasePrecedence(int amount) {
+		precedence += amount;
+		
+	}
+
+	@Override
+	public Solver createNew() { //not nessisary because constants are created each time
+		return null;
 	}
 
 }
