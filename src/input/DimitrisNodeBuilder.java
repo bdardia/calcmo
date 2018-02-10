@@ -274,7 +274,7 @@ public class DimitrisNodeBuilder {
 			n.value = value;
 			n.isEvaluated = true;
 		}else {
-			if(!n.isConstant && !(n.solver.getOperation() == "NAO")) { //not end of tree
+			if(!n.isConstant && !(n.solver.getOperation().equals("NAO"))) { //not end of tree
 				updateVariable(n.lhs,varName, value);
 				updateVariable(n.rhs,varName, value);
 			}
