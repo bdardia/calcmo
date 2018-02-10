@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class BenVariableStorage 
 {
 	
-	public static ArrayList<BenVariableStorage> variableArray;
+	static ArrayList<BenVariableStorage> variableArray;
 	
 	
 	
