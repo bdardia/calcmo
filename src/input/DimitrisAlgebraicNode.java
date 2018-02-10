@@ -16,7 +16,7 @@ public class DimitrisAlgebraicNode {
 	public String varName;
 	public boolean isVariable = false;
 	
-	public static Solver[] solverArray = {new AdditionSolver(), new MultiplicationSolver(), new DivisionSolver(), new SubtractionSolver(), new LhsParenthesis(), new RhsParenthesis()}; //set up in main
+	public static Solver[] solverArray = {new AdditionSolver(), new MultiplicationSolver(), new DivisionSolver(), new SubtractionSolver(), new LhsParenthesis(), new RhsParenthesis(), new CosineSolver()}; //set up in main
 	
 	
 	
