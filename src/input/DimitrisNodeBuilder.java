@@ -36,6 +36,7 @@ public class DimitrisNodeBuilder {
 					Solver s = DimitrisAlgebraicNode.solverArray[solverIndex];
 					if(s.urinaryFunction() == true) {
 						DimitrisAlgebraicNode placeHolder = new DimitrisAlgebraicNode(-1);
+						placeHolder.isPlaceHolder = true;
 						parsedArray.add(placeHolder);
 						logger += "added placeHolder" + "\n";
 					}
@@ -70,7 +71,7 @@ public class DimitrisNodeBuilder {
 		return parsedArray;
 	}
 	
-
+	
 	public static int getSolverIndex(String operation){
 		for(int i = 0; i < DimitrisAlgebraicNode.solverArray.length; i++) {
 			Solver s = DimitrisAlgebraicNode.solverArray[i];
@@ -81,8 +82,37 @@ public class DimitrisNodeBuilder {
 		return -1;
 	}
 	
+	private static ArrayList<DimitrisAlgebraicNode> reduceParenthesis(ArrayList<DimitrisAlgebraicNode> preprocessedArray){
+		int precedenceIncrease = 0;
+		int precedenceInterval = getMaxPrecedence();
+		
+		//increase precedences
+		for(int i = 0; i < preprocessedArray.size(); i++) {
+			Solver currentSolver = preprocessedArray.get(i).solver;
+			
+			if(currentSolver.getOperation() == "(") {
+				precedenceIncrease += precedenceInterval;
+				preprocessedArray.remove(i);
+				i--;
+			}else if(currentSolver.getOperation() == ")") {
+				precedenceIncrease -= precedenceInterval;
+				preprocessedArray.remove(i);
+				i--;
+			}else {
+				currentSolver.increasePrecedence(precedenceIncrease);
+			}
+		}
+		
+		
+		return preprocessedArray;
+	}
 	
 	
+	private static int getMaxPrecedence() {
+		return 40;
+	}
+
+
 	private static DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int index) {
 
 		
@@ -187,6 +217,10 @@ public class DimitrisNodeBuilder {
 		ArrayList<DimitrisAlgebraicNode> parsedArray = parse(program);
 		logger += "finished parsing";
 		
+		logger += "starting reduceParenthesis" + "\n";
+		parsedArray = reduceParenthesis(parsedArray);
+		logger += "finished reduceParenthesis" + "\n";
+		
 		logger += "started building tree" + "\n";
 		DimitrisAlgebraicNode returnNode = buildTree(parsedArray, 0);
 		logger += "finished building tree" + "\n";
@@ -206,6 +240,6 @@ public class DimitrisNodeBuilder {
 	
 	public static void main(String[] args) {
 		debug = true;
-		compileProgram("1+2");
+		compileProgram("1+cos0");
 	}
 }

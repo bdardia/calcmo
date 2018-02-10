@@ -8,4 +8,6 @@ public interface Solver {
 	Solver getInverse();
 	
 	boolean urinaryFunction(); //default is binary function
+	
+	void increasePrecedence(int amount); //used when handling parenthesis
 }

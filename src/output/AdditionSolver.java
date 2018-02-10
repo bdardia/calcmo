@@ -4,6 +4,8 @@ import input.DimitrisAlgebraicNode;
 import input.Solver;
 
 public class AdditionSolver implements Solver {
+	
+	int precedence = 2;
 
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
@@ -21,7 +23,7 @@ public class AdditionSolver implements Solver {
 	@Override
 	public int getPrecedence() {
 		// TODO Auto-generated method stub
-		return 2;
+		return precedence;
 	}
 
 	@Override
@@ -40,6 +42,12 @@ public class AdditionSolver implements Solver {
 	public boolean urinaryFunction() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void increasePrecedence(int amount) {
+		precedence += amount;
+		
 	}
 
 }

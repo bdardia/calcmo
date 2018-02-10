@@ -1,7 +1,8 @@
 package input;
 
 public class CosineSolver implements Solver {
-
+	int precedence = 10;
+	
 	public CosineSolver() {
 		// TODO Auto-generated constructor stub
 	}
@@ -20,8 +21,7 @@ public class CosineSolver implements Solver {
 
 	@Override
 	public int getPrecedence() {
-		// TODO Auto-generated method stub
-		return 10;
+		return precedence;
 	}
 
 	@Override
@@ -40,6 +40,12 @@ public class CosineSolver implements Solver {
 	public boolean urinaryFunction() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public void increasePrecedence(int amount) {
+		precedence += amount;
+		
 	}
 
 }

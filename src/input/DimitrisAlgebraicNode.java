@@ -13,6 +13,8 @@ public class DimitrisAlgebraicNode {
 	public boolean isConstant = false;
 	public boolean isEvaluated;
 	
+	public boolean isPlaceHolder = false; //for urinary funcitons debug print
+	
 	public String varName;
 	public boolean isVariable = false;
 	
@@ -56,7 +58,11 @@ public class DimitrisAlgebraicNode {
 		
 		if(isVariable) {
 			return tabs + this.varName;
-		}else if(isConstant){
+		}else if(isPlaceHolder) {
+			return tabs + "placeHolder"; // a placeholder is a constant, so it must come before.
+			//this condition makes print look cooler
+		}
+		else if(isConstant){
 			return tabs + Double.toString(this.value);
 		}else {
 			String lhsString;
