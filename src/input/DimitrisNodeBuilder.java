@@ -3,10 +3,10 @@ package input;
 import java.util.ArrayList;
 
 public class DimitrisNodeBuilder {
-	static String logger = "";
-	static boolean debug = true;
+	private static String logger = "";
+	private static boolean debug = false;
 	
-	static ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
+	private static ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
 		ArrayList<DimitrisAlgebraicNode> parsedArray = new ArrayList<DimitrisAlgebraicNode>();
 
 		int startIndex = 0;
@@ -71,7 +71,7 @@ public class DimitrisNodeBuilder {
 	}
 	
 
-	static int getSolverIndex(String operation){
+	public static int getSolverIndex(String operation){
 		for(int i = 0; i < DimitrisAlgebraicNode.solverArray.length; i++) {
 			Solver s = DimitrisAlgebraicNode.solverArray[i];
 			if(s.getOperation().equals(operation)) {
@@ -83,7 +83,7 @@ public class DimitrisNodeBuilder {
 	
 	
 	
-	static DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int index) {
+	private static DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int index) {
 
 		
 		System.out.println("parsedArraylen:" + parsedArray.size());
@@ -181,7 +181,7 @@ public class DimitrisNodeBuilder {
 		
 	}
 	
-	static DimitrisAlgebraicNode compileProgram(String program) {
+	public static DimitrisAlgebraicNode compileProgram(String program) {
 		
 		logger += "starting parser" + "\n";
 		ArrayList<DimitrisAlgebraicNode> parsedArray = parse(program);
@@ -195,6 +195,7 @@ public class DimitrisNodeBuilder {
 			System.out.println("printing logger");
 			System.out.println(logger);
 			System.out.println("printing final tree");
+			System.out.println();
 			System.out.println(returnNode.toString(0));
 			returnNode.solve();
 			System.out.println("evaluation:" + returnNode.value);
@@ -203,5 +204,8 @@ public class DimitrisNodeBuilder {
 		return returnNode;
 	}
 	
-
+	public static void main(String[] args) {
+		debug = true;
+		compileProgram("1+2");
+	}
 }
