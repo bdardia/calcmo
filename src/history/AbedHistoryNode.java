@@ -45,14 +45,9 @@ public class AbedHistoryNode
 		this.input = input;
 	}
 	
-	public String getOutput() 
+	public ArrayList<String> getOutput() 
 	{
 		return output;
-	}
-	
-	public void setOutput(String output)
-	{
-		this.output = output;
 	}
 	public void setOut(double out)
 	{
