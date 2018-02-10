@@ -81,21 +81,36 @@ public class DimitrisNodeBuilder {
 	
 	static DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int index) {
 		System.out.println("parsedArraylen:" + parsedArray.size());
+		System.out.println("index:" + index);
 		for(DimitrisAlgebraicNode n : parsedArray) {
 			
-			if(!n.isVariable) {
-				System.out.println(n.solver.getOperation());
-			}else {
-				System.out.println(n.varName);
-			}
+			System.out.println(n);
 		
 		}
 		
 		
-		if(parsedArray.size() >= 3) {
-			int nodesLeft = parsedArray.size() - index  - 2;
-			if(nodesLeft <= 0) {
+		if(parsedArray.size() > 2) {
+			if(index + 2 >= parsedArray.size()) {
+				DimitrisAlgebraicNode lhs = parsedArray.get(parsedArray.size() - 2);
+				DimitrisAlgebraicNode rhs = parsedArray.get(parsedArray.size() - 1);
+				if(lhs.solver.getPrecedence() <= rhs.solver.getPrecedence()) {
+					lhs.rhs = rhs;
+					System.out.println("fold right end");
+					parsedArray.remove(rhs);
+				}
+				
+				lhs = parsedArray.get(0);
+				rhs = parsedArray.get(1);
+				
+				if(lhs.solver.getPrecedence() > rhs.solver.getPrecedence()){
+					rhs.lhs = lhs;
+					System.out.println("fold left end");
+					parsedArray.remove(lhs);
+					
+				}
+				System.out.println("reset");
 				return buildTree(parsedArray, 0);
+				
 			}else {
 				
 				int lhsIndex = index;
@@ -111,35 +126,52 @@ public class DimitrisNodeBuilder {
 				int rhsPrecedence = rhs.solver.getPrecedence();
 				
 				
-				
-				if(lhsPrecedence < middlePrecedence) {
-					return buildTree(parsedArray, middleIndex);
+				if(lhsPrecedence < middlePrecedence && lhsPrecedence > rhsPrecedence) {
+					System.out.println("folded into left");
+					lhs.rhs = middle;
+					parsedArray.remove(middleIndex);
+					return buildTree(parsedArray, index + 1);
+				}else if(rhsPrecedence < middlePrecedence && rhsPrecedence > lhsPrecedence) {
+					System.out.println("folded right");
+					rhs.lhs = middle;
+					parsedArray.remove(middleIndex);
+					return buildTree(parsedArray, index + 1);
+				}else {
+					
+					if(lhsPrecedence == rhsPrecedence && rhsIndex == parsedArray.size() - 1) {
+						if(rhsPrecedence < middlePrecedence) {
+							rhs.lhs = middle;
+							lhs.rhs = rhs;
+							parsedArray.remove(rhs);
+							parsedArray.remove(middle);
+							System.out.println("folded complete to the left");
+							buildTree(parsedArray, index+1);
+						}
+					}
+					
+					System.out.println("default");
+					return buildTree(parsedArray, index+1);
 				}
 			}
-			
-			
-		}else {
+		}
+		else {
 			if(parsedArray.size() == 2) {
 				DimitrisAlgebraicNode lhs = parsedArray.get(0);
 				DimitrisAlgebraicNode rhs = parsedArray.get(1);
-				
-				if(lhs.solver.getPrecedence() < rhs.solver.getPrecedence()) {
-					rhs.lhs = lhs;
-					return rhs;
-				}else {
+				if(lhs.solver.getPrecedence() < rhs.solver.getPrecedence()) { //always try folding rhs first
 					lhs.rhs = rhs;
 					return lhs;
+				}else {
+					rhs.lhs = lhs;
+					return rhs;
 				}
+			}else {
+				return parsedArray.get(0);
 			}
-			else {
-				
-				System.out.println("error");
-				return (DimitrisAlgebraicNode)null;
-			}
+			
 		}
 		
-		System.out.println("unreachable");
-		return null;
+
 				
 		
 	}

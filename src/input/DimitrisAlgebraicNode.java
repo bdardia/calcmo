@@ -7,7 +7,7 @@ public class DimitrisAlgebraicNode {
 	public DimitrisAlgebraicNode lhs;
 	public DimitrisAlgebraicNode rhs;
 	
-	public Solver solver;
+	public Solver solver = new ExampleSolver();
 	
 	public double value;
 	public boolean isConstant = false;
@@ -59,8 +59,27 @@ public class DimitrisAlgebraicNode {
 		}else if(isConstant){
 			return tabs + Double.toString(this.value);
 		}else {
-			return tabs + this.solver.getOperation() + "\n" + lhs.toString(indentation+1) + "\n" + rhs.toString(indentation+1);
+			String lhsString;
+			if(lhs == null) {
+				lhsString = tabs + "\t" +  "null";
+			}else {
+				lhsString = lhs.toString(indentation+1);
+			}
+			
+			String rhsString;
+			if(rhs == null) {
+				rhsString = tabs + "\t" +  "null";
+			}else {
+				rhsString = rhs.toString(indentation+1);
+			}
+			
+			
+			return tabs + this.solver.getOperation() + "\n" + lhsString + "\n" + rhsString;
 			
 		}
+	}
+	
+	public String toString() {
+		return toString(0);
 	}
 }
