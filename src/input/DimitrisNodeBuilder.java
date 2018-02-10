@@ -17,15 +17,16 @@ public class DimitrisNodeBuilder {
 			}
 			
 			String currentString = currentText.substring(startIndex, index);
-			System.out.println("currentString:" + currentString);
+			logger += "currentString:" + currentString + "\n";
 			try {
 				double number = Double.parseDouble(currentString);
 				
 				if(currentString.substring(0, 1).equals("+") || currentString.substring(0, 1).equals("-")) {
+					logger += "throwing exeption: missing plus sign is found" + "\n";
 					throw new Exception("missing plus sign is found");
 				}
 				parsedArray.add(new DimitrisAlgebraicNode(number));
-				System.out.println(number);
+				logger += "adding number:" + number + "\n";
 				startIndex += currentString.length();
 				index = currentText.length() + 1;
 			}
@@ -36,17 +37,18 @@ public class DimitrisNodeBuilder {
 					if(s.urinaryFunction() == true) {
 						DimitrisAlgebraicNode placeHolder = new DimitrisAlgebraicNode(-1);
 						parsedArray.add(placeHolder);
+						logger += "added placeHolder" + "\n";
 					}
 					
 					parsedArray.add( new DimitrisAlgebraicNode(s));
-					System.out.println(DimitrisAlgebraicNode.solverArray[solverIndex].getOperation());
+					logger += DimitrisAlgebraicNode.solverArray[solverIndex].getOperation() + "\n";
 					
 					startIndex  += currentString.length();
 					index = currentText.length() + 1;
 					
 				}else {
 					if(startIndex == index) {
-						System.out.println("found variable");
+						logger += "found variable" + "\n";
 						String varName = currentText.substring(startIndex, currentText.length());
 						parsedArray.add(new DimitrisAlgebraicNode(varName));
 						
@@ -180,7 +182,14 @@ public class DimitrisNodeBuilder {
 	}
 	
 	static DimitrisAlgebraicNode compileProgram(String program) {
-		DimitrisAlgebraicNode returnNode = buildTree(parse(program),0);
+		
+		logger += "starting parser" + "\n";
+		ArrayList<DimitrisAlgebraicNode> parsedArray = parse(program);
+		logger += "finished parsing";
+		
+		logger += "started building tree" + "\n";
+		DimitrisAlgebraicNode returnNode = buildTree(parsedArray, 0);
+		logger += "finished building tree" + "\n";
 		
 		if(debug) {
 			System.out.println("printing logger");
