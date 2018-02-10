@@ -238,9 +238,49 @@ public class DimitrisNodeBuilder {
 			returnNode.solve();
 			System.out.println("evaluation:" + returnNode.value);
 		}
+		
+		fillVariables(returnNode);
 
 		return returnNode;
 	}
+	
+	
+	static ArrayList<Double> getOutputs(String program, ArrayList<Double> inputs){
+		DimitrisAlgebraicNode rootNode = compileProgram(program);
+		ArrayList<Double> outputs = new ArrayList<Double>();
+		
+		for(double input: inputs) {
+			updateVariable(rootNode, "x", input);
+			rootNode.solve();
+			outputs.add(rootNode.value);
+		}
+		
+		return outputs;
+	}
+	
+	static void fillVariables(DimitrisAlgebraicNode n) {
+		if(n.isVariable && BenVariableStorage.isSet(n.varName)) {
+			n.value = BenVariableStorage.getValue(n.varName);
+		}else {
+			if(!n.isConstant && !(n.solver.getOperation() == "NAO")) { //not end of tree
+				fillVariables(n.lhs);
+				fillVariables(n.rhs);
+			}
+		}
+	}
+	
+	static void updateVariable(DimitrisAlgebraicNode n, String varName, double value) {
+		if(n.isVariable && n.varName.equals(varName)) {
+			n.value = value;
+			n.isEvaluated = true;
+		}else {
+			if(!n.isConstant && !(n.solver.getOperation() == "NAO")) { //not end of tree
+				updateVariable(n.lhs,varName, value);
+				updateVariable(n.rhs,varName, value);
+			}
+		}
+	}
+	
 	
 	public static void main(String[] args) {
 		String testString = "1*3+cos(10)";
