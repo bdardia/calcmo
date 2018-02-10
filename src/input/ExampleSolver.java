@@ -14,8 +14,7 @@ public class ExampleSolver implements Solver {
 
 	@Override
 	public String getOperation() {
-		// TODO Auto-generated method stub
-		return "NAO";
+		return "NAO"; //not an operation
 	}
 
 	@Override
