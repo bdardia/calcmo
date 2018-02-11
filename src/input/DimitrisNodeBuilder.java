@@ -302,8 +302,14 @@ public class DimitrisNodeBuilder {
 			n.isEvaluated = true;
 		}else {
 			if(!n.isConstant && !(n.solver.getOperation().equals("NAO"))) { //not end of tree
-				updateVariable(n.lhs,varName, value);
-				updateVariable(n.rhs,varName, value);
+				
+				if(!(n.lhs == null)) {
+					updateVariable(n.lhs,varName, value);
+				}
+				if(!(n.rhs == null)) {
+					updateVariable(n.rhs,varName, value);
+				}
+				
 			}
 		}
 	}
