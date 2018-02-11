@@ -21,10 +21,6 @@ public class LhsParenthesis implements Solver {
 	}
 
 	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
-	}
-
-	@Override
 	public Solver getInverse() {
 		return new RhsParenthesis();
 	}

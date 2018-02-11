@@ -142,7 +142,7 @@ public class DimitrisNodeBuilder {
 		logger += "parsedArraylen:" + parsedArray.size() + "\n";
 		logger += "index:" + index + "\n";
 		for(DimitrisAlgebraicNode n : parsedArray) {
-			logger += n + "\n";
+			logger += n.toString() + n.solver.getPrecedence() + "\n";
 		
 		}
 		
@@ -310,7 +310,7 @@ public class DimitrisNodeBuilder {
 	
 	
 	public static void main(String[] args) {
-		String testString = "pi*5";
+		String testString = "cos(pi/2)";
 		debug = true;
 //		ArrayList<DimitrisAlgebraicNode> parsedArray = reduceParenthesis(parse(testString));
 //		System.out.println(logger);

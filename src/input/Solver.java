@@ -17,6 +17,7 @@ public interface Solver {
 		
 		//binary functions >=10
 		public static int additionSolver = 2;
+		public static int subtractionSolver = 2;
 		public static int multiplicationSolver = 4;
 
 	}
@@ -24,7 +25,6 @@ public interface Solver {
 	double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs);
 	String getOperation();
 	int getPrecedence(); //higher number means more important
-	void addParent(DimitrisAlgebraicNode n);
 	
 	Solver getInverse();
 	Solver createNew();

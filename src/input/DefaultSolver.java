@@ -23,11 +23,6 @@ public class DefaultSolver implements Solver {
 	}
 
 	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
-
-	}
-
-	@Override
 	public Solver getInverse() {
 		return null;
 	}

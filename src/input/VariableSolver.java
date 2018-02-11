@@ -30,10 +30,6 @@ public class VariableSolver implements Solver {
 	}
 
 	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
-	}
-
-	@Override
 	public boolean urinaryFunction() {
 		return false;
 	}

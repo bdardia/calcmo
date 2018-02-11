@@ -29,12 +29,6 @@ public class ConstantSolver implements Solver {
 	}
 
 	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
-		parent = n;
-		
-	}
-
-	@Override
 	public boolean urinaryFunction() {
 		return false;
 	}

@@ -1,6 +1,5 @@
 package input;
 
-import output.*;
 
 public class DimitrisAlgebraicNode {
 	

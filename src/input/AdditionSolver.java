@@ -1,7 +1,4 @@
-package output;
-
-import input.DimitrisAlgebraicNode;
-import input.Solver;
+package input;
 
 public class AdditionSolver implements Solver {
 	
@@ -16,38 +13,27 @@ public class AdditionSolver implements Solver {
 
 	@Override
 	public String getOperation() {
-		// TODO Auto-generated method stub
 		return "+";
 	}
 
 	@Override
 	public int getPrecedence() {
-		// TODO Auto-generated method stub
 		return precedence;
 	}
 
 	@Override
 	public Solver getInverse() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public boolean urinaryFunction() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public void increasePrecedence(int amount) {
 		precedence += amount;
-		
 	}
 
 	@Override

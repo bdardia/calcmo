@@ -1,13 +1,11 @@
-package output;
-
-import input.DimitrisAlgebraicNode;
-import input.Solver;
+package input;
 
 public class SubtractionSolver implements Solver{
-
+	
+	private int precedence = Solver.PrecedenceConstants.subtractionSolver;
+	
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		// TODO Auto-generated method stub
 		lhs.solve();
 		rhs.solve();
 		return lhs.value - rhs.value;
@@ -15,32 +13,32 @@ public class SubtractionSolver implements Solver{
 
 	@Override
 	public String getOperation() {
-		// TODO Auto-generated method stub
 		return "-";
 	}
 
 	@Override
 	public int getPrecedence() {
-		// TODO Auto-generated method stub
-		return 1;
+		return precedence;
 	}
 
 	@Override
 	public Solver getInverse() {
-		// TODO Auto-generated method stub
 		return new AdditionSolver();
 	}
 
 	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
-		// TODO Auto-generated method stub
-		
+	public boolean urinaryFunction() {
+		return false;
 	}
 
 	@Override
-	public boolean urinaryFunction() {
-		// TODO Auto-generated method stub
-		return false;
+	public Solver createNew() {
+		return new SubtractionSolver();
+	}
+
+	@Override
+	public void increasePrecedence(int amount) {
+		precedence += amount;
 	}
 
 	

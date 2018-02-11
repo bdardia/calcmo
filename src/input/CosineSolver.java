@@ -25,11 +25,6 @@ public class CosineSolver implements Solver {
 	}
 
 	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
-
-	}
-
-	@Override
 	public Solver getInverse() {
 		return null;
 	}

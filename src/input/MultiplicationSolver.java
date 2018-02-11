@@ -1,7 +1,4 @@
-package output;
-
-import input.DimitrisAlgebraicNode;
-import input.Solver;
+package input;
 
 public class MultiplicationSolver implements Solver {
 	private int precedence = Solver.PrecedenceConstants.multiplicationSolver;
@@ -26,11 +23,6 @@ public class MultiplicationSolver implements Solver {
 	@Override
 	public Solver getInverse() {
 		return new DivisionSolver();
-	}
-
-	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
-		
 	}
 
 	@Override
