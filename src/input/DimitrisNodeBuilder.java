@@ -9,6 +9,11 @@ public class DimitrisNodeBuilder {
 	private static ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
 		ArrayList<DimitrisAlgebraicNode> parsedArray = new ArrayList<DimitrisAlgebraicNode>();
 
+		//remove whitespace
+		
+		currentText = currentText.replaceAll("\\s","");
+		
+		
 		
 		int startIndex = 0;
 		for(int index = currentText.length(); index >= 0; index--) {
@@ -60,6 +65,7 @@ public class DimitrisNodeBuilder {
 						int lastOpIndex = testString.length();
 						
 						for(Solver s : DimitrisAlgebraicNode.solverArray) {
+							//only need to check for operations because a proper program will not have two edge nodes in a row
 							int opIndex = testString.indexOf(s.getOperation());
 							if(opIndex < lastOpIndex && opIndex != -1) {
 								logger += "found op:" + s.getOperation() + "\n";
@@ -316,7 +322,7 @@ public class DimitrisNodeBuilder {
 	
 	
 	public static void main(String[] args) {
-		String testString = "5^6";
+		String testString = "  5	^    6		            	* 2";
 		debug = true;
 //		ArrayList<DimitrisAlgebraicNode> parsedArray = reduceParenthesis(parse(testString));
 //		System.out.println(logger);
