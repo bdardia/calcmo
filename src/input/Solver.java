@@ -16,9 +16,11 @@ public interface Solver {
 		public static int cosineSolver = 30;
 		
 		//binary functions >=10
+		public static int exponentSolver = 6;
+		public static int multiplicationSolver = 4;
 		public static int additionSolver = 2;
 		public static int subtractionSolver = 2;
-		public static int multiplicationSolver = 4;
+		
 
 	}
 

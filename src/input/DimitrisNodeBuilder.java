@@ -316,7 +316,7 @@ public class DimitrisNodeBuilder {
 	
 	
 	public static void main(String[] args) {
-		String testString = "cos(pi/2)";
+		String testString = "5^6";
 		debug = true;
 //		ArrayList<DimitrisAlgebraicNode> parsedArray = reduceParenthesis(parse(testString));
 //		System.out.println(logger);
