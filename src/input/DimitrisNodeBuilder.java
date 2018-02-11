@@ -8,7 +8,7 @@ public class DimitrisNodeBuilder {
 	
 	private static ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
 		ArrayList<DimitrisAlgebraicNode> parsedArray = new ArrayList<DimitrisAlgebraicNode>();
-		int lastCloseParen = -1;
+
 		
 		int startIndex = 0;
 		for(int index = currentText.length(); index >= 0; index--) {
@@ -20,11 +20,7 @@ public class DimitrisNodeBuilder {
 			String currentString = currentText.substring(startIndex, index);
 			logger += "currentString:" + currentString + "\n";
 			
-			for(int i = 0; i < currentString.length(); i++) {
-				if(currentString.charAt(i) == ')') {
-					lastCloseParen = startIndex + i;
-				}
-			}
+
 			try {
 				double number = Double.parseDouble(currentString);
 				
@@ -59,11 +55,22 @@ public class DimitrisNodeBuilder {
 					if(startIndex == index) {
 						logger += "found variable" + "\n";
 						String varName;
-						if(lastCloseParen > startIndex) {
-							varName = currentText.substring(startIndex, lastCloseParen);
-						}else {
-							varName = currentText.substring(startIndex, currentText.length());
+						
+						String testString = currentText.substring(startIndex, currentText.length());
+						int lastOpIndex = testString.length();
+						
+						for(Solver s : DimitrisAlgebraicNode.solverArray) {
+							int opIndex = testString.indexOf(s.getOperation());
+							if(opIndex < lastOpIndex && opIndex != -1) {
+								logger += "found op:" + s.getOperation() + "\n";
+								
+								lastOpIndex = opIndex;
+							}
 						}
+					
+
+						varName = testString.substring(0, lastOpIndex);
+
 						logger += "varName:" + varName + "\n";
 						parsedArray.add(new DimitrisAlgebraicNode(varName));
 						startIndex += varName.length();
@@ -303,7 +310,7 @@ public class DimitrisNodeBuilder {
 	
 	
 	public static void main(String[] args) {
-		String testString = "(pi)";
+		String testString = "pi*5";
 		debug = true;
 //		ArrayList<DimitrisAlgebraicNode> parsedArray = reduceParenthesis(parse(testString));
 //		System.out.println(logger);
