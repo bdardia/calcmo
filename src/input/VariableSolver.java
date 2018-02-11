@@ -40,7 +40,7 @@ public class VariableSolver implements Solver {
 
 	@Override
 	public void increasePrecedence(int amount) {
-		precedence += 20;
+		precedence += amount;
 	}
 
 	@Override
