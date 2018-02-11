@@ -1,11 +1,14 @@
 package input;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class BenVariableStorage 
 {
 	
-	static ArrayList<BenVariableStorage> variableArray;
+	static ArrayList<BenVariableStorage> variableArray = 
+			new ArrayList<BenVariableStorage>(Arrays.asList(new BenVariableStorage("pi", 3.1415, true))); //default values
 	
 	
 	
