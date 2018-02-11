@@ -10,6 +10,10 @@ import output.OutputScreen;
 
 public class CalcMoMain extends GUIApplication{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static CalcMoMain main;
 	public static JasHistoryScreen historyScreen;
 	public static BenInputScreen inputScreen;
