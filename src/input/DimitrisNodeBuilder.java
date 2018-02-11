@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 public class DimitrisNodeBuilder {
 	private static String logger = "";
-	private static boolean debug = false;
+	private static boolean debug = true;
 	
 	private static ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
 		ArrayList<DimitrisAlgebraicNode> parsedArray = new ArrayList<DimitrisAlgebraicNode>();
-
+		int lastCloseParen = -1;
+		
 		int startIndex = 0;
 		for(int index = currentText.length(); index >= 0; index--) {
 			
@@ -18,6 +19,12 @@ public class DimitrisNodeBuilder {
 			
 			String currentString = currentText.substring(startIndex, index);
 			logger += "currentString:" + currentString + "\n";
+			
+			for(int i = 0; i < currentString.length(); i++) {
+				if(currentString.charAt(i) == ')') {
+					lastCloseParen = startIndex + i;
+				}
+			}
 			try {
 				double number = Double.parseDouble(currentString);
 				
@@ -51,9 +58,14 @@ public class DimitrisNodeBuilder {
 				}else {
 					if(startIndex == index) {
 						logger += "found variable" + "\n";
-						String varName = currentText.substring(startIndex, currentText.length());
+						String varName;
+						if(lastCloseParen > startIndex) {
+							varName = currentText.substring(startIndex, lastCloseParen);
+						}else {
+							varName = currentText.substring(startIndex, currentText.length());
+						}
+						logger += "varName:" + varName + "\n";
 						parsedArray.add(new DimitrisAlgebraicNode(varName));
-						
 						startIndex += varName.length();
 						index = currentText.length() + 1;
 					}
@@ -229,17 +241,20 @@ public class DimitrisNodeBuilder {
 		DimitrisAlgebraicNode returnNode = buildTree(parsedArray, 0);
 		logger += "finished building tree" + "\n";
 		
+		logger += "filling variables " + "\n";
+		fillVariables(returnNode);
+		logger += "filled variables " + "\n";
+		
 		if(debug) {
 			System.out.println("printing logger");
 			System.out.println(logger);
 			System.out.println("printing final tree");
-			System.out.println();
 			System.out.println(returnNode.toString(0));
 			returnNode.solve();
 			System.out.println("evaluation:" + returnNode.value);
 		}
 		
-		fillVariables(returnNode);
+		
 
 		return returnNode;
 	}
@@ -263,8 +278,13 @@ public class DimitrisNodeBuilder {
 			n.value = BenVariableStorage.getValue(n.varName);
 		}else {
 			if(!n.isConstant && !(n.solver.getOperation() == "NAO")) { //not end of tree
-				fillVariables(n.lhs);
-				fillVariables(n.rhs);
+				if(!(n.lhs == null)) {
+					fillVariables(n.lhs);
+				}
+				if(!(n.rhs == null)) {
+					fillVariables(n.rhs);
+				}
+				
 			}
 		}
 	}
@@ -283,7 +303,7 @@ public class DimitrisNodeBuilder {
 	
 	
 	public static void main(String[] args) {
-		String testString = "1*3+cos(10)";
+		String testString = "(pi)";
 		debug = true;
 //		ArrayList<DimitrisAlgebraicNode> parsedArray = reduceParenthesis(parse(testString));
 //		System.out.println(logger);
