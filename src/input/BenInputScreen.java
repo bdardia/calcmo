@@ -1,6 +1,5 @@
 package input;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +9,7 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextBox;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
-import history.AbedHistoryNode;
-import history.AbedHistoryTransfer;
 import history.AbidCalculatorScreen;
-import history.JasHistoryScreen;
 import main.CalcMoMain;
 import output.OutputScreen;
 

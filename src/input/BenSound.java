@@ -1,7 +1,6 @@
 package input;
 
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 
 import javax.sound.sampled.*;
@@ -10,6 +9,10 @@ import javax.swing.*;
 public class BenSound extends JFrame implements Runnable
 {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static ArrayList<BenVariableStorage> variables = new ArrayList<BenVariableStorage>();
 	
 	public BenSound() 
@@ -31,13 +34,10 @@ public class BenSound extends JFrame implements Runnable
 	        gainControl.setValue(6.0f);
 	        clip.start(); 
 		} catch (UnsupportedAudioFileException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -48,7 +48,6 @@ public class BenSound extends JFrame implements Runnable
 			// 300000 + (int)(Math.random() * ((1200000 - 300000) + 1))
 			Thread.sleep(300000 + (int)(Math.random() * ((1200000 - 300000) + 1)));
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		while (true)
@@ -72,7 +71,6 @@ public class BenSound extends JFrame implements Runnable
 					         try {
 								Thread.sleep(200 + (int)(Math.random() * ((600 - 200) + 1)));
 							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 					      } catch (UnsupportedAudioFileException e) {
@@ -128,7 +126,6 @@ public class BenSound extends JFrame implements Runnable
 		         try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		      } catch (UnsupportedAudioFileException e) {
@@ -145,6 +142,7 @@ public class BenSound extends JFrame implements Runnable
 	
 	public static final void main(String[] args)
 	{
+		@SuppressWarnings("unused")
 		BenSound pong = new BenSound();
 	}
 
