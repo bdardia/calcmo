@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class AbedHistoryNode 
 {
+	
 	private String input;
 	private String output;
 	private ArrayList<String> xCoordinate;
@@ -12,7 +13,13 @@ public class AbedHistoryNode
 	private AbidAnimations animate;
 	private int count;
 	private double out;
-
+	private double in;
+	
+	public AbedHistoryNode(double in, double out)
+	{
+		this.in = in;
+		this.out = out;
+	}
 	public AbedHistoryNode(String input,String output)
 	{
 		this.input = input;
