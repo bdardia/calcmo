@@ -11,7 +11,10 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import history.AbidCalculatorScreen;
 import main.CalcMoMain;
+import output.CosineSolver;
 import output.OutputScreen;
+import output.SineSolver;
+import output.TanSolver;
 
 public class BenInputScreen extends AbidCalculatorScreen 
 {
@@ -68,6 +71,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static BenSound soundControl;
 	public static Button clearVarButton;
 	public static boolean inputValid;
+	
 	
 	public BenInputScreen(int width, int height) 
 	{
@@ -385,6 +389,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{	
 				inputArea.setText(inputArea.getText() + "sin(");
 				buttonPress();
+				SineSolver.inversesin = true;
 			}
 		});
 		secButton = new Button(391, 579, 30, 15, "", new Action() {
@@ -394,6 +399,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{	
 				inputArea.setText(inputArea.getText() + "cos(");
 				buttonPress();
+				CosineSolver.inversecos = true;
 			}
 		});
 		
@@ -407,6 +413,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{	
 				inputArea.setText(inputArea.getText() + "tan(");
 				buttonPress();
+				TanSolver.inversetan = true;
 			}
 		});
 		arcsinButton = new Button(347, 611, 30, 15, "", new Action() {

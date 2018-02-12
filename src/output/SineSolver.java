@@ -5,10 +5,14 @@ import input.Solver;
 
 public class SineSolver implements Solver {
 	
+	public static boolean inversesin;
 	int precedence = Solver.PrecedenceConstants.sineSolver;
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
+		if(inversesin) {
+			return 1/(java.lang.Math.sin(rhs.value));
+		}
 		return java.lang.Math.sin(rhs.value);
 	}
 

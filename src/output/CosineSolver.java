@@ -7,6 +7,8 @@ import input.Solver.PrecedenceConstants;
 public class CosineSolver implements Solver {
 	int precedence = Solver.PrecedenceConstants.cosineSolver;
 	
+	public static boolean inversecos = false;
+	
 	public CosineSolver() {
 		// TODO Auto-generated constructor stub
 	}
@@ -14,6 +16,10 @@ public class CosineSolver implements Solver {
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
+		
+		if(inversecos) {
+			return 1/(java.lang.Math.cos(rhs.value));
+		}
 		return java.lang.Math.cos(rhs.value);
 	}
 
