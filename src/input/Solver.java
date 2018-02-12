@@ -26,6 +26,10 @@ public interface Solver {
 		public static int additionSolver = 2;
 		public static int subtractionSolver = 2;
 		
+		
+		
+		//limit functions
+		public static int limitSolver;
 
 	}
 
