@@ -2,6 +2,7 @@ package input;
 
 import output.DivisionSolver;
 import output.MultiplicationSolver;
+import output.SineSolver;
 import output.SubtractionSolver;
 
 public class DimitrisAlgebraicNode {
@@ -20,7 +21,7 @@ public class DimitrisAlgebraicNode {
 	public String varName;
 	public boolean isVariable = false;
 	
-	public static Solver[] solverArray = {new AdditionSolver(), new MultiplicationSolver(), new DivisionSolver(), new SubtractionSolver(), new LhsParenthesis(), new RhsParenthesis(), new CosineSolver(), new Exponent()}; //set up in main
+	public static Solver[] solverArray = {new AdditionSolver(), new MultiplicationSolver(), new DivisionSolver(), new SubtractionSolver(), new LhsParenthesis(), new RhsParenthesis(), new CosineSolver(), new Exponent(), new SineSolver()}; //set up in main
 	
 	
 	

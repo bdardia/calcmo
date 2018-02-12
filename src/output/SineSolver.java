@@ -15,13 +15,13 @@ public class SineSolver implements Solver {
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return null;
+		return "sin";
 	}
 
 	@Override
 	public int getPrecedence() {
 		// TODO Auto-generated method stub
-		return 0;
+		return precedence;
 	}
 
 	@Override
@@ -33,18 +33,18 @@ public class SineSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return null;
+		return new SineSolver();
 	}
 
 	@Override
 	public boolean urinaryFunction() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public void increasePrecedence(int amount) {
-		// TODO Auto-generated method stub
+		precedence += amount;
 
 	}
 
