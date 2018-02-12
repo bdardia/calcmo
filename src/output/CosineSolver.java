@@ -1,4 +1,8 @@
-package input;
+package output;
+
+import input.DimitrisAlgebraicNode;
+import input.Solver;
+import input.Solver.PrecedenceConstants;
 
 public class CosineSolver implements Solver {
 	int precedence = Solver.PrecedenceConstants.cosineSolver;

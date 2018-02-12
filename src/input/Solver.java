@@ -15,6 +15,7 @@ public interface Solver {
 		//urinary functions >= 30
 		public static int cosineSolver = 30;
 		public static int sineSolver = 30;
+		public static int tanSolver = 30;
 		
 		//binary functions >=10
 		public static int exponentSolver = 6;
