@@ -1,5 +1,8 @@
 package input;
 
+import output.DivisionSolver;
+import output.MultiplicationSolver;
+import output.SubtractionSolver;
 
 public class DimitrisAlgebraicNode {
 	

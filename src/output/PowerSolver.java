@@ -1,7 +1,6 @@
 package output;
 
 import input.DimitrisAlgebraicNode;
-import input.MultiplicationSolver;
 import input.Solver;
 
 public class PowerSolver implements Solver {
