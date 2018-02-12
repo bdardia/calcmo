@@ -6,6 +6,7 @@ public class AbedTableBackEnd
 {
 	private ArrayList<AbedHistoryNode> functionNodes = JasHistoryScreen.fx;
 	private ArrayList<String> domain;
+	private ArrayList
 	
 	
 	public AbedTableBackEnd() 

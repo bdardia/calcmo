@@ -3,12 +3,13 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class CosSolver implements Solver {
-
+public class SineSolver implements Solver {
+	
+	int precedence = Solver.PrecedenceConstants.sineSolver;
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		// TODO Auto-generated method stub
-		return 0;
+		rhs.solve();
+		return java.lang.Math.sin(rhs.value);
 	}
 
 	@Override
@@ -24,13 +25,13 @@ public class CosSolver implements Solver {
 	}
 
 	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
+	public Solver getInverse() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public Solver getInverse() {
+	public Solver createNew() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -39,6 +40,12 @@ public class CosSolver implements Solver {
 	public boolean urinaryFunction() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void increasePrecedence(int amount) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

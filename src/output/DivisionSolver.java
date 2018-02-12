@@ -1,4 +1,7 @@
-package input;
+package output;
+
+import input.DimitrisAlgebraicNode;
+import input.Solver;
 
 public class DivisionSolver implements Solver {
 	private int precedence = 3;
