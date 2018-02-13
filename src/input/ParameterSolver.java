@@ -29,7 +29,7 @@ public class ParameterSolver implements Solver {
 
 	@Override
 	public String getOperation() {
-		return ",";
+		return ";";
 	}
 
 	@Override
