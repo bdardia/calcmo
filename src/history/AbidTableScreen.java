@@ -1,9 +1,15 @@
 package history;
 
+import java.awt.Color;
 import java.util.List;
 
+import guiTeacher.components.Action;
+import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
+import guiTeacher.components.ScrollablePane;
 import guiTeacher.interfaces.Visible;
+import input.BenInputScreen;
+import main.CalcMoMain;
 
 public class AbidTableScreen extends AbidCalculatorScreen{
 
@@ -13,5 +19,18 @@ public class AbidTableScreen extends AbidCalculatorScreen{
 	}
 	public void initAllObjects(List<Visible> viewObjects) {
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/outputScreen.png"));
+
+		ScrollablePane scroll = new ScrollablePane(this, 35, 39, 443, 275);
+		scroll.setBackground(new Color(165, 237, 186));	
+		
+		Button goInput = new Button(250, 575, 75, 50, "GO BACK", JasCustomButton.getA(), new Action() {
+			
+			public void act() {
+				BenInputScreen.inputArea.setText("");
+				switchScreen(CalcMoMain.inputScreen);
+			}
+		});
+		JasCustomButton.circleButton(goInput);
+		viewObjects.add(goInput);
 	}
 }
