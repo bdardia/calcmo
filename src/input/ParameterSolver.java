@@ -12,8 +12,12 @@ public class ParameterSolver implements Solver {
 	
 	public static ArrayList<DimitrisAlgebraicNode> getParameterList(DimitrisAlgebraicNode node){
 		ArrayList<DimitrisAlgebraicNode> paramList = new ArrayList<DimitrisAlgebraicNode>();
-		if(node.solver instanceof ParameterSolver) {	
+		if(node.solver instanceof ParameterSolver) {
+			paramList.add(node.lhs);
 			paramList.addAll(getParameterList(node.rhs));
+		}
+		else {
+			paramList.add(node);
 		}
 		return paramList;
 	}
