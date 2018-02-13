@@ -4,7 +4,7 @@ import input.DimitrisAlgebraicNode;
 import input.Solver;
 
 public class DivisionSolver implements Solver {
-	private int precedence = 3;
+	private int precedence = Solver.PrecedenceConstants.divisionSolver;
 	
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {

@@ -23,8 +23,14 @@ public interface Solver {
 		//binary functions >=10
 		public static int exponentSolver = 6;
 		public static int multiplicationSolver = 4;
+		public static int divisionSolver = 3;
 		public static int additionSolver = 2;
 		public static int subtractionSolver = 2;
+		
+		
+		//parameter grabbing functions
+		
+		public static int parameterSolver = 0;
 		
 		
 		

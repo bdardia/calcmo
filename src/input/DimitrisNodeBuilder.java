@@ -322,7 +322,7 @@ public class DimitrisNodeBuilder {
 	
 	
 	public static void main(String[] args) {
-		String testString = "  5	^    6		            	* 2";
+		String testString = "10/5/2";
 		debug = true;
 //		ArrayList<DimitrisAlgebraicNode> parsedArray = reduceParenthesis(parse(testString));
 //		System.out.println(logger);
