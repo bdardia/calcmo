@@ -5,6 +5,8 @@ import output.ArcSinSolver;
 import output.ArcTanSolver;
 import output.CosineSolver;
 import output.DivisionSolver;
+import output.LnSolver;
+import output.LogSolver;
 import output.MultiplicationSolver;
 import output.SineSolver;
 import output.SubtractionSolver;
@@ -27,7 +29,7 @@ public class DimitrisAlgebraicNode {
 	public boolean isVariable = false;
 	
 	public static Solver[] solverArray = {new AdditionSolver(), new MultiplicationSolver(), new DivisionSolver(), new SubtractionSolver(), new LhsParenthesis(), new RhsParenthesis(), new CosineSolver(), new Exponent(), new SineSolver(),
-											new TanSolver(), new ArcCosSolver(), new ArcSinSolver(), new ArcTanSolver()}; //set up in main
+											new TanSolver(), new ArcCosSolver(), new ArcSinSolver(), new ArcTanSolver(), new LogSolver(), new LnSolver()}; //set up in main
 	
 	
 	

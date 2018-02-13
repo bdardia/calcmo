@@ -3,24 +3,19 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class LogSolver implements Solver {
+public class LnSolver implements Solver {
 
-	int precedence = Solver.PrecedenceConstants.logSolver;
+	int precedence = Solver.PrecedenceConstants.lnSolver;
 	
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		lhs.solve();
 		rhs.solve();
-		
-		double base = lhs.value;
-		double argument = rhs.value;
-		
-		return java.lang.Math.log(argument)/java.lang.Math.log(base);
+		return java.lang.Math.log(rhs.value);
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "log";
+		return "ln";
 	}
 
 	@Override
@@ -38,13 +33,13 @@ public class LogSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new LogSolver();
+		return new LnSolver();
 	}
 
 	@Override
 	public boolean urinaryFunction() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
