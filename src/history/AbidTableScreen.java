@@ -32,5 +32,6 @@ public class AbidTableScreen extends AbidCalculatorScreen{
 		});
 		JasCustomButton.circleButton(goInput);
 		viewObjects.add(goInput);
+		viewObjects.add(scroll);
 	}
 }

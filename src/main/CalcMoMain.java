@@ -30,6 +30,7 @@ public class CalcMoMain extends GUIApplication{
 		historyScreen = new JasHistoryScreen(getWidth(), getHeight());
 		inputScreen = new BenInputScreen(getWidth(), getHeight());
 		outputScreen = new OutputScreen(getWidth(), getHeight());
+		tableScreen = new AbidTableScreen(getWidth(), getHeight());
 		setScreen(inputScreen);
 	}
 
