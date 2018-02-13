@@ -3,36 +3,36 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class PowerSolver implements Solver {
+public class LogSolver implements Solver {
 
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		// TODO Auto-generated method stub
-		return Math.pow(lhs.solveNode(), rhs.solveNode());
+		return 0;
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "^";
+		return null;
 	}
 
 	@Override
 	public int getPrecedence() {
 		// TODO Auto-generated method stub
-		return 5;
+		return 0;
 	}
 
 	@Override
 	public Solver getInverse() {
 		// TODO Auto-generated method stub
-		return new MultiplicationSolver();
+		return null;
 	}
 
 	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
+	public Solver createNew() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
@@ -40,5 +40,11 @@ public class PowerSolver implements Solver {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
+	@Override
+	public void increasePrecedence(int amount) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

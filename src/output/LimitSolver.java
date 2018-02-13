@@ -3,24 +3,23 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class TanSolver implements Solver {
+public class LimitSolver implements Solver {
 
-	int precedence = Solver.PrecedenceConstants.tanSolver;
+	int precedence = Solver.PrecedenceConstants.limitSolver;
 	
-	
-	public static boolean inversetan;
+	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
-		if(inversetan) {
-			return 1/(java.lang.Math.tan(rhs.value));
+		if(limit == 0) {
+			return ;
 		}
-		return java.lang.Math.tan(rhs.value);
+		return java.lang.Math.sin(rhs.value);
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "tan";
+		return "limit";
 	}
 
 	@Override
@@ -38,7 +37,7 @@ public class TanSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new TanSolver();
+		return new LimitSolver();
 	}
 
 	@Override
@@ -49,8 +48,8 @@ public class TanSolver implements Solver {
 
 	@Override
 	public void increasePrecedence(int amount) {
-		precedence += amount;
-
+		// TODO Auto-generated method stub
+		
 	}
 
 }

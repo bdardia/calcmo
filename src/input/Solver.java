@@ -14,13 +14,28 @@ public interface Solver {
 		
 		//urinary functions >= 30
 		public static int cosineSolver = 30;
+		public static int sineSolver = 30;
+		public static int tanSolver = 30;
+		public static int arccosSolver = 30;
+		public static int arcsinSolver = 30;
+		public static int arctanSolver = 30;
 		
 		//binary functions >=10
 		public static int exponentSolver = 6;
 		public static int multiplicationSolver = 4;
+		public static int divisionSolver = 3;
 		public static int additionSolver = 2;
 		public static int subtractionSolver = 2;
 		
+		
+		//parameter grabbing functions
+		
+		public static int parameterSolver = 0;
+		
+		
+		
+		//limit functions
+		public static int limitSolver;
 
 	}
 

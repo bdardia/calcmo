@@ -3,30 +3,25 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class SinSolver implements Solver {
+public class ArcCosSolver implements Solver {
 
+	int precedence = Solver.PrecedenceConstants.arccosSolver;
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		double var = (double) Math.sin(lhs);
-		return var;
+		rhs.solve();
+		return java.lang.Math.acos(rhs.value);
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "sin(";
+		return "arccos";
 	}
 
 	@Override
 	public int getPrecedence() {
 		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
-		// TODO Auto-generated method stub
-		
+		return precedence;
 	}
 
 	@Override
@@ -36,9 +31,20 @@ public class SinSolver implements Solver {
 	}
 
 	@Override
-	public boolean urinaryFunction() {
+	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return false;
+		return new ArcCosSolver();
 	}
 
+	@Override
+	public boolean urinaryFunction() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public void increasePrecedence(int amount) {
+		precedence += amount;
+
+	}
 }

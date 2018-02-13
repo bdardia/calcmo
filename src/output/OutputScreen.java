@@ -41,8 +41,8 @@ public class OutputScreen extends AbidCalculatorScreen {
 		n.solve();
 		System.out.println(n.value); 
 		
-		output = n.value;
-		outputArea.setText(outputArea.getText() + n.value);
+		output = Math.round (n.value * 10000.0) / 10000.0; ;
+		outputArea.setText(outputArea.getText() + output);
 //		AbedHistoryNode completeNode = unfinishedNodes.get(unfinishedNodes.size()-1);
 //		completeNode.setOut(output);
 //		JasHistoryScreen.fx.add(completeNode);

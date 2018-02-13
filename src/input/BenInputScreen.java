@@ -11,7 +11,10 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import history.AbidCalculatorScreen;
 import main.CalcMoMain;
+import output.CosineSolver;
 import output.OutputScreen;
+import output.SineSolver;
+import output.TanSolver;
 
 public class BenInputScreen extends AbidCalculatorScreen 
 {
@@ -66,8 +69,9 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static Button absButton;
 	public static Button backspaceButton;
 	public static BenSound soundControl;
+	public static Button clearVarButton;
 	public static boolean inputValid;
-	public static ArrayList<BenVariableStorage> variables = new ArrayList<BenVariableStorage>();
+	
 	
 	public BenInputScreen(int width, int height) 
 	{
@@ -298,7 +302,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				inputArea.setText(inputArea.getText() + "π");
+				inputArea.setText(inputArea.getText() + "pi");
 				buttonPress();
 			}
 		});
@@ -385,6 +389,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{	
 				inputArea.setText(inputArea.getText() + "sin(");
 				buttonPress();
+				SineSolver.inversesin = true;
 			}
 		});
 		secButton = new Button(391, 579, 30, 15, "", new Action() {
@@ -394,6 +399,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{	
 				inputArea.setText(inputArea.getText() + "cos(");
 				buttonPress();
+				CosineSolver.inversecos = true;
 			}
 		});
 		
@@ -407,6 +413,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{	
 				inputArea.setText(inputArea.getText() + "tan(");
 				buttonPress();
+				TanSolver.inversetan = true;
 			}
 		});
 		arcsinButton = new Button(347, 611, 30, 15, "", new Action() {
@@ -468,8 +475,20 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				String variableName = variableArea.getText().substring(0, 1);
-				variables.add(0, new BenVariableStorage(variableName, 0, false));
+				String variableName;
+				if (variableArea.getText().length() > 1)
+				{
+					variableName = variableArea.getText().substring(0, 2);
+				}
+				else if (variableArea.getText().length() == 1)
+				{
+					variableName = variableArea.getText().substring(0, 1);
+				}
+				else
+				{
+					return;
+				}
+				BenVariableStorage.variableArray.add(0, new BenVariableStorage(variableName, 0, false));
 				inputArea.setText(inputArea.getText() + variableName);
 				variableArea.setText("");
 				buttonPress();
@@ -486,7 +505,22 @@ public class BenInputScreen extends AbidCalculatorScreen
 				}
 				buttonPress();
 			}
-		});		
+		});
+		clearVarButton = new Button(125, 438, 54, 30, "", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				
+				String varName = variableArea.getText();
+				if(BenVariableStorage.isSet(varName)) 
+				{
+					BenVariableStorage.removeVariable(varName);
+				}	
+				variableArea.setText("");
+				buttonPress();
+			}
+		});
 		
 		
 		viewObjects.add(background);
@@ -536,6 +570,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 		viewObjects.add(backspaceButton);
 		viewObjects.add(normalSolveButton);
 		viewObjects.add(addVariableButton);
+		viewObjects.add(clearVarButton);
 	}
 
 	public void buttonPress()
