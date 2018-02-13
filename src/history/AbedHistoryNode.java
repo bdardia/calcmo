@@ -58,6 +58,10 @@ public class AbedHistoryNode
 	{
 		this.out = out;
 	}
+	public double getOut()
+	{
+		return out;
+	}
 	
 	
 }

@@ -10,7 +10,8 @@ import main.CalcMoMain;
 
 public class JasHistoryScreen extends AbidCalculatorScreen {
 	
-	public static ArrayList<AbedHistoryNode> fx;
+	public ScrollablePane scroll;
+	public static ArrayList<AbedHistoryNode> fx =  new ArrayList<AbedHistoryNode>();
 	
 	public JasHistoryScreen(int width, int height) {
 		super(width, height);
@@ -18,7 +19,6 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 
 	public void initAllObjects(List<Visible> viewObjects) {
 		JasCustomButton.setFont("resources//font.ttf");
-		fx = new ArrayList<AbedHistoryNode>();
 		new ArrayList<Button>();
 		
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/histMO.png"));
@@ -40,33 +40,9 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 			}
 		});
 		viewObjects.add(clear);
-		
-		ScrollablePane scroll = new ScrollablePane(this, 35, 39, 443, 275);
+		scroll = new ScrollablePane(this, 35, 39, 443, 275);
 		scroll.setBackground(new Color(165, 237, 186));	
-		for(int i = 0; i < fx.size(); i++){
-			
-			String in = fx.get(i).getInput();
-			String out = fx.get(i).getOutput();
-			
-			scroll.addObject(new Button(5, yCo(i, true), 100, 25, i + ": " + in, new Action() {
-
-				public void act() {
-					BenInputScreen.inputArea.setText(in);
-					switchScreen(CalcMoMain.inputScreen);
-				}
-			}));	
-			
-			scroll.addObject(new Button(35, yCo(i, false), 100, 25, out, new Action() {
-
-				public void act() {
-					BenInputScreen.inputArea.setText(out);
-					switchScreen(CalcMoMain.inputScreen);
-				}
-			}));
-		}
-		
-		scroll.update();
-		
+		pupulateScroll();
 		viewObjects.add(scroll);	
 		
 		TextBox deleteArea = new TextBox(435, 600, 30, 30, "");
@@ -107,16 +83,44 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		viewObjects.add(table);
 	}
 	
+	public void pupulateScroll() {
+		clearHist(fx);
+		for(int i = 0; i < fx.size(); i++){
+			
+			String in = fx.get(i).getInput();
+			System.out.println(in);
+			String out = Double.toString(fx.get(i).getOut());
+			
+			scroll.addObject(new Button(5, yCo(i, true), 100, 25, i + ": " + in, new Action() {
+
+				public void act() {
+					BenInputScreen.inputArea.setText(in);
+					switchScreen(CalcMoMain.inputScreen);
+				}
+			}));	
+			
+			scroll.addObject(new Button(35, yCo(i, false), 100, 25, out, new Action() {
+
+				public void act() {
+					BenInputScreen.inputArea.setText(out);
+					switchScreen(CalcMoMain.inputScreen);
+				}
+			}));
+		}
+		scroll.update();
+	}
+
 	public void clearHist(ArrayList<AbedHistoryNode> arr) {
+		System.out.print(fx.size());
 		arr.clear();
 		update();
 	}
 	
 	public int yCo(int x, boolean in) {
 		if(in) {
-			return 30 * (x-1) + 10;
+			return 30 * (x) + 10;
 		}
-		return 30 * (x-1) + 25;
+		return 30 * (x) + 25;
 	}
 	
 	public void remove(ArrayList<AbedHistoryNode> arr, int x) {
