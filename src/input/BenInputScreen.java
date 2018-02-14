@@ -317,6 +317,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{
 				
 				solverPress();
+				OutputScreen.unfinishedNodes.add(new AbedHistoryNode(inputArea.getText(),0.0));
 				OutputScreen.recieveTopNode(DimitrisNodeBuilder.compileProgram(inputArea.getText()));
 				switchScreen(CalcMoMain.outputScreen);
 				//transferNode(new AbedHistoryNode(inputArea.getText(),0.0),OutputScreen.unfinishedNodes);
