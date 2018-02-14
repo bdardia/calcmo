@@ -47,6 +47,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		outputArea.setText(outputArea.getText() + n.value);
 		
 		//unfinishedNodes.get(unfinishedNodes.size()-1).setOut(output);
+		unfinishedNodes.get(unfinishedNodes.size()-1).setOut(output);
 		JasHistoryScreen.fx.add(unfinishedNodes.get(unfinishedNodes.size()-1));
 		System.out.print(JasHistoryScreen.fx.get(JasHistoryScreen.fx.size()-1));
 		
@@ -74,7 +75,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		
 		historyButton = new Button(200, 400, 100, 100, "History", JasCustomButton.getB(), new Action() {
 			public void act() {
-				CalcMoMain.historyScreen.pupulateScroll();
+				CalcMoMain.historyScreen.populateScroll();
 				switchScreen(CalcMoMain.historyScreen);
 				
 				System.out.println("History button pressed");

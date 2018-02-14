@@ -36,13 +36,13 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 
 			public void act() {
 				clearHist(fx);
-				update();
+				scroll.update();
 			}
 		});
 		viewObjects.add(clear);
 		scroll = new ScrollablePane(this, 35, 39, 443, 275);
 		scroll.setBackground(new Color(165, 237, 186));	
-		pupulateScroll();
+		populateScroll();
 		viewObjects.add(scroll);	
 		
 		TextBox deleteArea = new TextBox(435, 600, 30, 30, "");
@@ -51,9 +51,9 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		Button delete = new Button(350, 600, 85, 30, "DELETE", JasCustomButton.getC(), new Action() {
 			public void act() 
 			{
-				fx.remove(Integer.parseInt(deleteArea.getText()));
+				deleteHist(fx, Integer.parseInt(deleteArea.getText()));
 				deleteArea.setText("");
-				update();
+				scroll.update();
 			}
 		});
 		viewObjects.add(delete);
@@ -64,9 +64,9 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		Button duplicate = new Button(350, 635, 85, 30, "DUPLICATE", JasCustomButton.getC(), new Action() {
 			public void act() 
 			{
-				fx.remove(Integer.parseInt(duplicateArea.getText()));
+				duplicateHist(fx, Integer.parseInt(duplicateArea.getText()));
 				duplicateArea.setText("");
-				update();
+				scroll.update();
 			}
 		});
 		viewObjects.add(duplicate);
@@ -83,8 +83,8 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		viewObjects.add(table);
 	}
 	
-	public void pupulateScroll() {
-		clearHist(fx);
+	public void populateScroll() {
+		scroll.removeAll();
 		for(int i = 0; i < fx.size(); i++){
 			
 			String in = fx.get(i).getInput();
@@ -111,9 +111,18 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 	}
 
 	public void clearHist(ArrayList<AbedHistoryNode> arr) {
-		System.out.print(fx.size());
 		arr.clear();
-		update();
+		scroll.removeAll();
+	}
+	
+	public void deleteHist(ArrayList<AbedHistoryNode> arr, int x) {
+		arr.remove(x);
+		populateScroll();
+	}
+	
+	public void duplicateHist(ArrayList<AbedHistoryNode> arr, int x) {
+		arr.add(arr.get(x));
+		populateScroll();
 	}
 	
 	public int yCo(int x, boolean in) {
