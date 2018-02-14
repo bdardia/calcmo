@@ -70,86 +70,86 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 				soundToggle = false;
 			}
 		});
-		
-		roundArea = new TextBox(193, 403, 30, 30, "");
-		//asking user how many decimal places they'd like to round to
-		rounderButton = new Button(132, 396, 54, 30, "Round how many decimal places: ", new Action() {
-
-			@Override
-			public void act() 
-			{	
-			    int n = Integer.parseInt(roundArea.getText());
-				if (n % 1 == 0 && n < 10) {
-					n = roundNumber;
-					messageArea.setText("Your answers will be rounded to " + n + " places");
-				}
-			}
-		});
-		messageArea = new TextArea(37, 37, 400, 37, "");
-		
-		
-		
-		fontSize = new TextLabel(50,50,50,50,"Font Size:");
-		fontSmall = new Button(60,60,30,15, "Small", new Action() {
-
-			@Override
-			public void act() 
-			{	
-				//set the input area and output area fonts small
-			}
-		});
-		fontLarge = new Button(90,60,30,15, "Large", new Action() {
-
-			@Override
-			public void act() 
-			{	
-				//set the input area and output area fonts large
-			}
-		});
-		
-		
-		
-		clearHistory = new Button(100,100,30,15, "Clear History", new Action() {
-			public void act() {
-				messageArea.setText("History has been cleared!");
-				//in here clear the history
-			}
-		});
-		
-		
-		radiansButton = new Button(200,200,30,15, "Radians", new Action() {
-			public void act() {
-				radiansButton.setBackground(Color.RED);
-				degreesButton.setBackground(Color.GRAY);
-				
-				radians = true;
-				//change the trig functions and convert to degrees by 180/pi
-				
-			}
-		});
-		
-		degreesButton = new Button(250,200,30,15, "Degrees",Color.RED, new Action() {
-				public void act() {
-					degreesButton.setBackground(Color.RED);
-					radiansButton.setBackground(Color.GRAY);
-					
-					radians = false;
-					//use regular methods
-				}
-		});
-		
-		
+//		
+//		roundArea = new TextBox(193, 403, 30, 30, "");
+//		//asking user how many decimal places they'd like to round to
+//		rounderButton = new Button(132, 396, 54, 30, "Round how many decimal places: ", new Action() {
+//
+//			@Override
+//			public void act() 
+//			{	
+//			    int n = Integer.parseInt(roundArea.getText());
+//				if (n % 1 == 0 && n < 10) {
+//					n = roundNumber;
+//					messageArea.setText("Your answers will be rounded to " + n + " places");
+//				}
+//			}
+//		});
+//		messageArea = new TextArea(37, 37, 400, 37, "");
+//		
+//		
+//		
+//		fontSize = new TextLabel(50,50,50,50,"Font Size:");
+//		fontSmall = new Button(60,60,30,15, "Small", new Action() {
+//
+//			@Override
+//			public void act() 
+//			{	
+//				//set the input area and output area fonts small
+//			}
+//		});
+//		fontLarge = new Button(90,60,30,15, "Large", new Action() {
+//
+//			@Override
+//			public void act() 
+//			{	
+//				//set the input area and output area fonts large
+//			}
+//		});
+//		
+//		
+//		
+//		clearHistory = new Button(100,100,30,15, "Clear History", new Action() {
+//			public void act() {
+//				messageArea.setText("History has been cleared!");
+//				//in here clear the history
+//			}
+//		});
+//		
+//		
+//		radiansButton = new Button(200,200,30,15, "Radians", new Action() {
+//			public void act() {
+//				radiansButton.setBackground(Color.RED);
+//				degreesButton.setBackground(Color.GRAY);
+//				
+//				radians = true;
+//				//change the trig functions and convert to degrees by 180/pi
+//				
+//			}
+//		});
+//		
+//		degreesButton = new Button(250,200,30,15, "Degrees",Color.RED, new Action() {
+//				public void act() {
+//					degreesButton.setBackground(Color.RED);
+//					radiansButton.setBackground(Color.GRAY);
+//					
+//					radians = false;
+//					//use regular methods
+//				}
+//		});
+//		
+//		
 		viewObjects.add(background);
-		viewObjects.add(backButton);
+//		viewObjects.add(backButton);
 		viewObjects.add(soundONButton);
 		viewObjects.add(soundOFFButton);
-		viewObjects.add(roundArea);
-		viewObjects.add(rounderButton);
-		viewObjects.add(messageArea);
-		viewObjects.add(fontSize);
-		viewObjects.add(fontSmall);
-		viewObjects.add(fontLarge);
-		viewObjects.add(clearHistory);
+//		viewObjects.add(roundArea);
+//		viewObjects.add(rounderButton);
+//		viewObjects.add(messageArea);
+//		viewObjects.add(fontSize);
+//		viewObjects.add(fontSmall);
+//		viewObjects.add(fontLarge);
+//		viewObjects.add(clearHistory);
 	}
 	
 	

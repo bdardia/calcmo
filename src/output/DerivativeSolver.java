@@ -14,7 +14,7 @@ public class DerivativeSolver implements Solver {
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 	@Override
