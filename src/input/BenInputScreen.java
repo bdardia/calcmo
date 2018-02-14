@@ -9,6 +9,7 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextBox;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
+import history.AbedHistoryNode;
 import history.AbidCalculatorScreen;
 import main.CalcMoMain;
 import output.CosineSolver;

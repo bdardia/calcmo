@@ -28,7 +28,8 @@ public class OutputScreen extends AbidCalculatorScreen {
 	private Button settingsButton;
 	private static TextLabel outputArea;
 	
-	public static ArrayList<AbedHistoryNode> unfinishedNodes;
+	public static ArrayList<AbedHistoryNode> unfinishedNodes = new ArrayList<AbedHistoryNode>();
+
 	
 	public static double output;
 	
@@ -46,9 +47,12 @@ public class OutputScreen extends AbidCalculatorScreen {
 		double rounder = Math.pow(10, LordSettingsScreen.roundNumber);
 		output = Math.round (n.value * rounder) / rounder; ;
 		outputArea.setText(outputArea.getText() + output);
-//		AbedHistoryNode completeNode = unfinishedNodes.get(unfinishedNodes.size()-1);
-//		completeNode.setOut(output);
-//		JasHistoryScreen.fx.add(completeNode);
+		
+		
+		
+		unfinishedNodes.get(unfinishedNodes.size()-1).setOut(output);
+		JasHistoryScreen.fx.add(unfinishedNodes.get(unfinishedNodes.size()-1));
+		System.out.print(JasHistoryScreen.fx.get(JasHistoryScreen.fx.size()-1));
 	}
 	
 	
