@@ -12,6 +12,7 @@ import guiTeacher.interfaces.Visible;
 import history.AbidCalculatorScreen;
 import main.CalcMoMain;
 import output.CosineSolver;
+import output.LordSettingsScreen;
 import output.OutputScreen;
 import output.SineSolver;
 import output.TanSolver;
@@ -70,6 +71,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	public static Button backspaceButton;
 	public static BenSound soundControl;
 	public static Button clearVarButton;
+	public static Button settingsButton;
 	public static boolean inputValid;
 	
 	
@@ -116,6 +118,8 @@ public class BenInputScreen extends AbidCalculatorScreen
 				buttonPress();
 			}
 		});
+		
+		//make this the long dash to differentiate between negative numbers and subtraction, Lord
 		quadsolveButton = new Button(60, 508, 66, 15, "", new Action() {
 			
 			@Override
@@ -522,6 +526,17 @@ public class BenInputScreen extends AbidCalculatorScreen
 			}
 		});
 		
+		//Lord C
+		settingsButton = new Button(435,0,79,23,"", new Action() {
+			
+			public void act() 
+			{
+				
+				solverPress();
+				switchScreen(CalcMoMain.settingsScreen);
+			}
+		});
+		
 		
 		viewObjects.add(background);
 		viewObjects.add(inputArea);
@@ -571,21 +586,30 @@ public class BenInputScreen extends AbidCalculatorScreen
 		viewObjects.add(normalSolveButton);
 		viewObjects.add(addVariableButton);
 		viewObjects.add(clearVarButton);
+		viewObjects.add(settingsButton);
 	}
 
+	
+	//Lord, added sound toggles in settings, it is automatically on
 	public void buttonPress()
 	{
+		if(LordSettingsScreen.soundToggle) {
 		soundControl.playSound("plop_amplified.wav");
+		}
 	}
 
 	public void solverPress()
 	{
+		if(LordSettingsScreen.soundToggle) {
 		soundControl.playSound("beeep_distorted.wav");
+		}
 	}
 	
 	public void switchPress()
 	{
+		if(LordSettingsScreen.soundToggle) {
 		soundControl.playSound("ping_pong_8bit_peeeeeep.wav");
+		}
 	}
 	
 //	public void transferNode(AbedHistoryNode a, ArrayList<AbedHistoryNode> s) 

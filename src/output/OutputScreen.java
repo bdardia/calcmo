@@ -25,6 +25,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 	private Button inputButton;
 	private Button historyButton;
 	private Button tableButton;
+	private Button settingsButton;
 	private static TextLabel outputArea;
 	
 	public static ArrayList<AbedHistoryNode> unfinishedNodes;
@@ -36,12 +37,14 @@ public class OutputScreen extends AbidCalculatorScreen {
 		super(width, height);
 	}
 	
-	
+	//Lord Crawford
 	public static void recieveTopNode(DimitrisAlgebraicNode n) {
 		n.solve();
 		System.out.println(n.value); 
 		
-		output = Math.round (n.value * 10000.0) / 10000.0; ;
+		
+		double rounder = Math.pow(10, LordSettingsScreen.roundNumber);
+		output = Math.round (n.value * rounder) / rounder; ;
 		outputArea.setText(outputArea.getText() + output);
 //		AbedHistoryNode completeNode = unfinishedNodes.get(unfinishedNodes.size()-1);
 //		completeNode.setOut(output);
@@ -88,11 +91,18 @@ public class OutputScreen extends AbidCalculatorScreen {
 				outputArea.setText("Answer: ");
 			}
 		});
-		
-		
-		
-		
 		JasCustomButton.circleButton(tableButton);
+		
+		//doesn't work???
+		settingsButton = new Button(200, 450, 100, 100, "Settings", JasCustomButton.getB(), new Action() {
+			public void act() {
+				
+				switchScreen(CalcMoMain.settingsScreen);
+				
+				System.out.println("Settings button pressed");
+				outputArea.setText("Answer: ");
+			}
+		});
 		
 		viewObjects.add(background);
 		viewObjects.add(outputArea);
@@ -100,6 +110,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		viewObjects.add(inputButton);
 		viewObjects.add(historyButton);
 		viewObjects.add(tableButton);
+		viewObjects.add(settingsButton);
 	}
 
 }
