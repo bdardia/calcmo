@@ -3,23 +3,21 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class LimitSolver implements Solver {
 
-	int precedence = Solver.PrecedenceConstants.limitSolver;
+//need to make a button for this
+public class SqrRootSolver implements Solver {
 	
+	int precedence = Solver.PrecedenceConstants.sqrrootSolver;
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
-		if(limit == 0) {
-			return ;
-		}
-		return java.lang.Math.sin(rhs.value);
+		return java.lang.Math.sqrt(rhs.value);
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "limit";
+		return "sqrroot";
 	}
 
 	@Override
@@ -37,7 +35,7 @@ public class LimitSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new LimitSolver();
+		return new SqrRootSolver();
 	}
 
 	@Override
@@ -48,8 +46,8 @@ public class LimitSolver implements Solver {
 
 	@Override
 	public void increasePrecedence(int amount) {
-		// TODO Auto-generated method stub
-		
+		precedence += amount;
+
 	}
 
 }

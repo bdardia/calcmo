@@ -1,33 +1,25 @@
 package output;
 
-import java.util.ArrayList;
-
 import input.DimitrisAlgebraicNode;
-import input.ParameterSolver;
 import input.Solver;
 
-public class LogSolver implements Solver {
+public class AbsSolver implements Solver {
 
-	int precedence = Solver.PrecedenceConstants.logSolver;
+int precedence = Solver.PrecedenceConstants.absSolver;
 	
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		ArrayList<DimitrisAlgebraicNode> paramList = ParameterSolver.getParameterList(rhs);
+		rhs.solve();
 		
-		DimitrisAlgebraicNode base = paramList.get(0);
-		DimitrisAlgebraicNode argument = paramList.get(1);
-		
-		base.solve();
-		argument.solve();
-		 
-		
-		return java.lang.Math.log(argument.value)/java.lang.Math.log(base.value);
-		
+		if(rhs.value < 1) {
+			return rhs.value * -1;
+		}
+		return rhs.value;
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "log";
+		return "abs";
 	}
 
 	@Override
@@ -45,7 +37,7 @@ public class LogSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new LogSolver();
+		return new AbsSolver();
 	}
 
 	@Override

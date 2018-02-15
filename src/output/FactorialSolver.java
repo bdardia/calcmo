@@ -1,33 +1,30 @@
 package output;
 
-import java.util.ArrayList;
-
 import input.DimitrisAlgebraicNode;
-import input.ParameterSolver;
 import input.Solver;
 
-public class LogSolver implements Solver {
+public class FactorialSolver implements Solver {
 
-	int precedence = Solver.PrecedenceConstants.logSolver;
+	//need to make factorial button for ben
+int precedence = Solver.PrecedenceConstants.factorialSolver;
 	
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		ArrayList<DimitrisAlgebraicNode> paramList = ParameterSolver.getParameterList(rhs);
-		
-		DimitrisAlgebraicNode base = paramList.get(0);
-		DimitrisAlgebraicNode argument = paramList.get(1);
-		
-		base.solve();
-		argument.solve();
-		 
-		
-		return java.lang.Math.log(argument.value)/java.lang.Math.log(base.value);
-		
+		rhs.solve();
+		if(rhs.value % 1 == 0) {
+			return factorial(rhs.value);
+		}
+		return 0;
 	}
-
-	@Override
+	
+	public double factorial(double n){    
+		if (n == 0)    
+			return 1;    
+		else    
+			return(n * factorial(n-1));    
+	}    
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "log";
+		return "factorial";
 	}
 
 	@Override
@@ -45,7 +42,7 @@ public class LogSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new LogSolver();
+		return new FactorialSolver();
 	}
 
 	@Override
