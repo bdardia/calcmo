@@ -152,6 +152,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
+				CalcMoMain.historyScreen.populateScroll();
 				switchScreen(CalcMoMain.historyScreen);
 				switchPress();
 			}
