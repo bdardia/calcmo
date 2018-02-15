@@ -1,7 +1,7 @@
 package main;
 
 import guiTeacher.GUIApplication;
-import history.AbidTableScreen;
+import history.AbedTableScreen;
 import history.AbidTransitionScreen;
 import history.JasHistoryScreen;
 import input.BenInputScreen;

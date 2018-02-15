@@ -24,9 +24,7 @@ public class AbedTableBackEnd
 	public static void createOutputs()
 	{
 		ArrayList<Double> n = new ArrayList<Double>();
-		n.add(1.0);
-		n.add(2.0);
-		ArrayList<Double> t = DimitrisNodeBuilder.getOutputs("x^2",n);
+		ArrayList<Double> t = DimitrisNodeBuilder.getOutputs("x",n);
 		for(int i  = 0; i < t.size();i++)
 		{
 			System.out.println(t.get(i));
