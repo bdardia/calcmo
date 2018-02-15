@@ -91,7 +91,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		tableButton = new Button(300, 400, 100, 100, "Table", JasCustomButton.getC(), new Action() {
 			public void act() {
 				
-				//switchScreen(CalcMoMain.tableScreen);
+				switchScreen(CalcMoMain.tableScreen);
 				
 				System.out.println("Table button pressed");
 				outputArea.setText("Answer: ");

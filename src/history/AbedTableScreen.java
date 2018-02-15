@@ -7,6 +7,7 @@ import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.ScrollablePane;
+import guiTeacher.components.TextBox;
 import guiTeacher.interfaces.Visible;
 import input.BenInputScreen;
 import main.CalcMoMain;
@@ -32,7 +33,7 @@ public class AbedTableScreen extends AbidCalculatorScreen
 			
 			public void act() 
 			{
-				BenInputScreen.inputArea.setText("");
+				
 				switchScreen(CalcMoMain.inputScreen);
 			}
 		});
@@ -47,7 +48,29 @@ public class AbedTableScreen extends AbidCalculatorScreen
 				scroll.update();
 			}
 		});
+		TextBox deleteArea = new TextBox(435, 600, 30, 30, "");
+		viewObjects.add(deleteArea);
+		Button delete = new Button(350, 600, 85, 30, "DELETE", JasCustomButton.getC(), new Action() 
+		{
+			public void act() 
+			{
+				deleteArea.setText("");
+				scroll.update();
+			}
+		});
 		viewObjects.add(clear);
 		viewObjects.add(scroll);
+		TextBox input = new TextBox(200, 600, 50, 50, "");
+		Button insert = new Button(150,200,30,30,"INSERT",JasCustomButton.getB(),new Action() 
+		{
+			
+			@Override
+			public void act() 
+			{
+				
+			}
+		});
+		
+		
 	}
 }
