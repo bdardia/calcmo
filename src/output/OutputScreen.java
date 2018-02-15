@@ -78,6 +78,8 @@ public class OutputScreen extends AbidCalculatorScreen {
 		historyButton = new Button(200, 400, 100, 100, "History", JasCustomButton.getB(), new Action() {
 			public void act() {
 				
+				CalcMoMain.historyScreen.populateScroll();
+
 				switchScreen(CalcMoMain.historyScreen);
 				
 				System.out.println("History button pressed");

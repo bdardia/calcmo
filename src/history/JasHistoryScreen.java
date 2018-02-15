@@ -10,7 +10,7 @@ import main.CalcMoMain;
 
 public class JasHistoryScreen extends AbidCalculatorScreen {
 	
-	public ScrollablePane scroll;
+	public static ScrollablePane scroll;
 	public static ArrayList<AbedHistoryNode> fx =  new ArrayList<AbedHistoryNode>();
 	
 	public JasHistoryScreen(int width, int height) {
@@ -85,6 +85,7 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 	
 	public void populateScroll() {
 		scroll.removeAll();
+		System.out.println(fx.size());
 		for(int i = 0; i < fx.size(); i++){
 			
 			String in = fx.get(i).getInput();
