@@ -14,18 +14,23 @@ public class AbedTableBackEnd
 	public static void main(String[] args)
 	{
 		createOutputs();
+		System.out.println("s");
 	}
 	public AbedTableBackEnd() 
 	{
-		s = new DimitrisNodeBuilder();
+		
 		
 	}
 	public static void createOutputs()
 	{
-		 DimitrisAlgebraicNode n = DimitrisNodeBuilder.compileProgram("x^2");
-		 DimitrisNodeBuilder.updateVariable(n, "x", 0);
-		 n.solve();
-		 System.out.println(n.value);
+		ArrayList<Double> n = new ArrayList<Double>();
+		n.add(1.0);
+		n.add(2.0);
+		ArrayList<Double> t = DimitrisNodeBuilder.getOutputs("x^2",n);
+		for(int i  = 0; i < t.size();i++)
+		{
+			System.out.println(t.get(i));
+		}
 		
 	}
 	
