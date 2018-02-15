@@ -73,8 +73,31 @@ public class AbedTableScreen extends AbidCalculatorScreen
 		});
 		viewObjects.add(insert);
 		viewObjects.add(input);
+		TextBox functionInput = new TextBox(120,300,50,50,"ENTER YOUR FUNCTION HERE");
+		Button functionSubmit = new Button(140,300,50,50,"Submit Function", JasCustomButton.getA(), new Action() {
+			
+			@Override
+			public void act() 
+			{
+				AbedTableBackEnd.function = functionInput.getText();
+			}
+		});
+		Button compile  = new Button(150,700,30,30,"SUBMIT",JasCustomButton.getB(),new Action() 
+		{
+			
+			@Override
+			public void act() 
+			{
+				AbedTableBackEnd.createOutputs();
+				
+			}
+		});
+		viewObjects.add(functionInput);
+		viewObjects.add(functionSubmit);
+		viewObjects.add(compile);
 		
 		
 		
 	}
 }
+

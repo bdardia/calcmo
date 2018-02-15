@@ -9,27 +9,26 @@ public class AbedTableBackEnd
 {
 	private ArrayList<AbedHistoryNode> functionNodes = JasHistoryScreen.fx;
 	public static ArrayList<String> inputs;
+	public static ArrayList<Double> functionalInputs;
+	public static ArrayList<Double> outputs;
+	public static ArrayList<AbedHistoryNode> hist;
+	public static String function;
+	
 	///compile on the string called first n.solve then fill
 	
-	public static void main(String[] args)
+	
+	public static void convertInputs()
 	{
-		createOutputs();
-		System.out.println("s");
-	}
-	public AbedTableBackEnd() 
-	{
-		
+		for(int i = 0; i < inputs.size();i++)
+		{
+			functionalInputs.add(i,Double.parseDouble(inputs.get(i)));
+		}
 		
 	}
 	public static void createOutputs()
 	{
-		ArrayList<Double> n = new ArrayList<Double>();
-		ArrayList<Double> t = DimitrisNodeBuilder.getOutputs("x",n);
-		for(int i  = 0; i < t.size();i++)
-		{
-			System.out.println(t.get(i));
-		}
-		
+		convertInputs();
+		outputs = DimitrisNodeBuilder.getOutputs(function,functionalInputs);
 	}
 	
 }
