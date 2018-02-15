@@ -61,8 +61,8 @@ public class AbedTableScreen extends AbidCalculatorScreen
 		viewObjects.add(delete);
 		viewObjects.add(clear);
 		viewObjects.add(scroll);
-		TextBox input = new TextBox(200, 600, 50, 50, "");
-		Button insert = new Button(150,600,30,30,"INSERT",JasCustomButton.getB(),new Action() 
+		TextBox input = new TextBox(40, 440, 50, 50,"");
+		Button insert = new Button(90,440,55,30,"INSERT",JasCustomButton.getB(),new Action() 
 		{
 			
 			@Override
@@ -73,17 +73,17 @@ public class AbedTableScreen extends AbidCalculatorScreen
 		});
 		viewObjects.add(insert);
 		viewObjects.add(input);
-		
-		TextBox functionInput = new TextBox(30,30,30,30,"");
-		Button functionSubmit = new Button(140,300,50,50,"", JasCustomButton.getA(), new Action() {
-	
+		TextBox functionInput = new TextBox(40,380,50,50,"ENTER");
+		Button functionSubmit = new Button(90,380,55,30,"Submit", JasCustomButton.getA(), new Action() {
+			
 			@Override
 			public void act() 
 			{
 				AbedTableBackEnd.function = functionInput.getText();
+				System.out.println(AbedTableBackEnd.function);
 			}
 		});
-		Button compile  = new Button(150,500,30,30,"SUBMIT",JasCustomButton.getB(),new Action() 
+		Button compile  = new Button(175,575,75,50,"Comp",JasCustomButton.getB(),new Action() 
 		{
 			
 			@Override
@@ -93,11 +93,9 @@ public class AbedTableScreen extends AbidCalculatorScreen
 				
 			}
 		});
-		
+		JasCustomButton.circleButton(compile);
+		viewObjects.add(functionInput);
 		viewObjects.add(functionSubmit);
 		viewObjects.add(compile);
-		viewObjects.add(functionInput);
-		
 	}
 }
-
