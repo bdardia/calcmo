@@ -273,7 +273,7 @@ public class DimitrisNodeBuilder {
 	}
 	
 	
-	static ArrayList<Double> getOutputs(String program, ArrayList<Double> inputs){
+	public static ArrayList<Double> getOutputs(String program, ArrayList<Double> inputs){
 		DimitrisAlgebraicNode rootNode = compileProgram(program);
 		ArrayList<Double> outputs = new ArrayList<Double>();
 		
@@ -286,7 +286,7 @@ public class DimitrisNodeBuilder {
 		return outputs;
 	}
 	
-	static void fillVariables(DimitrisAlgebraicNode n) {
+	public static void fillVariables(DimitrisAlgebraicNode n) {
 		if(n.isVariable && BenVariableStorage.isSet(n.varName)) {
 			n.value = BenVariableStorage.getValue(n.varName);
 		}else {
@@ -302,7 +302,7 @@ public class DimitrisNodeBuilder {
 		}
 	}
 	
-	static void updateVariable(DimitrisAlgebraicNode n, String varName, double value) {
+	public static void updateVariable(DimitrisAlgebraicNode n, String varName, double value) {
 		if(n.isVariable && n.varName.equals(varName)) {
 			n.value = value;
 			n.isEvaluated = true;
