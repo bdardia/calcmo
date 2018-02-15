@@ -23,6 +23,7 @@ public interface Solver {
 		public static int absSolver = 30;
 		public static int sqrrootSolver = 30;
 		public static int factorialSolver = 30;
+		public static int logSolver = 30;
 		
 		//binary functions >=10
 		public static int exponentSolver = 6;
@@ -32,10 +33,9 @@ public interface Solver {
 		public static int subtractionSolver = 2;
 		
 		
-		//parameter grabbing functions
+		//binary parameter grabbing functions
 		
 		public static int parameterSolver = 0;
-		public static int logSolver = 0;
 		public static int derivativeSolver = 0;
 		
 		
