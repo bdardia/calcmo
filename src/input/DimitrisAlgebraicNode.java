@@ -33,9 +33,11 @@ public class DimitrisAlgebraicNode {
 	public String varName;
 	public boolean isVariable = false;
 	
-	public static Solver[] solverArray = {new AdditionSolver(), new MultiplicationSolver(), new DivisionSolver(), new SubtractionSolver(), new LhsParenthesis(), new RhsParenthesis(), new CosineSolver(), new Exponent(), new SineSolver(),
-											new TanSolver(), new ArcCosSolver(), new ArcSinSolver(), new ArcTanSolver(), new LogSolver(), new LnSolver(), new ParameterSolver(), new AbsSolver(),
-											new SqrRootSolver(), new DerivativeSolver(), new FactorialSolver()}; //set up in main
+	public static Solver[] solverArray = {new AdditionSolver(), new MultiplicationSolver(), new DivisionSolver(), new SubtractionSolver(), new LhsParenthesis(), new RhsParenthesis(), 
+											new CosineSolver(),new Exponent(), 
+											new SineSolver(), new TanSolver(), new ArcCosSolver(), new ArcSinSolver(), new ArcTanSolver(), new LogSolver(), new LnSolver(), new ParameterSolver(), new AbsSolver(),
+											//new SqrRootSolver(), new DerivativeSolver(), new FactorialSolver()  //I have no idea which one does not work
+											}; 
 	
 	
 	
