@@ -58,18 +58,22 @@ public class AbedTableScreen extends AbidCalculatorScreen
 				scroll.update();
 			}
 		});
+		viewObjects.add(delete);
 		viewObjects.add(clear);
 		viewObjects.add(scroll);
 		TextBox input = new TextBox(200, 600, 50, 50, "");
-		Button insert = new Button(150,200,30,30,"INSERT",JasCustomButton.getB(),new Action() 
+		Button insert = new Button(150,600,30,30,"INSERT",JasCustomButton.getB(),new Action() 
 		{
 			
 			@Override
 			public void act() 
 			{
-				
+				AbedTableBackEnd.inputs.add(input.getText());
 			}
 		});
+		viewObjects.add(insert);
+		viewObjects.add(input);
+		
 		
 		
 	}

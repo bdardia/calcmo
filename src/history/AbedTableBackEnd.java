@@ -8,7 +8,7 @@ import input.DimitrisNodeBuilder;
 public class AbedTableBackEnd 
 {
 	private ArrayList<AbedHistoryNode> functionNodes = JasHistoryScreen.fx;
-	private ArrayList<String> domain;
+	public static ArrayList<String> inputs;
 	///compile on the string called first n.solve then fill
 	
 	public static void main(String[] args)
