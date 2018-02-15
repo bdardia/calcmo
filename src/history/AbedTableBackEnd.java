@@ -25,13 +25,17 @@ public class AbedTableBackEnd
 		}
 		
 	}
+	
 	public static void createOutputs()
 	{
 		convertInputs();
+		
 		outputs = DimitrisNodeBuilder.getOutputs(function,functionalInputs);
 		for(int i = 0; i < outputs.size();i++)
 		{
 			System.out.println(outputs.get(i));
+			coordinates.add(new AbedHistoryNode(functionalInputs.get(i),outputs.get(i)));
+			
 		}
 	}
 	
