@@ -3,10 +3,18 @@ package input;
 import java.util.ArrayList;
 
 public class DimitrisNodeBuilder {
+	private static String logger = "";
+	private static boolean debug = true;
 	
-	static ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
+	private static ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
 		ArrayList<DimitrisAlgebraicNode> parsedArray = new ArrayList<DimitrisAlgebraicNode>();
 
+		//remove whitespace
+		
+		currentText = currentText.replaceAll("\\s","");
+		
+		
+		
 		int startIndex = 0;
 		for(int index = currentText.length(); index >= 0; index--) {
 			
@@ -15,15 +23,18 @@ public class DimitrisNodeBuilder {
 			}
 			
 			String currentString = currentText.substring(startIndex, index);
-			System.out.println("currentString:" + currentString);
+			logger += "currentString:" + currentString + "\n";
+			
+
 			try {
 				double number = Double.parseDouble(currentString);
 				
 				if(currentString.substring(0, 1).equals("+") || currentString.substring(0, 1).equals("-")) {
+					logger += "throwing exeption: missing plus sign is found" + "\n";
 					throw new Exception("missing plus sign is found");
 				}
 				parsedArray.add(new DimitrisAlgebraicNode(number));
-				System.out.println(number);
+				logger += "adding number:" + number + "\n";
 				startIndex += currentString.length();
 				index = currentText.length() + 1;
 			}
@@ -33,21 +44,41 @@ public class DimitrisNodeBuilder {
 					Solver s = DimitrisAlgebraicNode.solverArray[solverIndex];
 					if(s.urinaryFunction() == true) {
 						DimitrisAlgebraicNode placeHolder = new DimitrisAlgebraicNode(-1);
+						placeHolder.isPlaceHolder = true;
+						placeHolder.solver = new DefaultSolver(getMaxPrecedence()); //the placeholder needs the correct precedence to properly work with parenthesis
 						parsedArray.add(placeHolder);
+						logger += "added placeHolder" + "\n";
 					}
 					
-					parsedArray.add( new DimitrisAlgebraicNode(s));
-					System.out.println(DimitrisAlgebraicNode.solverArray[solverIndex].getOperation());
+					parsedArray.add( new DimitrisAlgebraicNode(s.createNew()));
+					logger += DimitrisAlgebraicNode.solverArray[solverIndex].getOperation() + "\n";
 					
 					startIndex  += currentString.length();
 					index = currentText.length() + 1;
 					
 				}else {
 					if(startIndex == index) {
-						System.out.println("found variable");
-						String varName = currentText.substring(startIndex, currentText.length());
-						parsedArray.add(new DimitrisAlgebraicNode(varName));
+						logger += "found variable" + "\n";
+						String varName;
 						
+						String testString = currentText.substring(startIndex, currentText.length());
+						int lastOpIndex = testString.length();
+						
+						for(Solver s : DimitrisAlgebraicNode.solverArray) {
+							//only need to check for operations because a proper program will not have two edge nodes in a row
+							int opIndex = testString.indexOf(s.getOperation());
+							if(opIndex < lastOpIndex && opIndex != -1) {
+								logger += "found op:" + s.getOperation() + "\n";
+								
+								lastOpIndex = opIndex;
+							}
+						}
+					
+
+						varName = testString.substring(0, lastOpIndex);
+
+						logger += "varName:" + varName + "\n";
+						parsedArray.add(new DimitrisAlgebraicNode(varName));
 						startIndex += varName.length();
 						index = currentText.length() + 1;
 					}
@@ -66,8 +97,8 @@ public class DimitrisNodeBuilder {
 		return parsedArray;
 	}
 	
-
-	static int getSolverIndex(String operation){
+	
+	public static int getSolverIndex(String operation){
 		for(int i = 0; i < DimitrisAlgebraicNode.solverArray.length; i++) {
 			Solver s = DimitrisAlgebraicNode.solverArray[i];
 			if(s.getOperation().equals(operation)) {
@@ -77,69 +108,228 @@ public class DimitrisNodeBuilder {
 		return -1;
 	}
 	
-	
-	
-	static DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int precedence) {
-		System.out.println("parsedArraylen:" + parsedArray.size());
-		for(DimitrisAlgebraicNode n : parsedArray) {
-			
-			if(!n.isVariable) {
-				System.out.println(n.solver.getOperation());
+	private static ArrayList<DimitrisAlgebraicNode> reduceParenthesis(ArrayList<DimitrisAlgebraicNode> preprocessedArray){
+		logger += "started reduction of parenthesis" + "\n";
+		int precedenceIncrease = 0;
+		int precedenceInterval = getMaxPrecedence();
+		
+		//increase precedences
+		for(int i = 0; i < preprocessedArray.size(); i++) {
+			Solver currentSolver = preprocessedArray.get(i).solver;
+			logger += "i:" + i + "\n";
+			logger += "precedenceIncrease:" + precedenceIncrease + "\n";
+			if(currentSolver.getOperation().equals("(")) {
+				precedenceIncrease += precedenceInterval;
+				preprocessedArray.remove(i);
+				i--;
+			}else if(currentSolver.getOperation().equals(")")) {
+				precedenceIncrease -= precedenceInterval;
+				preprocessedArray.remove(i);
+				i--;
+
 			}else {
-				System.out.println(n.varName);
+				currentSolver.increasePrecedence(precedenceIncrease);
 			}
+		}
+		
+		
+		return preprocessedArray;
+	}
+	
+	
+	private static int getMaxPrecedence() {
+		return 60;
+	}
+
+
+	private static DimitrisAlgebraicNode buildTree(ArrayList<DimitrisAlgebraicNode> parsedArray, int index) {
+
+		
+		logger += "parsedArraylen:" + parsedArray.size() + "\n";
+		logger += "index:" + index + "\n";
+		for(DimitrisAlgebraicNode n : parsedArray) {
+			logger += n.toString() + n.solver.getPrecedence() + "\n";
 		
 		}
 		
 		
-		if(parsedArray.size() > 1) {
-			DimitrisAlgebraicNode lhs = parsedArray.get(0);
-			DimitrisAlgebraicNode rhs = parsedArray.get(1);
-			int lhsPrecedence = lhs.solver.getPrecedence();
-			int rhsPrecedence = rhs.solver.getPrecedence();
-			
-			if(lhsPrecedence <= rhsPrecedence ) {
-				if(rhsPrecedence >= precedence) {
-					
-					System.out.println("lhs absorbed");
-					rhs.lhs = lhs;
-					parsedArray.remove(lhs);
-					return buildTree(parsedArray, 0);
-				}else {
-					throw new NullPointerException("array cannot be simplified into one node");
+		if(parsedArray.size() > 2) {
+			if(index + 2 >= parsedArray.size()) {
+				DimitrisAlgebraicNode lhs = parsedArray.get(parsedArray.size() - 2);
+				DimitrisAlgebraicNode rhs = parsedArray.get(parsedArray.size() - 1);
+				if(lhs.solver.getPrecedence() <= rhs.solver.getPrecedence()) {
+					lhs.rhs = rhs;
+					logger += "fold right end" + "\n";
+					parsedArray.remove(rhs);
 				}
+				
+				lhs = parsedArray.get(0);
+				rhs = parsedArray.get(1);
+				
+				if(lhs.solver.getPrecedence() > rhs.solver.getPrecedence()){
+					rhs.lhs = lhs;
+					logger += "fold left end" + "\n";
+					parsedArray.remove(lhs);
+					
+				}
+				logger += "reset" + "\n";
+				return buildTree(parsedArray, 0);
 				
 			}else {
 				
-				try {
-					lhs.rhs = buildTree((ArrayList<DimitrisAlgebraicNode>) parsedArray.subList(1, parsedArray.size()), lhsPrecedence);
-					parsedArray.removeAll( parsedArray.subList(1, parsedArray.size()));
-					System.out.println("rhs built into tree and absorbed");
-					return lhs;
-				}
-				catch(Exception e){// array cannot be simplified into one node
-					System.out.println("rhs absorbed");
-					lhs.rhs = rhs;
-					parsedArray.remove(rhs);
-					return buildTree(parsedArray, lhsPrecedence);
-				}
+				int lhsIndex = index;
+				int middleIndex = index + 1;
+				int rhsIndex = index + 2;
 				
-			}			
-			
-		}else {
-			return parsedArray.get(0);
+				DimitrisAlgebraicNode lhs = parsedArray.get(lhsIndex);
+				DimitrisAlgebraicNode middle = parsedArray.get(middleIndex);
+				DimitrisAlgebraicNode rhs = parsedArray.get(rhsIndex);
+				
+				int lhsPrecedence = lhs.solver.getPrecedence();
+				int middlePrecedence = middle.solver.getPrecedence();
+				int rhsPrecedence = rhs.solver.getPrecedence();
+				
+				
+				if(lhsPrecedence < middlePrecedence && lhsPrecedence > rhsPrecedence) {
+					logger += "folded into left" + "\n";
+					lhs.rhs = middle;
+					parsedArray.remove(middleIndex);
+					return buildTree(parsedArray, index + 1);
+				}else if(rhsPrecedence < middlePrecedence && rhsPrecedence > lhsPrecedence) {
+					logger += "folded right" + "\n";
+					rhs.lhs = middle;
+					parsedArray.remove(middleIndex);
+					return buildTree(parsedArray, index + 1);
+				}else {
+					
+					if(lhsPrecedence == rhsPrecedence && rhsIndex == parsedArray.size() - 1) {
+						if(rhsPrecedence < middlePrecedence) {
+							rhs.lhs = middle;
+							lhs.rhs = rhs;
+							parsedArray.remove(rhs);
+							parsedArray.remove(middle);
+							logger += "folded complete to the left" +"\n";
+							buildTree(parsedArray, index+1);
+						}
+					}
+					
+					logger += "default" + "\n";
+					return buildTree(parsedArray, index+1);
+				}
+			}
 		}
+		else {
+			if(parsedArray.size() == 2) {
+				DimitrisAlgebraicNode lhs = parsedArray.get(0);
+				DimitrisAlgebraicNode rhs = parsedArray.get(1);
+				if(lhs.solver.getPrecedence() < rhs.solver.getPrecedence()) { //always try folding rhs first
+					lhs.rhs = rhs;
+					return lhs;
+				}else {
+					rhs.lhs = lhs;
+					return rhs;
+				}
+			}else {
+				return parsedArray.get(0);
+			}
+			
+		}
+		
+
 				
 		
 	}
 	
-	static DimitrisAlgebraicNode compileProgram(String program) {
-		DimitrisAlgebraicNode returnNode = buildTree(parse(program),0);
-		System.out.println(returnNode.toString(0));
-		returnNode.solve();
-		System.out.println("evaluation:" + returnNode.value);
+	public static DimitrisAlgebraicNode compileProgram(String program) {
+		
+		logger += "starting parser" + "\n";
+		ArrayList<DimitrisAlgebraicNode> parsedArray = parse(program);
+		logger += "finished parsing";
+		
+		logger += "starting reduceParenthesis" + "\n";
+		parsedArray = reduceParenthesis(parsedArray);
+		logger += "finished reduceParenthesis" + "\n";
+		
+		logger += "started building tree" + "\n";
+		DimitrisAlgebraicNode returnNode = buildTree(parsedArray, 0);
+		logger += "finished building tree" + "\n";
+		
+		logger += "filling variables " + "\n";
+		fillVariables(returnNode);
+		logger += "filled variables " + "\n";
+		
+		if(debug) {
+			System.out.println("printing logger");
+			System.out.println(logger);
+			System.out.println("printing final tree");
+			System.out.println(returnNode.toString(0));
+			returnNode.solve();
+			System.out.println("evaluation:" + returnNode.value);
+		}
+		
+		
+
 		return returnNode;
 	}
 	
-
+	
+	public static ArrayList<Double> getOutputs(String program, ArrayList<Double> inputs){
+		DimitrisAlgebraicNode rootNode = compileProgram(program);
+		ArrayList<Double> outputs = new ArrayList<Double>();
+		
+		for(double input: inputs) {
+			updateVariable(rootNode, "x", input);
+			rootNode.solve();
+			outputs.add(rootNode.value);
+		}
+		
+		return outputs;
+	}
+	
+	public static void fillVariables(DimitrisAlgebraicNode n) {
+		if(n.isVariable && BenVariableStorage.isSet(n.varName)) {
+			n.value = BenVariableStorage.getValue(n.varName);
+		}else {
+			if(!n.isConstant && !(n.solver.getOperation() == "NAO")) { //not end of tree
+				if(!(n.lhs == null)) {
+					fillVariables(n.lhs);
+				}
+				if(!(n.rhs == null)) {
+					fillVariables(n.rhs);
+				}
+				
+			}
+		}
+	}
+	
+	public static void updateVariable(DimitrisAlgebraicNode n, String varName, double value) {
+		if(n.isVariable && n.varName.equals(varName)) {
+			n.value = value;
+			n.isEvaluated = true;
+		}else {
+			if(!n.isConstant && !(n.solver.getOperation().equals("NAO"))) { //not end of tree
+				
+				if(!(n.lhs == null)) {
+					updateVariable(n.lhs,varName, value);
+				}
+				if(!(n.rhs == null)) {
+					updateVariable(n.rhs,varName, value);
+				}
+				
+			}
+		}
+	}
+	
+	
+	public static void main(String[] args) {
+		String testString = "log(10;100)";
+		debug = true;
+//		ArrayList<DimitrisAlgebraicNode> parsedArray = reduceParenthesis(parse(testString));
+//		System.out.println(logger);
+//		for(DimitrisAlgebraicNode n : parsedArray) {
+//			System.out.println(n.toString() + " " + n.solver.getPrecedence());
+//		}
+		
+		compileProgram(testString);
+	}
 }

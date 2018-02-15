@@ -1,33 +1,28 @@
-package output;
+package input;
 
-import input.DimitrisAlgebraicNode;
-import input.Solver;
-import input.Solver.PrecedenceConstants;
+public class LhsParenthesis implements Solver {
 
-public class AdditionSolver implements Solver {
-	
-	int precedence = Solver.PrecedenceConstants.additionSolver;
+	public LhsParenthesis() {
+	}
 
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		lhs.solve();
-		rhs.solve();
-		return lhs.value + rhs.value;
+		return 0;
 	}
 
 	@Override
 	public String getOperation() {
-		return "+";
+		return "(";
 	}
 
 	@Override
 	public int getPrecedence() {
-		return precedence;
+		return -1;
 	}
 
 	@Override
 	public Solver getInverse() {
-		return null;
+		return new RhsParenthesis();
 	}
 
 	@Override
@@ -37,12 +32,11 @@ public class AdditionSolver implements Solver {
 
 	@Override
 	public void increasePrecedence(int amount) {
-		precedence += amount;
 	}
 
 	@Override
 	public Solver createNew() {
-		return new AdditionSolver();
+		return new LhsParenthesis();
 	}
 
 }

@@ -3,30 +3,29 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class CosSolver implements Solver {
+public class AbsSolver implements Solver {
 
-	@Override
+int precedence = Solver.PrecedenceConstants.absSolver;
+	
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		// TODO Auto-generated method stub
-		return 0;
+		rhs.solve();
+		
+		if(rhs.value < 1) {
+			return rhs.value * -1;
+		}
+		return rhs.value;
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return null;
+		return "abs";
 	}
 
 	@Override
 	public int getPrecedence() {
 		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
-		// TODO Auto-generated method stub
-		
+		return precedence;
 	}
 
 	@Override
@@ -36,9 +35,21 @@ public class CosSolver implements Solver {
 	}
 
 	@Override
+	public Solver createNew() {
+		// TODO Auto-generated method stub
+		return new AbsSolver();
+	}
+
+	@Override
 	public boolean urinaryFunction() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
+	}
+
+	@Override
+	public void increasePrecedence(int amount) {
+		precedence += amount;
+
 	}
 
 }

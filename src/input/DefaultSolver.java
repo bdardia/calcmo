@@ -1,22 +1,20 @@
-package output;
+package input;
 
-import input.DimitrisAlgebraicNode;
-import input.Solver;
-import input.Solver.PrecedenceConstants;
-
-public class MultiplicationSolver implements Solver {
-	private int precedence = Solver.PrecedenceConstants.multiplicationSolver;
+public class DefaultSolver implements Solver {
+	private int precedence;
 	
+	public DefaultSolver(int precedence) {
+		this.precedence = precedence;
+	}
+
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		lhs.solve();
-		rhs.solve();
-		return lhs.value * rhs.value;
+		return 0;
 	}
 
 	@Override
 	public String getOperation() {
-		return "*";
+		return "NAO"; //not an operation
 	}
 
 	@Override
@@ -26,12 +24,12 @@ public class MultiplicationSolver implements Solver {
 
 	@Override
 	public Solver getInverse() {
-		return new DivisionSolver();
+		return null;
 	}
 
 	@Override
 	public boolean urinaryFunction() {
-		return false;
+		return false; //keep false unless you like segfaults --> check NodeBuilder, a new DefaultSolver is created for each unary function
 	}
 
 	@Override
@@ -42,7 +40,7 @@ public class MultiplicationSolver implements Solver {
 
 	@Override
 	public Solver createNew() {
-		return new MultiplicationSolver();
+		return new DefaultSolver(Solver.PrecedenceConstants.defaultSolver);
 	}
 
 }

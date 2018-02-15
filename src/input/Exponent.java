@@ -1,22 +1,22 @@
-package output;
+package input;
 
-import input.DimitrisAlgebraicNode;
-import input.Solver;
-
-public class DivisionSolver implements Solver {
-	private int precedence = Solver.PrecedenceConstants.divisionSolver;
+public class Exponent implements Solver {
 	
+	int precedence = Solver.PrecedenceConstants.exponentSolver;
+	
+	public Exponent() {
+	}
+
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		lhs.solve();
 		rhs.solve();
-		
-		return lhs.value / rhs.value;
+		return Math.pow(lhs.value, rhs.value);
 	}
 
 	@Override
 	public String getOperation() {
-		return "/";
+		return "^";
 	}
 
 	@Override
@@ -26,7 +26,12 @@ public class DivisionSolver implements Solver {
 
 	@Override
 	public Solver getInverse() {
-		return new MultiplicationSolver();
+		return null;
+	}
+
+	@Override
+	public Solver createNew() {
+		return new Exponent();
 	}
 
 	@Override
@@ -35,13 +40,9 @@ public class DivisionSolver implements Solver {
 	}
 
 	@Override
-	public Solver createNew() {
-		return new DivisionSolver();
-	}
-
-	@Override
 	public void increasePrecedence(int amount) {
 		precedence += amount;
+
 	}
 
 }

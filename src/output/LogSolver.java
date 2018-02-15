@@ -1,26 +1,33 @@
 package output;
 
+import java.util.ArrayList;
+
 import input.DimitrisAlgebraicNode;
+import input.ParameterSolver;
 import input.Solver;
 
-public class TanSolver implements Solver {
+public class LogSolver implements Solver {
 
-	int precedence = Solver.PrecedenceConstants.tanSolver;
+	int precedence = Solver.PrecedenceConstants.logSolver;
 	
-	
-	public static boolean inversetan;
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		rhs.solve();
-		if(inversetan) {
-			return 1/(java.lang.Math.tan(rhs.value));
-		}
-		return java.lang.Math.tan(rhs.value);
+		ArrayList<DimitrisAlgebraicNode> paramList = ParameterSolver.getParameterList(rhs);
+		
+		DimitrisAlgebraicNode base = paramList.get(0);
+		DimitrisAlgebraicNode argument = paramList.get(1);
+		
+		base.solve();
+		argument.solve();
+		 
+		
+		return java.lang.Math.log(argument.value)/java.lang.Math.log(base.value);
+		
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "tan";
+		return "log";
 	}
 
 	@Override
@@ -38,7 +45,7 @@ public class TanSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new TanSolver();
+		return new LogSolver();
 	}
 
 	@Override
