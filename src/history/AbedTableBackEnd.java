@@ -8,10 +8,10 @@ import input.DimitrisNodeBuilder;
 public class AbedTableBackEnd 
 {
 	private ArrayList<AbedHistoryNode> functionNodes = JasHistoryScreen.fx;
-	public static ArrayList<String> inputs;
-	public static ArrayList<Double> functionalInputs;
-	public static ArrayList<Double> outputs;
-	public static ArrayList<AbedHistoryNode> hist;
+	public static ArrayList<String> inputs = new ArrayList<String>();
+	public static ArrayList<Double> functionalInputs = new ArrayList<Double>();
+	public static ArrayList<Double> outputs = new ArrayList<Double>();
+	public static ArrayList<AbedHistoryNode> coordinates = new ArrayList<AbedHistoryNode>();
 	public static String function;
 	
 	///compile on the string called first n.solve then fill
@@ -29,6 +29,10 @@ public class AbedTableBackEnd
 	{
 		convertInputs();
 		outputs = DimitrisNodeBuilder.getOutputs(function,functionalInputs);
+		for(int i = 0; i < outputs.size();i++)
+		{
+			System.out.println(outputs.get(i));
+		}
 	}
 	
 }

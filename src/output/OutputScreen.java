@@ -116,7 +116,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		viewObjects.add(inputButton);
 		viewObjects.add(historyButton);
 		viewObjects.add(tableButton);
-		viewObjects.add(settingsButton);
+		//viewObjects.add(settingsButton);
 	}
 
 }
