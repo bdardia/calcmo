@@ -3,30 +3,29 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class SinSolver implements Solver {
-
+public class SineSolver implements Solver {
+	
+	public static boolean inversesin;
+	int precedence = Solver.PrecedenceConstants.sineSolver;
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		double var = (double) Math.sin(lhs);
-		return var;
+		rhs.solve();
+		if(inversesin) {
+			return 1/(java.lang.Math.sin(rhs.value));
+		}
+		return java.lang.Math.sin(rhs.value);
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "sin(";
+		return "sin";
 	}
 
 	@Override
 	public int getPrecedence() {
 		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
-		// TODO Auto-generated method stub
-		
+		return precedence;
 	}
 
 	@Override
@@ -36,9 +35,21 @@ public class SinSolver implements Solver {
 	}
 
 	@Override
+	public Solver createNew() {
+		// TODO Auto-generated method stub
+		return new SineSolver();
+	}
+
+	@Override
 	public boolean urinaryFunction() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
+	}
+
+	@Override
+	public void increasePrecedence(int amount) {
+		precedence += amount;
+
 	}
 
 }

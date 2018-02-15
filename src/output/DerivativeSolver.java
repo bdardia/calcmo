@@ -3,24 +3,18 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class TanSolver implements Solver {
+public class DerivativeSolver implements Solver {
 
-	int precedence = Solver.PrecedenceConstants.tanSolver;
-	
-	
-	public static boolean inversetan;
+	int precedence = Solver.PrecedenceConstants.derivativeSolver;
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		rhs.solve();
-		if(inversetan) {
-			return 1/(java.lang.Math.tan(rhs.value));
-		}
-		return java.lang.Math.tan(rhs.value);
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "tan";
+		return "";
 	}
 
 	@Override
@@ -38,19 +32,18 @@ public class TanSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new TanSolver();
+		return new DerivativeSolver();
 	}
 
 	@Override
 	public boolean urinaryFunction() {
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 	@Override
 	public void increasePrecedence(int amount) {
 		precedence += amount;
-
 	}
 
 }

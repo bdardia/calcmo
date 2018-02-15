@@ -1,45 +1,55 @@
 package output;
 
 import input.DimitrisAlgebraicNode;
-import input.MultiplicationSolver;
 import input.Solver;
 
-public class PowerSolver implements Solver {
+public class AbsSolver implements Solver {
 
-	@Override
+int precedence = Solver.PrecedenceConstants.absSolver;
+	
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		// TODO Auto-generated method stub
-		return Math.pow(lhs.solveNode(), rhs.solveNode());
+		rhs.solve();
+		
+		if(rhs.value < 1) {
+			return rhs.value * -1;
+		}
+		return rhs.value;
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "^";
+		return "abs";
 	}
 
 	@Override
 	public int getPrecedence() {
 		// TODO Auto-generated method stub
-		return 5;
+		return precedence;
 	}
 
 	@Override
 	public Solver getInverse() {
 		// TODO Auto-generated method stub
-		return new MultiplicationSolver();
+		return null;
 	}
 
 	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
+	public Solver createNew() {
 		// TODO Auto-generated method stub
-		
+		return new AbsSolver();
 	}
 
 	@Override
 	public boolean urinaryFunction() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
-	
+
+	@Override
+	public void increasePrecedence(int amount) {
+		precedence += amount;
+
+	}
+
 }

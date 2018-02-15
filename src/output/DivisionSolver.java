@@ -1,19 +1,22 @@
-package input;
+package output;
 
-public class SubtractionSolver implements Solver{
-	
-	private int precedence = Solver.PrecedenceConstants.subtractionSolver;
+import input.DimitrisAlgebraicNode;
+import input.Solver;
+
+public class DivisionSolver implements Solver {
+	private int precedence = Solver.PrecedenceConstants.divisionSolver;
 	
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		lhs.solve();
 		rhs.solve();
-		return lhs.value - rhs.value;
+		
+		return lhs.value / rhs.value;
 	}
 
 	@Override
 	public String getOperation() {
-		return "-";
+		return "/";
 	}
 
 	@Override
@@ -23,7 +26,7 @@ public class SubtractionSolver implements Solver{
 
 	@Override
 	public Solver getInverse() {
-		return new AdditionSolver();
+		return new MultiplicationSolver();
 	}
 
 	@Override
@@ -33,7 +36,7 @@ public class SubtractionSolver implements Solver{
 
 	@Override
 	public Solver createNew() {
-		return new SubtractionSolver();
+		return new DivisionSolver();
 	}
 
 	@Override
@@ -41,5 +44,4 @@ public class SubtractionSolver implements Solver{
 		precedence += amount;
 	}
 
-	
 }

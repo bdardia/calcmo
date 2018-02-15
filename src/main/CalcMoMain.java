@@ -5,6 +5,7 @@ import history.AbidTableScreen;
 import history.AbidTransitionScreen;
 import history.JasHistoryScreen;
 import input.BenInputScreen;
+import output.LordSettingsScreen;
 import output.OutputScreen;
 
 
@@ -20,6 +21,7 @@ public class CalcMoMain extends GUIApplication{
 	public static OutputScreen outputScreen;
 	public static AbidTransitionScreen transitionScreen;
 	public static AbidTableScreen tableScreen;
+	public static LordSettingsScreen settingsScreen;
 
 	public CalcMoMain(int width, int height) {
 		super(width, height);
@@ -30,6 +32,9 @@ public class CalcMoMain extends GUIApplication{
 		historyScreen = new JasHistoryScreen(getWidth(), getHeight());
 		inputScreen = new BenInputScreen(getWidth(), getHeight());
 		outputScreen = new OutputScreen(getWidth(), getHeight());
+		tableScreen = new AbidTableScreen(getWidth(), getHeight());
+		settingsScreen = new LordSettingsScreen(getWidth(), getHeight());
+		
 		setScreen(inputScreen);
 	}
 

@@ -25,9 +25,11 @@ public class OutputScreen extends AbidCalculatorScreen {
 	private Button inputButton;
 	private Button historyButton;
 	private Button tableButton;
+	private Button settingsButton;
 	private static TextLabel outputArea;
 	
-	public static ArrayList<AbedHistoryNode> unfinishedNodes;
+	public static ArrayList<AbedHistoryNode> unfinishedNodes = new ArrayList<AbedHistoryNode>();
+
 	
 	public static double output;
 	
@@ -36,16 +38,21 @@ public class OutputScreen extends AbidCalculatorScreen {
 		super(width, height);
 	}
 	
-	
+	//Lord Crawford
 	public static void recieveTopNode(DimitrisAlgebraicNode n) {
 		n.solve();
 		System.out.println(n.value); 
 		
-		output = n.value;
-		outputArea.setText(outputArea.getText() + n.value);
-//		AbedHistoryNode completeNode = unfinishedNodes.get(unfinishedNodes.size()-1);
-//		completeNode.setOut(output);
-//		JasHistoryScreen.fx.add(completeNode);
+		
+		double rounder = Math.pow(10, LordSettingsScreen.roundNumber);
+		output = Math.round (n.value * rounder) / rounder; ;
+		outputArea.setText(outputArea.getText() + output);
+		
+		
+		
+		unfinishedNodes.get(unfinishedNodes.size()-1).setOut(output);
+		JasHistoryScreen.fx.add(unfinishedNodes.get(unfinishedNodes.size()-1));
+		System.out.print(JasHistoryScreen.fx.get(JasHistoryScreen.fx.size()-1));
 	}
 	
 	
@@ -71,6 +78,8 @@ public class OutputScreen extends AbidCalculatorScreen {
 		historyButton = new Button(200, 400, 100, 100, "History", JasCustomButton.getB(), new Action() {
 			public void act() {
 				
+				CalcMoMain.historyScreen.populateScroll();
+
 				switchScreen(CalcMoMain.historyScreen);
 				
 				System.out.println("History button pressed");
@@ -88,11 +97,18 @@ public class OutputScreen extends AbidCalculatorScreen {
 				outputArea.setText("Answer: ");
 			}
 		});
-		
-		
-		
-		
 		JasCustomButton.circleButton(tableButton);
+		
+		//doesn't work???
+		settingsButton = new Button(200, 450, 100, 100, "Settings", JasCustomButton.getB(), new Action() {
+			public void act() {
+				
+				switchScreen(CalcMoMain.settingsScreen);
+				
+				System.out.println("Settings button pressed");
+				outputArea.setText("Answer: ");
+			}
+		});
 		
 		viewObjects.add(background);
 		viewObjects.add(outputArea);
@@ -100,6 +116,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		viewObjects.add(inputButton);
 		viewObjects.add(historyButton);
 		viewObjects.add(tableButton);
+		viewObjects.add(settingsButton);
 	}
 
 }

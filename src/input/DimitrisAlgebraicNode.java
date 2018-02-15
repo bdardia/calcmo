@@ -1,5 +1,21 @@
 package input;
 
+import output.AbsSolver;
+import output.AdditionSolver;
+import output.ArcCosSolver;
+import output.ArcSinSolver;
+import output.ArcTanSolver;
+import output.CosineSolver;
+import output.DerivativeSolver;
+import output.DivisionSolver;
+import output.FactorialSolver;
+import output.LnSolver;
+import output.LogSolver;
+import output.MultiplicationSolver;
+import output.SineSolver;
+import output.SqrRootSolver;
+import output.SubtractionSolver;
+import output.TanSolver;
 
 public class DimitrisAlgebraicNode {
 	
@@ -17,7 +33,11 @@ public class DimitrisAlgebraicNode {
 	public String varName;
 	public boolean isVariable = false;
 	
-	public static Solver[] solverArray = {new AdditionSolver(), new MultiplicationSolver(), new DivisionSolver(), new SubtractionSolver(), new LhsParenthesis(), new RhsParenthesis(), new CosineSolver()}; //set up in main
+	public static Solver[] solverArray = {new AdditionSolver(), new MultiplicationSolver(), new DivisionSolver(), new SubtractionSolver(), new LhsParenthesis(), new RhsParenthesis(), 
+											new CosineSolver(),new Exponent(), 
+											new SineSolver(), new TanSolver(), new ArcCosSolver(), new ArcSinSolver(), new ArcTanSolver(), new LogSolver(), new LnSolver(), new ParameterSolver(), new AbsSolver(),
+											//new SqrRootSolver(), new DerivativeSolver(), new FactorialSolver()  //I have no idea which one does not work
+											}; 
 	
 	
 	

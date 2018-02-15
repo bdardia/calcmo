@@ -1,4 +1,3 @@
-
 package history;
 
 import java.util.ArrayList;
@@ -49,9 +48,18 @@ public class AbedHistoryNode
 	{
 		return output;
 	}
+	
+	public void setOutput(String output)
+	{
+		this.output = output;
+	}
 	public void setOut(double out)
 	{
 		this.out = out;
+	}
+	public double getOut()
+	{
+		return out;
 	}
 	
 	

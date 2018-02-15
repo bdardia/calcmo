@@ -1,47 +1,50 @@
 package output;
 
 import input.DimitrisAlgebraicNode;
-import input.MultiplicationSolver;
 import input.Solver;
 
-public class Parenthesis implements Solver {
+public class ArcSinSolver implements Solver {
 
+	int precedence = Solver.PrecedenceConstants.arcsinSolver;
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		// TODO Auto-generated method stub
-		return lhs.solveNode() / rhs.solveNode();
+		rhs.solve();
+		return java.lang.Math.asin(rhs.value);
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "-";
+		return "arcsin";
 	}
 
 	@Override
 	public int getPrecedence() {
 		// TODO Auto-generated method stub
-		return 1;
+		return precedence;
 	}
 
 	@Override
 	public Solver getInverse() {
 		// TODO Auto-generated method stub
-		return new MultiplicationSolver();
+		return null;
 	}
 
 	@Override
-	public void addParent(DimitrisAlgebraicNode n) {
+	public Solver createNew() {
 		// TODO Auto-generated method stub
-		
+		return new ArcSinSolver();
 	}
-	
+
+	@Override
+	public boolean urinaryFunction() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public void increasePrecedence(int amount) {
+		precedence += amount;
+
+	}
 }
-
-
-
-// trig type (when input is trig funcitons)
-// normal (integer type, polynomial )
-
-// based on what it returns whatever
-//and a method will solve based on the type returned 
