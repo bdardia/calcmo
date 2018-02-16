@@ -91,7 +91,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		tableButton = new Button(300, 400, 100, 100, "Table", JasCustomButton.getC(), new Action() {
 			public void act() {
 				
-				//switchScreen(CalcMoMain.tableScreen);
+				switchScreen(CalcMoMain.tableScreen);
 				
 				System.out.println("Table button pressed");
 				outputArea.setText("Answer: ");
@@ -100,7 +100,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		JasCustomButton.circleButton(tableButton);
 		
 		//doesn't work???
-		settingsButton = new Button(200, 450, 100, 100, "Settings", JasCustomButton.getB(), new Action() {
+		/*settingsButton = new Button(200, 450, 100, 100, "Settings", JasCustomButton.getB(), new Action() {
 			public void act() {
 				
 				switchScreen(CalcMoMain.settingsScreen);
@@ -108,15 +108,15 @@ public class OutputScreen extends AbidCalculatorScreen {
 				System.out.println("Settings button pressed");
 				outputArea.setText("Answer: ");
 			}
-		});
+		});*/
 		
 		viewObjects.add(background);
 		viewObjects.add(outputArea);
 		
 		viewObjects.add(inputButton);
 		viewObjects.add(historyButton);
-		viewObjects.add(tableButton);
-		viewObjects.add(settingsButton);
+		//sviewObjects.add(tableButton);
+		//viewObjects.add(settingsButton);
 	}
 
 }

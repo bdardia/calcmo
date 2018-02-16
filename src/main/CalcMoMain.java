@@ -1,7 +1,7 @@
 package main;
 
 import guiTeacher.GUIApplication;
-import history.AbidTableScreen;
+import history.AbedTableScreen;
 import history.AbidTransitionScreen;
 import history.JasHistoryScreen;
 import input.BenInputScreen;
@@ -20,7 +20,7 @@ public class CalcMoMain extends GUIApplication{
 	public static BenInputScreen inputScreen;
 	public static OutputScreen outputScreen;
 	public static AbidTransitionScreen transitionScreen;
-	public static AbidTableScreen tableScreen;
+	public static AbedTableScreen tableScreen;
 	public static LordSettingsScreen settingsScreen;
 
 	public CalcMoMain(int width, int height) {
@@ -32,8 +32,8 @@ public class CalcMoMain extends GUIApplication{
 		historyScreen = new JasHistoryScreen(getWidth(), getHeight());
 		inputScreen = new BenInputScreen(getWidth(), getHeight());
 		outputScreen = new OutputScreen(getWidth(), getHeight());
-		tableScreen = new AbidTableScreen(getWidth(), getHeight());
-		settingsScreen = new LordSettingsScreen(getWidth(), getHeight());
+		tableScreen = new AbedTableScreen(getWidth(), getHeight());
+		//settingsScreen = new LordSettingsScreen(getWidth(), getHeight());
 		
 		setScreen(inputScreen);
 	}

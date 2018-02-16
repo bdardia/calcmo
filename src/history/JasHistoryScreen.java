@@ -78,6 +78,7 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 			public void act() 
 			{
 				//function selected goes to table screen and displays table
+				switchScreen(CalcMoMain.tableScreen);
 			}
 		});
 		viewObjects.add(table);

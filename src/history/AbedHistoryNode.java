@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class AbedHistoryNode 
 {
+	private Double in;
+	private Double put;
 	private String input;
 	private String output;
 	private ArrayList<String> xCoordinate;
@@ -34,6 +36,12 @@ public class AbedHistoryNode
 		this.animate = animate;
 	}
 	
+	public AbedHistoryNode(Double input,Double Output)
+	{
+		this.in = input;
+		this.put = Output;
+	}
+	
 	public String getInput()
 	{
 		return input;
@@ -60,6 +68,14 @@ public class AbedHistoryNode
 	public double getOut()
 	{
 		return out;
+	}
+	public Double getput()
+	{
+		return put;
+	}
+	public Double getIn()
+	{
+		return in;
 	}
 	
 	
