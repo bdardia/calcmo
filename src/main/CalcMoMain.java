@@ -33,7 +33,7 @@ public class CalcMoMain extends GUIApplication{
 		inputScreen = new BenInputScreen(getWidth(), getHeight());
 		outputScreen = new OutputScreen(getWidth(), getHeight());
 		tableScreen = new AbedTableScreen(getWidth(), getHeight());
-		settingsScreen = new LordSettingsScreen(getWidth(), getHeight());
+		//settingsScreen = new LordSettingsScreen(getWidth(), getHeight());
 		
 		setScreen(inputScreen);
 	}
