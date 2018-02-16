@@ -8,28 +8,35 @@ import input.DimitrisNodeBuilder;
 public class AbedTableBackEnd 
 {
 	private ArrayList<AbedHistoryNode> functionNodes = JasHistoryScreen.fx;
-	public static ArrayList<String> inputs;
+	public static ArrayList<String> inputs = new ArrayList<String>();
+	public static ArrayList<Double> functionalInputs = new ArrayList<Double>();
+	public static ArrayList<Double> outputs = new ArrayList<Double>();
+	public static ArrayList<AbedHistoryNode> coordinates = new ArrayList<AbedHistoryNode>();
+	public static String function;
+	
 	///compile on the string called first n.solve then fill
 	
-	public static void main(String[] args)
+	
+	public static void convertInputs()
 	{
-		createOutputs();
-		System.out.println("s");
-	}
-	public AbedTableBackEnd() 
-	{
-		
-		
-	}
-	public static void createOutputs()
-	{
-		ArrayList<Double> n = new ArrayList<Double>();
-		ArrayList<Double> t = DimitrisNodeBuilder.getOutputs("x",n);
-		for(int i  = 0; i < t.size();i++)
+		for(int i = 0; i < inputs.size();i++)
 		{
-			System.out.println(t.get(i));
+			functionalInputs.add(i,Double.parseDouble(inputs.get(i)));
 		}
 		
+	}
+	
+	public static void createOutputs()
+	{
+		convertInputs();
+		
+		outputs = DimitrisNodeBuilder.getOutputs(function,functionalInputs);
+		for(int i = 0; i < outputs.size();i++)
+		{
+			System.out.println(outputs.get(i));
+			coordinates.add(new AbedHistoryNode(functionalInputs.get(i),outputs.get(i)));
+			
+		}
 	}
 	
 }

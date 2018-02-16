@@ -14,7 +14,7 @@ import main.CalcMoMain;
 
 public class AbedTableScreen extends AbidCalculatorScreen
 {
-		
+	public static ScrollablePane scroll;
 	
 	public AbedTableScreen(int width, int height) 
 	{
@@ -25,7 +25,7 @@ public class AbedTableScreen extends AbidCalculatorScreen
 	{
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/outputScreen.png"));
 
-		ScrollablePane scroll = new ScrollablePane(this, 35, 39, 443, 275);
+		scroll = new ScrollablePane(this, 35, 39, 443, 275);
 		scroll.setBackground(new Color(165, 237, 186));	
 		
 		Button goInput = new Button(250, 575, 75, 50, "GO BACK", JasCustomButton.getA(), new Action() 
