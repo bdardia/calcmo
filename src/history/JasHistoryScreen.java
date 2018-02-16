@@ -83,7 +83,7 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		});
 		viewObjects.add(table);
 	}
-	
+	//all code is coWritten by Abed Islam
 	public void populateScroll() {
 		scroll.removeAll();
 		System.out.println(fx.size());

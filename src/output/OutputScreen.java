@@ -49,7 +49,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		outputArea.setText(outputArea.getText() + output);
 		
 		
-		
+		///53-55 by abed islam
 		unfinishedNodes.get(unfinishedNodes.size()-1).setOut(output);
 		JasHistoryScreen.fx.add(unfinishedNodes.get(unfinishedNodes.size()-1));
 		System.out.print(JasHistoryScreen.fx.get(JasHistoryScreen.fx.size()-1));

@@ -318,6 +318,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{
 				
 				solverPress();
+				///322 written by abed islam
 				OutputScreen.unfinishedNodes.add(new AbedHistoryNode(inputArea.getText(),0.0));
 				OutputScreen.recieveTopNode(DimitrisNodeBuilder.compileProgram(inputArea.getText()));
 				
