@@ -91,6 +91,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		tableButton = new Button(300, 400, 100, 100, "Table", JasCustomButton.getC(), new Action() {
 			public void act() {
 				
+				CalcMoMain.tableScreen.fillScroll();
 				switchScreen(CalcMoMain.tableScreen);
 				
 				System.out.println("Table button pressed");
@@ -115,7 +116,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		
 		viewObjects.add(inputButton);
 		viewObjects.add(historyButton);
-		//sviewObjects.add(tableButton);
+		viewObjects.add(tableButton);
 		//viewObjects.add(settingsButton);
 	}
 

@@ -69,7 +69,7 @@ public class AbedHistoryNode
 	{
 		return out;
 	}
-	public Double getput()
+	public Double getPut()
 	{
 		return put;
 	}

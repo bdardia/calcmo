@@ -7,6 +7,7 @@ import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.ScrollablePane;
+import guiTeacher.components.TextArea;
 import guiTeacher.components.TextBox;
 import guiTeacher.interfaces.Visible;
 import input.BenInputScreen;
@@ -16,6 +17,7 @@ public class AbedTableScreen extends AbidCalculatorScreen
 {
 	public static ScrollablePane scroll;
 	
+	
 	public AbedTableScreen(int width, int height) 
 	{
 		super(width, height);
@@ -23,11 +25,16 @@ public class AbedTableScreen extends AbidCalculatorScreen
 	}
 	public void initAllObjects(List<Visible> viewObjects) 
 	{
+		
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/outputScreen.png"));
-
 		scroll = new ScrollablePane(this, 35, 39, 443, 275);
 		scroll.setBackground(new Color(165, 237, 186));	
-		
+		fillScroll();
+		viewObjects.add(scroll);
+		TextArea inst = new TextArea(100,120,200,400,"To use the table first type the function using "
+				+ "variable x " + "in the inputbox that says enter. Next enter the values u want in "
+						+ "the textbox that says num and hit insert. Finally hit comp to get ur values.");
+		viewObjects.add(inst);
 		Button goInput = new Button(250, 575, 75, 50, "GO BACK", JasCustomButton.getA(), new Action() 
 		{
 			
@@ -44,7 +51,7 @@ public class AbedTableScreen extends AbidCalculatorScreen
 
 			public void act() 
 			{
-				
+				inst.setText("");
 				scroll.update();
 			}
 		});
@@ -60,8 +67,7 @@ public class AbedTableScreen extends AbidCalculatorScreen
 		});
 		viewObjects.add(delete);
 		viewObjects.add(clear);
-		viewObjects.add(scroll);
-		TextBox input = new TextBox(40, 440, 50, 50,"");
+		TextBox input = new TextBox(40, 440, 50, 50,"num");
 		Button insert = new Button(90,440,55,30,"INSERT",JasCustomButton.getB(),new Action() 
 		{
 			
@@ -81,6 +87,7 @@ public class AbedTableScreen extends AbidCalculatorScreen
 			{
 				AbedTableBackEnd.function = functionInput.getText();
 				System.out.println(AbedTableBackEnd.function);
+				
 			}
 		});
 		Button compile  = new Button(175,575,75,50,"Comp",JasCustomButton.getB(),new Action() 
@@ -90,12 +97,37 @@ public class AbedTableScreen extends AbidCalculatorScreen
 			public void act() 
 			{
 				AbedTableBackEnd.createOutputs();
-				
+				fillScroll();
 			}
 		});
 		JasCustomButton.circleButton(compile);
 		viewObjects.add(functionInput);
 		viewObjects.add(functionSubmit);
 		viewObjects.add(compile);
+	}
+	public void fillScroll()
+	{
+		scroll.removeAll();
+		System.out.println(AbedTableBackEnd.coordinates.size());
+		for(int i = 0; i < AbedTableBackEnd.coordinates.size(); i++)
+		{
+			
+			String in =  Double.toString(AbedTableBackEnd.coordinates.get(i).getIn());
+			System.out.println(in);
+			String out = Double.toString(AbedTableBackEnd.coordinates.get(i).getPut());
+			
+			scroll.addObject(new TextArea(5,spaceOutY(5,true), 100, 25, in));
+			
+			scroll.addObject(new TextArea(5,spaceOutY(5,false), 100, 25, out));;
+		}
+		scroll.update();
+	}
+	public int spaceOutY(int x, boolean xIn) 
+	{
+		if(xIn) 
+		{
+			return 100 * (x) + 20;
+		}
+		return 100 * (x) + 45;
 	}
 }

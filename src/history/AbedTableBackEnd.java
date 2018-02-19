@@ -29,7 +29,6 @@ public class AbedTableBackEnd
 	public static void createOutputs()
 	{
 		convertInputs();
-		
 		outputs = DimitrisNodeBuilder.getOutputs(function,functionalInputs);
 		for(int i = 0; i < outputs.size();i++)
 		{
