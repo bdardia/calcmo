@@ -37,6 +37,7 @@ public class LordNotesScreen extends AbidCalculatorScreen {
 	
 	private TextBox deleteInput;
 	private Button deleteButton;
+	private Button clearButton;
 	
 	static List<String> notes = new ArrayList<String>();
 	
@@ -97,6 +98,14 @@ public class LordNotesScreen extends AbidCalculatorScreen {
 			}
 		});
 		
+		clearButton = new Button(310, 550, 85, 30, "CLEAR", JasCustomButton.getB(), new Action() {
+			public void act() 
+			{
+				notes.clear();
+				notesDisplay.setText(displayNotes());
+			}
+		});
+		
 		
 		
 
@@ -109,6 +118,7 @@ public class LordNotesScreen extends AbidCalculatorScreen {
 		viewObjects.add(notesDisplay);
 		viewObjects.add(deleteInput);
 		viewObjects.add(deleteButton);
+		viewObjects.add(clearButton);
 
 	}
 	

@@ -601,6 +601,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	{
 		if(LordSettingsScreen.soundToggle) {
 		soundControl.playSound("plop_amplified.wav");
+		//switchSound();
 		}
 	}
 
@@ -608,6 +609,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	{
 		if(LordSettingsScreen.soundToggle) {
 		soundControl.playSound("beeep_distorted.wav");
+		//switchSound();
 		}
 	}
 	
@@ -615,6 +617,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	{
 		if(LordSettingsScreen.soundToggle) {
 		soundControl.playSound("ping_pong_8bit_peeeeeep.wav");
+		//switchSound();
 		}
 	}
 	
