@@ -51,7 +51,6 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 	
 	private Button notesButton;
 	
-	public static BenSound soundControl;
 	
 	public LordSettingsScreen(int width, int height) {
 		super(width,height);
@@ -197,7 +196,7 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 		
 		viewObjects.add(notesButton);
 
-		soundControl = new BenSound();
+		
 	}
 	
 	public static String time() {
@@ -207,22 +206,7 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 	}
 	
 	//change sound ?
-	
-	public void switchSound() {
-		//randomly switches the sounds played based on button clicked
-		//used in bens class but doesn't work
-		
-		int num = (int) (Math.random() * 3);
-		if(num == 1) {
-			soundControl.playSound("plop_amplified.wav");
-		}
-		if(num == 2) {
-			soundControl.playSound("beeep_distorted.wav");
-		}
-		if(num == 3) {
-			soundControl.playSound("ping_pong_8bit_peeeeeep.wav");
-		}
-	}
+
 	
 
 }

@@ -16,8 +16,9 @@ import output.LordSettingsScreen;
 import output.AchillesOutputScreen;
 import output.LordSineSolver;
 import output.LordTanSolver;
+import output.SwitchSound;
 
-public class BenInputScreen extends AbidCalculatorScreen 
+public class BenInputScreen extends AbidCalculatorScreen implements SwitchSound
 {
 	/**
 	 * 
@@ -619,6 +620,27 @@ public class BenInputScreen extends AbidCalculatorScreen
 		soundControl.playSound("ping_pong_8bit_peeeeeep.wav");
 		//switchSound();
 		}
+	}
+
+	@Override
+	//lord
+	public void switchSound() {
+		int num = (int) (Math.random() * 3);
+		if(num == 1) {
+			soundControl.playSound("plop_amplified.wav");
+		}
+		if(num == 2) {
+			soundControl.playSound("beeep_distorted.wav");
+		}
+		if(num == 3) {
+			soundControl.playSound("ping_pong_8bit_peeeeeep.wav");
+		}
+	}
+
+	@Override
+	public void storeMultipleSound() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 //	public void transferNode(AbedHistoryNode a, ArrayList<AbedHistoryNode> s) 
