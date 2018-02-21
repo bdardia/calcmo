@@ -3,7 +3,7 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class FactorialSolver implements Solver {
+public class AchillesFactorialSolver implements Solver {
 
 	//need to make factorial button for ben
 int precedence = Solver.PrecedenceConstants.factorialSolver;
@@ -42,7 +42,7 @@ int precedence = Solver.PrecedenceConstants.factorialSolver;
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new FactorialSolver();
+		return new AchillesFactorialSolver();
 	}
 
 	@Override

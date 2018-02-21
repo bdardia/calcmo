@@ -514,6 +514,17 @@ public class BenInputScreen extends AbidCalculatorScreen
 				buttonPress();
 			}
 		});
+		
+		settingsButton = new Button(122, 511, 79, 23, "Settings", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				switchScreen(CalcMoMain.settingsScreen);
+				LordSettingsScreen.lastScreen = 2;
+				buttonPress();
+			}
+		});
 		clearVarButton = new Button(125, 438, 54, 30, "", new Action() {
 			
 			@Override
@@ -530,16 +541,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			}
 		});
 		
-		//Lord C
-		settingsButton = new Button(435,0,79,23,"", new Action() {
-			
-			public void act() 
-			{
-				
-				solverPress();
-				switchScreen(CalcMoMain.settingsScreen);
-			}
-		});
+		
 		
 		
 		viewObjects.add(background);

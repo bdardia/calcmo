@@ -3,7 +3,7 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class DerivativeSolver implements Solver {
+public class AchillesDerivativeSolver implements Solver {
 
 	int precedence = Solver.PrecedenceConstants.derivativeSolver;
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
@@ -32,7 +32,7 @@ public class DerivativeSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new DerivativeSolver();
+		return new AchillesDerivativeSolver();
 	}
 
 	@Override

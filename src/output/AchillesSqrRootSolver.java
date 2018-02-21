@@ -1,36 +1,29 @@
 package output;
 
-import java.util.ArrayList;
-
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class LimitsSolver implements Solver {
 
-	public static ArrayList<Double> values = new ArrayList<Double>();
+//need to make a button for this
+public class AchillesSqrRootSolver implements Solver {
 	
-	public LimitsSolver() {
-		
-	}
-	
-	
-
+	int precedence = Solver.PrecedenceConstants.sqrrootSolver;
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		// TODO Auto-generated method stub
-		return 0;
+		rhs.solve();
+		return java.lang.Math.sqrt(rhs.value);
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return null;
+		return "sqrroot";
 	}
 
 	@Override
 	public int getPrecedence() {
 		// TODO Auto-generated method stub
-		return 0;
+		return precedence;
 	}
 
 	@Override
@@ -42,27 +35,19 @@ public class LimitsSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return null;
+		return new AchillesSqrRootSolver();
 	}
 
 	@Override
 	public boolean urinaryFunction() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public void increasePrecedence(int amount) {
-		// TODO Auto-generated method stub
-		
+		precedence += amount;
+
 	}
-	
-	public static void createBounds(double x) {
-		double upper = x * 1.001;
-		double lower = x * 0.999;
-		
-		ArrayList[] values;
-	}
-	
 
 }

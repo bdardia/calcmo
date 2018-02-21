@@ -18,7 +18,13 @@ public class LordCosineSolver implements Solver {
 		rhs.solve();
 		
 		if(inversecos) {
+			if(LordSettingsScreen.radians) {
+				return 1/(java.lang.Math.cos(Math.toRadians(rhs.value)));
+			}
 			return 1/(java.lang.Math.cos(rhs.value));
+		}
+		if(LordSettingsScreen.radians) {
+			return java.lang.Math.cos(Math.toRadians(rhs.value));
 		}
 		return java.lang.Math.cos(rhs.value);
 	}

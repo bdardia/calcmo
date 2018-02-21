@@ -1,6 +1,9 @@
 package output;
 
 import java.awt.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -29,6 +32,7 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 	private Button soundOFFButton;
 	public static boolean soundToggle = true;
 	private TextLabel soundArea;
+	private Graphic soundLabel;
 	
 	
 	private TextBox roundInput;
@@ -40,11 +44,15 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 	private Button fontSmall;
 	private Button fontLarge;
 	
-	private Button clearHistory;
-	
 	private Button radiansButton;
 	private Button degreesButton;
 	public static boolean radians;
+	private TextLabel modeArea;
+	
+	static Thread counter = new Thread();
+	private TextLabel clock;
+	
+	private Button notesButton;
 	
 	
 	public LordSettingsScreen(int width, int height) {
@@ -62,28 +70,29 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 				if(lastScreen == 1) {
 					switchScreen(CalcMoMain.historyScreen);
 				}
+				if(lastScreen == 2) {
+					switchScreen(CalcMoMain.inputScreen);
+				}
 			}
 		});
 		
-		soundONButton = new Button(20, 450, 75, 50, "ON", JasCustomButton.getA(), new Action() {
+		soundLabel = new Graphic(180, 400, 50,50,"resources/sound.png");
+				
+		soundONButton = new Button(120, 450, 75, 50, "ON", JasCustomButton.getA(), new Action() {
 
 			@Override
 			public void act() 
 			{	
-				soundONButton.setBackground(Color.RED);
-				soundOFFButton.setBackground(Color.GRAY);
 				soundToggle = true;
 				
 				soundArea.setText("Sound: ON");
 			}
 		});
-		soundOFFButton = new Button(120, 450, 75, 50, "OFF", JasCustomButton.getA(), new Action() {
+		soundOFFButton = new Button(220, 450, 75, 50, "OFF", JasCustomButton.getA(), new Action() {
 
 			@Override
 			public void act() 
 			{	
-				soundONButton.setBackground(Color.GRAY);
-				soundOFFButton.setBackground(Color.RED);
 				soundToggle = false;
 				
 				soundArea.setText("Sound: OFF");
@@ -95,92 +104,110 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 		
 		
 
-		roundInput = new TextBox(140, 520, 30, 30, "");
+		roundInput = new TextBox(280, 520, 30, 30, "");
 		//asking user how many decimal places they'd like to round to
-		rounderButton = new Button(120, 520, 75, 50, "Decimals Rounded: ", JasCustomButton.getA(), new Action() {
+		rounderButton = new Button(120, 520, 150, 50, "Decimals Rounded: ", JasCustomButton.getA(), new Action() {
 
 			@Override
 			public void act() 
 			{	
-			    int n = Integer.parseInt(roundArea.getText());
-				if (n % 1 == 0 && n < 10) {
-					n = roundNumber;
-					roundArea.setText("Answers will be rounded to " + n + " decimal places");
+				try {
+					int n = Integer.parseInt(roundInput.getText().trim());
+				
+					if(n < 11 && n % 1 == 0) {
+						roundArea.setText("Answers will be rounded to " + n + " decimal places");
+						roundNumber = n;
+					}
+				
+				}
+				catch(NumberFormatException e) {
+					
 				}
 			}
 		});
 		roundArea = new TextLabel(37, 67, 400, 37, "Answers will be rounded to 5 decimal places");
+		
+		
+		radiansButton = new Button(120,590,90,50, "Radians",JasCustomButton.getB(), new Action() {
+			public void act() {
+				
+				modeArea.setText("Mode: Radians");
+				
+				radians = true;
+				//change the trig functions and convert to degrees by 180/pi
+				
+			}
+		});
+		
+		degreesButton = new Button(210,590,90,50, "Degrees",JasCustomButton.getC(), new Action() {
+				public void act() {
+					
+					modeArea.setText("Mode: Degrees");
+					
+					radians = false;
+					//use regular methods
+				}
+		});
+		
+		modeArea = new TextLabel(37, 97, 400, 37, "Mode: Degrees");
 
-//		
-//		
-//		
-//		fontSize = new TextLabel(50,50,50,50,"Font Size:");
-//		fontSmall = new Button(60,60,30,15, "Small", new Action() {
-//
-//			@Override
-//			public void act() 
-//			{	
-//				//set the input area and output area fonts small
-//			}
-//		});
-//		fontLarge = new Button(90,60,30,15, "Large", new Action() {
-//
-//			@Override
-//			public void act() 
-//			{	
-//				//set the input area and output area fonts large
-//			}
-//		});
-//		
-//		
-//		
-//		clearHistory = new Button(100,100,30,15, "Clear History", new Action() {
-//			public void act() {
-//				messageArea.setText("History has been cleared!");
-//				//in here clear the history
-//			}
-//		});
-//		
-//		
-//		radiansButton = new Button(200,200,30,15, "Radians", new Action() {
-//			public void act() {
-//				radiansButton.setBackground(Color.RED);
-//				degreesButton.setBackground(Color.GRAY);
-//				
-//				radians = true;
-//				//change the trig functions and convert to degrees by 180/pi
-//				
-//			}
-//		});
-//		
-//		degreesButton = new Button(250,200,30,15, "Degrees",Color.RED, new Action() {
-//				public void act() {
-//					degreesButton.setBackground(Color.RED);
-//					radiansButton.setBackground(Color.GRAY);
-//					
-//					radians = false;
-//					//use regular methods
-//				}
-//		});
-//		
-//		
+		
+		
+		clock = new TextLabel(37, 300, 400, 37, "Clock: " + time());
+		
+		boolean time = true;
+		Thread counter = new Thread(new Runnable(){
+			public void run() {
+				while(time) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					clock.setText("Clock: " + time());;
+					}
+			}
+		});
+		counter.start();
+		
+		
+		notesButton = new Button(320,400,75, 50, "NOTES", JasCustomButton.getC(), new Action() {
+			public void act() {
+					switchScreen(CalcMoMain.notesScreen);
+			}
+		});
+
+
 		viewObjects.add(background);
 		viewObjects.add(backButton);
 		
 		viewObjects.add(soundONButton);
 		viewObjects.add(soundOFFButton);
 		viewObjects.add(soundArea);
+		viewObjects.add(soundLabel);
 		
 		viewObjects.add(roundArea);
 		viewObjects.add(roundInput);
 		viewObjects.add(rounderButton);
 		
-//		viewObjects.add(fontSize);
-//		viewObjects.add(fontSmall);
-//		viewObjects.add(fontLarge);
-//		viewObjects.add(clearHistory);
+		viewObjects.add(radiansButton);
+		viewObjects.add(degreesButton);
+		viewObjects.add(modeArea);
+		
+		viewObjects.add(clock);
+		
+		viewObjects.add(notesButton);
+
 	}
 	
+	public static String time() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd    HH:mm:ss");
+		Date date = new Date();
+		return dateFormat.format(date);
+	}
+	
+	//change sound ?
 	
 
 }

@@ -11,7 +11,13 @@ public class LordSineSolver implements Solver {
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
 		if(inversesin) {
+			if(LordSettingsScreen.radians) {
+				return 1/(java.lang.Math.sin(Math.toRadians(rhs.value)));
+			}
 			return 1/(java.lang.Math.sin(rhs.value));
+		}
+		if(LordSettingsScreen.radians) {
+			return java.lang.Math.sin(Math.toRadians(rhs.value));
 		}
 		return java.lang.Math.sin(rhs.value);
 	}

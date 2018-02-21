@@ -4,20 +4,19 @@ import input.DimitrisAlgebraicNode;
 import input.Solver;
 import input.Solver.PrecedenceConstants;
 
-public class AdditionSolver implements Solver {
+public class AchillesMultiplicationSolver implements Solver {
+	private int precedence = Solver.PrecedenceConstants.multiplicationSolver;
 	
-	int precedence = Solver.PrecedenceConstants.additionSolver;
-
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		lhs.solve();
 		rhs.solve();
-		return lhs.value + rhs.value;
+		return lhs.value * rhs.value;
 	}
 
 	@Override
 	public String getOperation() {
-		return "+";
+		return "*";
 	}
 
 	@Override
@@ -27,7 +26,7 @@ public class AdditionSolver implements Solver {
 
 	@Override
 	public Solver getInverse() {
-		return null;
+		return new AchillesDivisionSolver();
 	}
 
 	@Override
@@ -38,11 +37,12 @@ public class AdditionSolver implements Solver {
 	@Override
 	public void increasePrecedence(int amount) {
 		precedence += amount;
+		
 	}
 
 	@Override
 	public Solver createNew() {
-		return new AdditionSolver();
+		return new AchillesMultiplicationSolver();
 	}
 
 }

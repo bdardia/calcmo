@@ -7,6 +7,7 @@ import history.JasHistoryScreen;
 import input.BenInputScreen;
 import output.LordSettingsScreen;
 import output.AchillesOutputScreen;
+import output.LordNotesScreen;
 
 
 public class CalcMoMain extends GUIApplication{
@@ -22,6 +23,7 @@ public class CalcMoMain extends GUIApplication{
 	public static AbidTransitionScreen transitionScreen;
 	public static AbedTableScreen tableScreen;
 	public static LordSettingsScreen settingsScreen;
+	public static LordNotesScreen notesScreen;
 
 	public CalcMoMain(int width, int height) {
 		super(width, height);
@@ -34,6 +36,7 @@ public class CalcMoMain extends GUIApplication{
 		outputScreen = new AchillesOutputScreen(getWidth(), getHeight());
 		tableScreen = new AbedTableScreen(getWidth(), getHeight());
 		settingsScreen = new LordSettingsScreen(getWidth(), getHeight());
+		notesScreen = new LordNotesScreen(getWidth(), getHeight());
 		
 		setScreen(inputScreen);
 	}

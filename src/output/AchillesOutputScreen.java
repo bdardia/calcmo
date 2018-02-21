@@ -101,7 +101,7 @@ public class AchillesOutputScreen extends AbidCalculatorScreen {
 		JasCustomButton.circleButton(tableButton);
 		
 		
-		settingsButton = new Button(200, 450, 100, 100, "Settings", JasCustomButton.getB(), new Action() {
+		settingsButton = new Button(200, 500, 100, 100, "Settings", JasCustomButton.getB(), new Action() {
 			public void act() {
 				
 				switchScreen(CalcMoMain.settingsScreen);

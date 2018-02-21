@@ -1,20 +1,20 @@
 package input;
 
 import output.LordAbsSolver;
-import output.AdditionSolver;
+import output.AchillesAdditionSolver;
 import output.LordArcCosSolver;
 import output.LordArcSinSolver;
 import output.LordArcTanSolver;
 import output.LordCosineSolver;
-import output.DerivativeSolver;
-import output.DivisionSolver;
-import output.FactorialSolver;
+import output.AchillesDerivativeSolver;
+import output.AchillesDivisionSolver;
+import output.AchillesFactorialSolver;
 import output.LordLnSolver;
 import output.LordLogSolver;
-import output.MultiplicationSolver;
+import output.AchillesMultiplicationSolver;
 import output.LordSineSolver;
-import output.SqrRootSolver;
-import output.SubtractionSolver;
+import output.AchillesSqrRootSolver;
+import output.AchillesSubtractionSolver;
 import output.LordTanSolver;
 
 public class DimitrisAlgebraicNode {
@@ -33,7 +33,7 @@ public class DimitrisAlgebraicNode {
 	public String varName;
 	public boolean isVariable = false;
 	
-	public static Solver[] solverArray = {new AdditionSolver(), new MultiplicationSolver(), new DivisionSolver(), new SubtractionSolver(), new LhsParenthesis(), new RhsParenthesis(), 
+	public static Solver[] solverArray = {new AchillesAdditionSolver(), new AchillesMultiplicationSolver(), new AchillesDivisionSolver(), new AchillesSubtractionSolver(), new LhsParenthesis(), new RhsParenthesis(), 
 											new LordCosineSolver(),new Exponent(), 
 											new LordSineSolver(), new LordTanSolver(), new LordArcCosSolver(), new LordArcSinSolver(), new LordArcTanSolver(), new LordLogSolver(), new LordLnSolver(), new ParameterSolver(), new LordAbsSolver(),
 											//new SqrRootSolver(), new DerivativeSolver(), new FactorialSolver()  //I have no idea which one does not work

@@ -12,7 +12,13 @@ public class LordTanSolver implements Solver {
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
 		if(inversetan) {
+			if(LordSettingsScreen.radians) {
+				return 1/(java.lang.Math.tan(Math.toRadians(rhs.value)));
+			}
 			return 1/(java.lang.Math.tan(rhs.value));
+		}
+		if(LordSettingsScreen.radians) {
+			return java.lang.Math.tan(Math.toRadians(rhs.value));
 		}
 		return java.lang.Math.tan(rhs.value);
 	}
