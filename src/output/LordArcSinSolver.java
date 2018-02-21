@@ -3,21 +3,19 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
+public class LordArcSinSolver implements Solver {
 
-//need to make a button for this
-public class SqrRootSolver implements Solver {
-	
-	int precedence = Solver.PrecedenceConstants.sqrrootSolver;
+	int precedence = Solver.PrecedenceConstants.arcsinSolver;
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
-		return java.lang.Math.sqrt(rhs.value);
+		return java.lang.Math.asin(rhs.value);
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "sqrroot";
+		return "arcsin";
 	}
 
 	@Override
@@ -35,7 +33,7 @@ public class SqrRootSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new SqrRootSolver();
+		return new LordArcSinSolver();
 	}
 
 	@Override
@@ -49,5 +47,4 @@ public class SqrRootSolver implements Solver {
 		precedence += amount;
 
 	}
-
 }

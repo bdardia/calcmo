@@ -2,49 +2,47 @@ package output;
 
 import input.DimitrisAlgebraicNode;
 import input.Solver;
+import input.Solver.PrecedenceConstants;
 
-public class ArcCosSolver implements Solver {
-
-	int precedence = Solver.PrecedenceConstants.arccosSolver;
+public class AchillesMultiplicationSolver implements Solver {
+	private int precedence = Solver.PrecedenceConstants.multiplicationSolver;
+	
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
+		lhs.solve();
 		rhs.solve();
-		return java.lang.Math.acos(rhs.value);
+		return lhs.value * rhs.value;
 	}
 
 	@Override
 	public String getOperation() {
-		// TODO Auto-generated method stub
-		return "arccos";
+		return "*";
 	}
 
 	@Override
 	public int getPrecedence() {
-		// TODO Auto-generated method stub
 		return precedence;
 	}
 
 	@Override
 	public Solver getInverse() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Solver createNew() {
-		// TODO Auto-generated method stub
-		return new ArcCosSolver();
+		return new AchillesDivisionSolver();
 	}
 
 	@Override
 	public boolean urinaryFunction() {
-		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 	@Override
 	public void increasePrecedence(int amount) {
 		precedence += amount;
-
+		
 	}
+
+	@Override
+	public Solver createNew() {
+		return new AchillesMultiplicationSolver();
+	}
+
 }

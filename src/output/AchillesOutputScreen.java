@@ -19,7 +19,7 @@ import history.JasHistoryScreen;
 import input.DimitrisAlgebraicNode;
 import main.CalcMoMain;
 
-public class OutputScreen extends AbidCalculatorScreen {
+public class AchillesOutputScreen extends AbidCalculatorScreen {
 	
 	private Graphic background;
 	private Button inputButton;
@@ -34,7 +34,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 	public static double output;
 	
 	
-	public OutputScreen(int width, int height) {
+	public AchillesOutputScreen(int width, int height) {
 		super(width, height);
 	}
 	
@@ -49,7 +49,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		outputArea.setText(outputArea.getText() + output);
 		
 		
-		///53-55 by abed islam
+		
 		unfinishedNodes.get(unfinishedNodes.size()-1).setOut(output);
 		JasHistoryScreen.fx.add(unfinishedNodes.get(unfinishedNodes.size()-1));
 		System.out.print(JasHistoryScreen.fx.get(JasHistoryScreen.fx.size()-1));
@@ -91,6 +91,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		tableButton = new Button(300, 400, 100, 100, "Table", JasCustomButton.getC(), new Action() {
 			public void act() {
 				
+				//CalcMoMain.tableScreen.fillScroll();
 				switchScreen(CalcMoMain.tableScreen);
 				
 				System.out.println("Table button pressed");
@@ -99,24 +100,26 @@ public class OutputScreen extends AbidCalculatorScreen {
 		});
 		JasCustomButton.circleButton(tableButton);
 		
-		//doesn't work???
-		/*settingsButton = new Button(200, 450, 100, 100, "Settings", JasCustomButton.getB(), new Action() {
+		
+		settingsButton = new Button(200, 500, 100, 100, "Settings", JasCustomButton.getB(), new Action() {
 			public void act() {
 				
 				switchScreen(CalcMoMain.settingsScreen);
 				
 				System.out.println("Settings button pressed");
 				outputArea.setText("Answer: ");
+				
+				LordSettingsScreen.lastScreen = 0;
 			}
-		});*/
+		});
 		
 		viewObjects.add(background);
 		viewObjects.add(outputArea);
 		
 		viewObjects.add(inputButton);
 		viewObjects.add(historyButton);
-		//sviewObjects.add(tableButton);
-		//viewObjects.add(settingsButton);
+		viewObjects.add(tableButton);
+		viewObjects.add(settingsButton);
 	}
 
 }

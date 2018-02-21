@@ -3,34 +3,37 @@ package output;
 import java.util.ArrayList;
 
 import input.DimitrisAlgebraicNode;
+import input.ParameterSolver;
 import input.Solver;
 
-public class LimitsSolver implements Solver {
+public class LordLogSolver implements Solver {
 
-	public static ArrayList<Double> values = new ArrayList<Double>();
+	int precedence = Solver.PrecedenceConstants.logSolver;
 	
-	public LimitsSolver() {
-		
-	}
-	
-	
-
-	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		// TODO Auto-generated method stub
-		return 0;
+		ArrayList<DimitrisAlgebraicNode> paramList = ParameterSolver.getParameterList(rhs);
+		
+		DimitrisAlgebraicNode base = paramList.get(0);
+		DimitrisAlgebraicNode argument = paramList.get(1);
+		
+		base.solve();
+		argument.solve();
+		 
+		
+		return java.lang.Math.log(argument.value)/java.lang.Math.log(base.value);
+		
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return null;
+		return "log";
 	}
 
 	@Override
 	public int getPrecedence() {
 		// TODO Auto-generated method stub
-		return 0;
+		return precedence;
 	}
 
 	@Override
@@ -42,27 +45,19 @@ public class LimitsSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return null;
+		return new LordLogSolver();
 	}
 
 	@Override
 	public boolean urinaryFunction() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public void increasePrecedence(int amount) {
-		// TODO Auto-generated method stub
-		
+		precedence += amount;
+
 	}
-	
-	public static void createBounds(double x) {
-		double upper = x * 1.001;
-		double lower = x * 0.999;
-		
-		ArrayList[] values;
-	}
-	
 
 }

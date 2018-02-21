@@ -3,23 +3,19 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class AbsSolver implements Solver {
+public class LordArcTanSolver implements Solver {
 
-int precedence = Solver.PrecedenceConstants.absSolver;
-	
+	int precedence = Solver.PrecedenceConstants.arctanSolver;
+	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
-		
-		if(rhs.value < 1) {
-			return rhs.value * -1;
-		}
-		return rhs.value;
+		return java.lang.Math.atan(rhs.value);
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "abs";
+		return "arctan";
 	}
 
 	@Override
@@ -37,7 +33,7 @@ int precedence = Solver.PrecedenceConstants.absSolver;
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new AbsSolver();
+		return new LordArcTanSolver();
 	}
 
 	@Override
@@ -51,5 +47,4 @@ int precedence = Solver.PrecedenceConstants.absSolver;
 		precedence += amount;
 
 	}
-
 }

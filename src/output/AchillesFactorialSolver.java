@@ -3,19 +3,28 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class LnSolver implements Solver {
+public class AchillesFactorialSolver implements Solver {
 
-	int precedence = Solver.PrecedenceConstants.lnSolver;
+	//need to make factorial button for ben
+int precedence = Solver.PrecedenceConstants.factorialSolver;
 	
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
-		return java.lang.Math.log(rhs.value);
+		if(rhs.value % 1 == 0) {
+			return factorial(rhs.value);
+		}
+		return 0;
 	}
-
-	@Override
+	
+	public double factorial(double n){    
+		if (n == 0)    
+			return 1;    
+		else    
+			return(n * factorial(n-1));    
+	}    
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "ln";
+		return "factorial";
 	}
 
 	@Override
@@ -33,7 +42,7 @@ public class LnSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new LnSolver();
+		return new AchillesFactorialSolver();
 	}
 
 	@Override

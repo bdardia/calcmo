@@ -3,7 +3,7 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class DivisionSolver implements Solver {
+public class AchillesDivisionSolver implements Solver {
 	private int precedence = Solver.PrecedenceConstants.divisionSolver;
 	
 	@Override
@@ -26,7 +26,7 @@ public class DivisionSolver implements Solver {
 
 	@Override
 	public Solver getInverse() {
-		return new MultiplicationSolver();
+		return new AchillesMultiplicationSolver();
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class DivisionSolver implements Solver {
 
 	@Override
 	public Solver createNew() {
-		return new DivisionSolver();
+		return new AchillesDivisionSolver();
 	}
 
 	@Override

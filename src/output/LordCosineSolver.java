@@ -4,12 +4,12 @@ import input.DimitrisAlgebraicNode;
 import input.Solver;
 import input.Solver.PrecedenceConstants;
 
-public class CosineSolver implements Solver {
+public class LordCosineSolver implements Solver {
 	int precedence = Solver.PrecedenceConstants.cosineSolver;
 	
 	public static boolean inversecos = false;
 	
-	public CosineSolver() {
+	public LordCosineSolver() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -18,7 +18,13 @@ public class CosineSolver implements Solver {
 		rhs.solve();
 		
 		if(inversecos) {
+			if(LordSettingsScreen.radians) {
+				return 1/(java.lang.Math.cos(Math.toRadians(rhs.value)));
+			}
 			return 1/(java.lang.Math.cos(rhs.value));
+		}
+		if(LordSettingsScreen.radians) {
+			return java.lang.Math.cos(Math.toRadians(rhs.value));
 		}
 		return java.lang.Math.cos(rhs.value);
 	}
@@ -52,7 +58,7 @@ public class CosineSolver implements Solver {
 
 	@Override
 	public Solver createNew() {
-		return new CosineSolver();
+		return new LordCosineSolver();
 	}
 
 }

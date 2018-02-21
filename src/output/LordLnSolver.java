@@ -3,19 +3,19 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class ArcSinSolver implements Solver {
+public class LordLnSolver implements Solver {
 
-	int precedence = Solver.PrecedenceConstants.arcsinSolver;
-	@Override
+	int precedence = Solver.PrecedenceConstants.lnSolver;
+	
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
-		return java.lang.Math.asin(rhs.value);
+		return java.lang.Math.log(rhs.value);
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "arcsin";
+		return "ln";
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class ArcSinSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new ArcSinSolver();
+		return new LordLnSolver();
 	}
 
 	@Override
@@ -47,4 +47,5 @@ public class ArcSinSolver implements Solver {
 		precedence += amount;
 
 	}
+
 }

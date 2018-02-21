@@ -2,47 +2,54 @@ package output;
 
 import input.DimitrisAlgebraicNode;
 import input.Solver;
-import input.Solver.PrecedenceConstants;
 
-public class AdditionSolver implements Solver {
+public class AchillesAbsSolver implements Solver {
+
+int precedence = Solver.PrecedenceConstants.absSolver;
 	
-	int precedence = Solver.PrecedenceConstants.additionSolver;
-
-	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		lhs.solve();
 		rhs.solve();
-		return lhs.value + rhs.value;
+		
+		if(rhs.value < 1) {
+			return rhs.value * -1;
+		}
+		return rhs.value;
 	}
 
 	@Override
 	public String getOperation() {
-		return "+";
+		// TODO Auto-generated method stub
+		return "abs";
 	}
 
 	@Override
 	public int getPrecedence() {
+		// TODO Auto-generated method stub
 		return precedence;
 	}
 
 	@Override
 	public Solver getInverse() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	public Solver createNew() {
+		// TODO Auto-generated method stub
+		return new AchillesAbsSolver();
+	}
+
+	@Override
 	public boolean urinaryFunction() {
-		return false;
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 	@Override
 	public void increasePrecedence(int amount) {
 		precedence += amount;
-	}
 
-	@Override
-	public Solver createNew() {
-		return new AdditionSolver();
 	}
 
 }

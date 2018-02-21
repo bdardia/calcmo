@@ -3,19 +3,30 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class ArcTanSolver implements Solver {
+public class LordTanSolver implements Solver {
 
-	int precedence = Solver.PrecedenceConstants.arctanSolver;
-	@Override
+	int precedence = Solver.PrecedenceConstants.tanSolver;
+	
+	
+	public static boolean inversetan;
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
-		return java.lang.Math.atan(rhs.value);
+		if(inversetan) {
+			if(LordSettingsScreen.radians) {
+				return 1/(java.lang.Math.tan(Math.toRadians(rhs.value)));
+			}
+			return 1/(java.lang.Math.tan(rhs.value));
+		}
+		if(LordSettingsScreen.radians) {
+			return java.lang.Math.tan(Math.toRadians(rhs.value));
+		}
+		return java.lang.Math.tan(rhs.value);
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "arctan";
+		return "tan";
 	}
 
 	@Override
@@ -33,7 +44,7 @@ public class ArcTanSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new ArcTanSolver();
+		return new LordTanSolver();
 	}
 
 	@Override
@@ -47,4 +58,5 @@ public class ArcTanSolver implements Solver {
 		precedence += amount;
 
 	}
+
 }

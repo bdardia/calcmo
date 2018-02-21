@@ -11,11 +11,11 @@ import guiTeacher.interfaces.Visible;
 import history.AbedHistoryNode;
 import history.AbidCalculatorScreen;
 import main.CalcMoMain;
-import output.CosineSolver;
+import output.LordCosineSolver;
 import output.LordSettingsScreen;
-import output.OutputScreen;
-import output.SineSolver;
-import output.TanSolver;
+import output.AchillesOutputScreen;
+import output.LordSineSolver;
+import output.LordTanSolver;
 
 public class BenInputScreen extends AbidCalculatorScreen 
 {
@@ -318,9 +318,8 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{
 				
 				solverPress();
-				///322 written by abed islam
-				OutputScreen.unfinishedNodes.add(new AbedHistoryNode(inputArea.getText(),0.0));
-				OutputScreen.recieveTopNode(DimitrisNodeBuilder.compileProgram(inputArea.getText()));
+				AchillesOutputScreen.unfinishedNodes.add(new AbedHistoryNode(inputArea.getText(),0.0));
+				AchillesOutputScreen.recieveTopNode(DimitrisNodeBuilder.compileProgram(inputArea.getText()));
 				
 				switchScreen(CalcMoMain.outputScreen);
 			
@@ -398,7 +397,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{	
 				inputArea.setText(inputArea.getText() + "sin(");
 				buttonPress();
-				SineSolver.inversesin = true;
+				LordSineSolver.inversesin = true;
 			}
 		});
 		secButton = new Button(391, 579, 30, 15, "", new Action() {
@@ -408,7 +407,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{	
 				inputArea.setText(inputArea.getText() + "cos(");
 				buttonPress();
-				CosineSolver.inversecos = true;
+				LordCosineSolver.inversecos = true;
 			}
 		});
 		
@@ -422,7 +421,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{	
 				inputArea.setText(inputArea.getText() + "tan(");
 				buttonPress();
-				TanSolver.inversetan = true;
+				LordTanSolver.inversetan = true;
 			}
 		});
 		arcsinButton = new Button(347, 611, 30, 15, "", new Action() {
@@ -515,6 +514,17 @@ public class BenInputScreen extends AbidCalculatorScreen
 				buttonPress();
 			}
 		});
+		
+		settingsButton = new Button(122, 511, 79, 23, "Settings", new Action() {
+			
+			@Override
+			public void act() 
+			{
+				switchScreen(CalcMoMain.settingsScreen);
+				LordSettingsScreen.lastScreen = 2;
+				buttonPress();
+			}
+		});
 		clearVarButton = new Button(125, 438, 54, 30, "", new Action() {
 			
 			@Override
@@ -531,16 +541,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			}
 		});
 		
-		//Lord C
-		settingsButton = new Button(435,0,79,23,"", new Action() {
-			
-			public void act() 
-			{
-				
-				solverPress();
-				switchScreen(CalcMoMain.settingsScreen);
-			}
-		});
+		
 		
 		
 		viewObjects.add(background);
@@ -600,6 +601,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	{
 		if(LordSettingsScreen.soundToggle) {
 		soundControl.playSound("plop_amplified.wav");
+		//switchSound();
 		}
 	}
 
@@ -607,6 +609,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	{
 		if(LordSettingsScreen.soundToggle) {
 		soundControl.playSound("beeep_distorted.wav");
+		//switchSound();
 		}
 	}
 	
@@ -614,6 +617,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 	{
 		if(LordSettingsScreen.soundToggle) {
 		soundControl.playSound("ping_pong_8bit_peeeeeep.wav");
+		//switchSound();
 		}
 	}
 	
@@ -628,4 +632,3 @@ public class BenInputScreen extends AbidCalculatorScreen
 	
 	
 }
-

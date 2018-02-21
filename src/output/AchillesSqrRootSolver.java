@@ -3,28 +3,21 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class FactorialSolver implements Solver {
 
-	//need to make factorial button for ben
-int precedence = Solver.PrecedenceConstants.factorialSolver;
+//need to make a button for this
+public class AchillesSqrRootSolver implements Solver {
 	
+	int precedence = Solver.PrecedenceConstants.sqrrootSolver;
+	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
-		if(rhs.value % 1 == 0) {
-			return factorial(rhs.value);
-		}
-		return 0;
+		return java.lang.Math.sqrt(rhs.value);
 	}
-	
-	public double factorial(double n){    
-		if (n == 0)    
-			return 1;    
-		else    
-			return(n * factorial(n-1));    
-	}    
+
+	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "factorial";
+		return "sqrroot";
 	}
 
 	@Override
@@ -42,7 +35,7 @@ int precedence = Solver.PrecedenceConstants.factorialSolver;
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new FactorialSolver();
+		return new AchillesSqrRootSolver();
 	}
 
 	@Override

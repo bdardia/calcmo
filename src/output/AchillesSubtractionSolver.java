@@ -4,7 +4,7 @@ import input.DimitrisAlgebraicNode;
 import input.Solver;
 import input.Solver.PrecedenceConstants;
 
-public class SubtractionSolver implements Solver{
+public class AchillesSubtractionSolver implements Solver{
 	
 	private int precedence = Solver.PrecedenceConstants.subtractionSolver;
 	
@@ -27,7 +27,7 @@ public class SubtractionSolver implements Solver{
 
 	@Override
 	public Solver getInverse() {
-		return new AdditionSolver();
+		return new AchillesAdditionSolver();
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class SubtractionSolver implements Solver{
 
 	@Override
 	public Solver createNew() {
-		return new SubtractionSolver();
+		return new AchillesSubtractionSolver();
 	}
 
 	@Override

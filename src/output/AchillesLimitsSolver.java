@@ -1,31 +1,36 @@
 package output;
 
+import java.util.ArrayList;
+
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class SineSolver implements Solver {
+public class AchillesLimitsSolver implements Solver {
+
+	public static ArrayList<Double> values = new ArrayList<Double>();
 	
-	public static boolean inversesin;
-	int precedence = Solver.PrecedenceConstants.sineSolver;
+	public AchillesLimitsSolver() {
+		
+	}
+	
+	
+
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
-		rhs.solve();
-		if(inversesin) {
-			return 1/(java.lang.Math.sin(rhs.value));
-		}
-		return java.lang.Math.sin(rhs.value);
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "sin";
+		return null;
 	}
 
 	@Override
 	public int getPrecedence() {
 		// TODO Auto-generated method stub
-		return precedence;
+		return 0;
 	}
 
 	@Override
@@ -37,19 +42,27 @@ public class SineSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new SineSolver();
+		return null;
 	}
 
 	@Override
 	public boolean urinaryFunction() {
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 	@Override
 	public void increasePrecedence(int amount) {
-		precedence += amount;
-
+		// TODO Auto-generated method stub
+		
 	}
+	
+	public static void createBounds(double x) {
+		double upper = x * 1.001;
+		double lower = x * 0.999;
+		
+		ArrayList[] values;
+	}
+	
 
 }

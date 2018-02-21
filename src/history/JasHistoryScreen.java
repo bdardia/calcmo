@@ -7,6 +7,7 @@ import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
 import input.BenInputScreen;
 import main.CalcMoMain;
+import output.LordSettingsScreen;
 
 public class JasHistoryScreen extends AbidCalculatorScreen {
 	
@@ -31,6 +32,16 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		});
 		JasCustomButton.circleButton(goInput);
 		viewObjects.add(goInput);
+		
+		Button settingsButton = new Button(150, 575, 75, 50, "SETTINGS", JasCustomButton.getA(), new Action() {
+			
+			public void act() {
+				switchScreen(CalcMoMain.settingsScreen);
+				LordSettingsScreen.lastScreen = 1;
+			}
+		});
+		JasCustomButton.circleButton(settingsButton);
+		viewObjects.add(settingsButton);
 		
 		Button clear = new Button(375, 515, 93, 45, "CLEAR", JasCustomButton.getB(), new Action() {
 
@@ -83,7 +94,7 @@ public class JasHistoryScreen extends AbidCalculatorScreen {
 		});
 		viewObjects.add(table);
 	}
-	//all code is coWritten by Abed Islam
+	
 	public void populateScroll() {
 		scroll.removeAll();
 		System.out.println(fx.size());

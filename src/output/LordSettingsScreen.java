@@ -1,6 +1,9 @@
 package output;
 
 import java.awt.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -15,6 +18,7 @@ import guiTeacher.interfaces.Visible;
 import history.AbidCalculatorScreen;
 import history.JasCustomButton;
 import history.JasHistoryScreen;
+import input.BenSound;
 import input.DimitrisAlgebraicNode;
 import main.CalcMoMain;
 
@@ -22,26 +26,32 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 
 	private Graphic background;
 	private Button backButton;
+	public static int lastScreen;
+	
+	
 	private Button soundONButton;
 	private Button soundOFFButton;
 	public static boolean soundToggle = true;
+	private TextLabel soundArea;
+	private Graphic soundLabel;
 	
-	private TextBox roundArea;
 	
+	private TextBox roundInput;
+	private TextLabel roundArea;
 	private Button rounderButton;
 	public static int roundNumber = 5;
-	private TextArea messageArea;
-	
-	private TextLabel fontSize;
-	private Button fontSmall;
-	private Button fontLarge;
-	
-	private Button clearHistory;
 	
 	private Button radiansButton;
 	private Button degreesButton;
 	public static boolean radians;
+	private TextLabel modeArea;
 	
+	static Thread counter = new Thread();
+	private TextLabel clock;
+	
+	private Button notesButton;
+	
+	public static BenSound soundControl;
 	
 	public LordSettingsScreen(int width, int height) {
 		super(width,height);
@@ -50,108 +60,169 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		background = new Graphic(0, 0, "resources/outputscreen.png");
 		
-		soundONButton = new Button(400, 200, 30, 15, "ON", new Action() {
+		backButton = new Button(20,400,75, 50, "GO BACK", JasCustomButton.getA(), new Action() {
+			public void act() {
+				if(lastScreen == 0) {
+					switchScreen(CalcMoMain.outputScreen);
+				}
+				if(lastScreen == 1) {
+					switchScreen(CalcMoMain.historyScreen);
+				}
+				if(lastScreen == 2) {
+					switchScreen(CalcMoMain.inputScreen);
+				}
+			}
+		});
+		
+		soundLabel = new Graphic(180, 400, 50,50,"resources/sound.png");
+				
+		soundONButton = new Button(120, 450, 75, 50, "ON", JasCustomButton.getA(), new Action() {
 
 			@Override
 			public void act() 
 			{	
-				soundONButton.setBackground(Color.RED);
-				soundOFFButton.setBackground(Color.GRAY);
 				soundToggle = true;
+				
+				soundArea.setText("Sound: ON");
 			}
 		});
-		soundOFFButton = new Button(300, 200, 30, 15, "OFF", new Action() {
+		soundOFFButton = new Button(220, 450, 75, 50, "OFF", JasCustomButton.getA(), new Action() {
 
 			@Override
 			public void act() 
 			{	
-				soundONButton.setBackground(Color.GRAY);
-				soundOFFButton.setBackground(Color.RED);
 				soundToggle = false;
+				
+				soundArea.setText("Sound: OFF");
 			}
 		});
-//		
-//		roundArea = new TextBox(193, 403, 30, 30, "");
-//		//asking user how many decimal places they'd like to round to
-//		rounderButton = new Button(132, 396, 54, 30, "Round how many decimal places: ", new Action() {
-//
-//			@Override
-//			public void act() 
-//			{	
-//			    int n = Integer.parseInt(roundArea.getText());
-//				if (n % 1 == 0 && n < 10) {
-//					n = roundNumber;
-//					messageArea.setText("Your answers will be rounded to " + n + " places");
-//				}
-//			}
-//		});
-//		messageArea = new TextArea(37, 37, 400, 37, "");
-//		
-//		
-//		
-//		fontSize = new TextLabel(50,50,50,50,"Font Size:");
-//		fontSmall = new Button(60,60,30,15, "Small", new Action() {
-//
-//			@Override
-//			public void act() 
-//			{	
-//				//set the input area and output area fonts small
-//			}
-//		});
-//		fontLarge = new Button(90,60,30,15, "Large", new Action() {
-//
-//			@Override
-//			public void act() 
-//			{	
-//				//set the input area and output area fonts large
-//			}
-//		});
-//		
-//		
-//		
-//		clearHistory = new Button(100,100,30,15, "Clear History", new Action() {
-//			public void act() {
-//				messageArea.setText("History has been cleared!");
-//				//in here clear the history
-//			}
-//		});
-//		
-//		
-//		radiansButton = new Button(200,200,30,15, "Radians", new Action() {
-//			public void act() {
-//				radiansButton.setBackground(Color.RED);
-//				degreesButton.setBackground(Color.GRAY);
-//				
-//				radians = true;
-//				//change the trig functions and convert to degrees by 180/pi
-//				
-//			}
-//		});
-//		
-//		degreesButton = new Button(250,200,30,15, "Degrees",Color.RED, new Action() {
-//				public void act() {
-//					degreesButton.setBackground(Color.RED);
-//					radiansButton.setBackground(Color.GRAY);
-//					
-//					radians = false;
-//					//use regular methods
-//				}
-//		});
-//		
-//		
+		
+		soundArea = new TextLabel(37, 37, 400, 37, "Sound: ON");
+		
+		
+		
+
+		roundInput = new TextBox(280, 520, 30, 30, "");
+		//asking user how many decimal places they'd like to round to
+		rounderButton = new Button(120, 520, 150, 50, "Decimals Rounded: ", JasCustomButton.getA(), new Action() {
+
+			@Override
+			public void act() 
+			{	
+				try {
+					int n = Integer.parseInt(roundInput.getText().trim());
+				
+					if(n < 11 && n % 1 == 0) {
+						roundArea.setText("Answers will be rounded to " + n + " decimal places");
+						roundNumber = n;
+					}
+				
+				}
+				catch(NumberFormatException e) {
+					
+				}
+			}
+		});
+		roundArea = new TextLabel(37, 67, 400, 37, "Answers will be rounded to 5 decimal places");
+		
+		
+		radiansButton = new Button(120,590,90,50, "Radians",JasCustomButton.getB(), new Action() {
+			public void act() {
+				
+				modeArea.setText("Mode: Radians");
+				
+				radians = true;
+				//change the trig functions and convert to degrees by 180/pi
+				
+			}
+		});
+		
+		degreesButton = new Button(210,590,90,50, "Degrees",JasCustomButton.getC(), new Action() {
+				public void act() {
+					
+					modeArea.setText("Mode: Degrees");
+					
+					radians = false;
+					//use regular methods
+				}
+		});
+		
+		modeArea = new TextLabel(37, 97, 400, 37, "Mode: Degrees");
+
+		
+		
+		clock = new TextLabel(37, 300, 400, 37, "Clock: " + time());
+		
+		boolean time = true;
+		Thread counter = new Thread(new Runnable(){
+			public void run() {
+				while(time) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					clock.setText("Clock: " + time());;
+					}
+			}
+		});
+		counter.start();
+		
+		
+		notesButton = new Button(320,400,75, 50, "NOTES", JasCustomButton.getC(), new Action() {
+			public void act() {
+					switchScreen(CalcMoMain.notesScreen);
+			}
+		});
+
+
 		viewObjects.add(background);
-//		viewObjects.add(backButton);
+		viewObjects.add(backButton);
+		
 		viewObjects.add(soundONButton);
 		viewObjects.add(soundOFFButton);
-//		viewObjects.add(roundArea);
-//		viewObjects.add(rounderButton);
-//		viewObjects.add(messageArea);
-//		viewObjects.add(fontSize);
-//		viewObjects.add(fontSmall);
-//		viewObjects.add(fontLarge);
-//		viewObjects.add(clearHistory);
+		viewObjects.add(soundArea);
+		viewObjects.add(soundLabel);
+		
+		viewObjects.add(roundArea);
+		viewObjects.add(roundInput);
+		viewObjects.add(rounderButton);
+		
+		viewObjects.add(radiansButton);
+		viewObjects.add(degreesButton);
+		viewObjects.add(modeArea);
+		
+		viewObjects.add(clock);
+		
+		viewObjects.add(notesButton);
+
+		soundControl = new BenSound();
 	}
 	
+	public static String time() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd    HH:mm:ss");
+		Date date = new Date();
+		return dateFormat.format(date);
+	}
+	
+	//change sound ?
+	
+	public void switchSound() {
+		//randomly switches the sounds played based on button clicked
+		//used in bens class but doesn't work
+		
+		int num = (int) (Math.random() * 3);
+		if(num == 1) {
+			soundControl.playSound("plop_amplified.wav");
+		}
+		if(num == 2) {
+			soundControl.playSound("beeep_distorted.wav");
+		}
+		if(num == 3) {
+			soundControl.playSound("ping_pong_8bit_peeeeeep.wav");
+		}
+	}
 	
 
 }
