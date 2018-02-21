@@ -11,11 +11,11 @@ import guiTeacher.interfaces.Visible;
 import history.AbedHistoryNode;
 import history.AbidCalculatorScreen;
 import main.CalcMoMain;
-import output.CosineSolver;
+import output.LordCosineSolver;
 import output.LordSettingsScreen;
-import output.OutputScreen;
-import output.SineSolver;
-import output.TanSolver;
+import output.AchillesOutputScreen;
+import output.LordSineSolver;
+import output.LordTanSolver;
 
 public class BenInputScreen extends AbidCalculatorScreen 
 {
@@ -318,8 +318,8 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{
 				
 				solverPress();
-				OutputScreen.unfinishedNodes.add(new AbedHistoryNode(inputArea.getText(),0.0));
-				OutputScreen.recieveTopNode(DimitrisNodeBuilder.compileProgram(inputArea.getText()));
+				AchillesOutputScreen.unfinishedNodes.add(new AbedHistoryNode(inputArea.getText(),0.0));
+				AchillesOutputScreen.recieveTopNode(DimitrisNodeBuilder.compileProgram(inputArea.getText()));
 				
 				switchScreen(CalcMoMain.outputScreen);
 			
@@ -397,7 +397,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{	
 				inputArea.setText(inputArea.getText() + "sin(");
 				buttonPress();
-				SineSolver.inversesin = true;
+				LordSineSolver.inversesin = true;
 			}
 		});
 		secButton = new Button(391, 579, 30, 15, "", new Action() {
@@ -407,7 +407,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{	
 				inputArea.setText(inputArea.getText() + "cos(");
 				buttonPress();
-				CosineSolver.inversecos = true;
+				LordCosineSolver.inversecos = true;
 			}
 		});
 		
@@ -421,7 +421,7 @@ public class BenInputScreen extends AbidCalculatorScreen
 			{	
 				inputArea.setText(inputArea.getText() + "tan(");
 				buttonPress();
-				TanSolver.inversetan = true;
+				LordTanSolver.inversetan = true;
 			}
 		});
 		arcsinButton = new Button(347, 611, 30, 15, "", new Action() {

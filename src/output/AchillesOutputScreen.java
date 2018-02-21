@@ -19,7 +19,7 @@ import history.JasHistoryScreen;
 import input.DimitrisAlgebraicNode;
 import main.CalcMoMain;
 
-public class OutputScreen extends AbidCalculatorScreen {
+public class AchillesOutputScreen extends AbidCalculatorScreen {
 	
 	private Graphic background;
 	private Button inputButton;
@@ -34,7 +34,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 	public static double output;
 	
 	
-	public OutputScreen(int width, int height) {
+	public AchillesOutputScreen(int width, int height) {
 		super(width, height);
 	}
 	
@@ -100,16 +100,18 @@ public class OutputScreen extends AbidCalculatorScreen {
 		});
 		JasCustomButton.circleButton(tableButton);
 		
-		//doesn't work???
-		/*settingsButton = new Button(200, 450, 100, 100, "Settings", JasCustomButton.getB(), new Action() {
+		
+		settingsButton = new Button(200, 450, 100, 100, "Settings", JasCustomButton.getB(), new Action() {
 			public void act() {
 				
 				switchScreen(CalcMoMain.settingsScreen);
 				
 				System.out.println("Settings button pressed");
 				outputArea.setText("Answer: ");
+				
+				LordSettingsScreen.lastScreen = 0;
 			}
-		});*/
+		});
 		
 		viewObjects.add(background);
 		viewObjects.add(outputArea);
@@ -117,7 +119,7 @@ public class OutputScreen extends AbidCalculatorScreen {
 		viewObjects.add(inputButton);
 		viewObjects.add(historyButton);
 		viewObjects.add(tableButton);
-		//viewObjects.add(settingsButton);
+		viewObjects.add(settingsButton);
 	}
 
 }

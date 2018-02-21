@@ -3,23 +3,24 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class SineSolver implements Solver {
+public class LordTanSolver implements Solver {
+
+	int precedence = Solver.PrecedenceConstants.tanSolver;
 	
-	public static boolean inversesin;
-	int precedence = Solver.PrecedenceConstants.sineSolver;
-	@Override
+	
+	public static boolean inversetan;
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
-		if(inversesin) {
-			return 1/(java.lang.Math.sin(rhs.value));
+		if(inversetan) {
+			return 1/(java.lang.Math.tan(rhs.value));
 		}
-		return java.lang.Math.sin(rhs.value);
+		return java.lang.Math.tan(rhs.value);
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "sin";
+		return "tan";
 	}
 
 	@Override
@@ -37,7 +38,7 @@ public class SineSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new SineSolver();
+		return new LordTanSolver();
 	}
 
 	@Override

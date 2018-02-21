@@ -3,19 +3,23 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class ArcTanSolver implements Solver {
-
-	int precedence = Solver.PrecedenceConstants.arctanSolver;
+public class LordSineSolver implements Solver {
+	
+	public static boolean inversesin;
+	int precedence = Solver.PrecedenceConstants.sineSolver;
 	@Override
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
-		return java.lang.Math.atan(rhs.value);
+		if(inversesin) {
+			return 1/(java.lang.Math.sin(rhs.value));
+		}
+		return java.lang.Math.sin(rhs.value);
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "arctan";
+		return "sin";
 	}
 
 	@Override
@@ -33,7 +37,7 @@ public class ArcTanSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new ArcTanSolver();
+		return new LordSineSolver();
 	}
 
 	@Override
@@ -47,4 +51,5 @@ public class ArcTanSolver implements Solver {
 		precedence += amount;
 
 	}
+
 }

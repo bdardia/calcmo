@@ -3,7 +3,7 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class ArcSinSolver implements Solver {
+public class LordArcSinSolver implements Solver {
 
 	int precedence = Solver.PrecedenceConstants.arcsinSolver;
 	@Override
@@ -33,7 +33,7 @@ public class ArcSinSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new ArcSinSolver();
+		return new LordArcSinSolver();
 	}
 
 	@Override

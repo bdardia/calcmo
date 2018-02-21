@@ -22,15 +22,19 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 
 	private Graphic background;
 	private Button backButton;
+	public static int lastScreen;
+	
+	
 	private Button soundONButton;
 	private Button soundOFFButton;
 	public static boolean soundToggle = true;
+	private TextLabel soundArea;
 	
-	private TextBox roundArea;
 	
+	private TextBox roundInput;
+	private TextLabel roundArea;
 	private Button rounderButton;
 	public static int roundNumber = 5;
-	private TextArea messageArea;
 	
 	private TextLabel fontSize;
 	private Button fontSmall;
@@ -50,7 +54,18 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		background = new Graphic(0, 0, "resources/outputscreen.png");
 		
-		soundONButton = new Button(400, 200, 30, 15, "ON", new Action() {
+		backButton = new Button(20,400,75, 50, "GO BACK", JasCustomButton.getA(), new Action() {
+			public void act() {
+				if(lastScreen == 0) {
+					switchScreen(CalcMoMain.outputScreen);
+				}
+				if(lastScreen == 1) {
+					switchScreen(CalcMoMain.historyScreen);
+				}
+			}
+		});
+		
+		soundONButton = new Button(20, 450, 75, 50, "ON", JasCustomButton.getA(), new Action() {
 
 			@Override
 			public void act() 
@@ -58,9 +73,11 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 				soundONButton.setBackground(Color.RED);
 				soundOFFButton.setBackground(Color.GRAY);
 				soundToggle = true;
+				
+				soundArea.setText("Sound: ON");
 			}
 		});
-		soundOFFButton = new Button(300, 200, 30, 15, "OFF", new Action() {
+		soundOFFButton = new Button(120, 450, 75, 50, "OFF", JasCustomButton.getA(), new Action() {
 
 			@Override
 			public void act() 
@@ -68,24 +85,32 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 				soundONButton.setBackground(Color.GRAY);
 				soundOFFButton.setBackground(Color.RED);
 				soundToggle = false;
+				
+				soundArea.setText("Sound: OFF");
 			}
 		});
-//		
-//		roundArea = new TextBox(193, 403, 30, 30, "");
-//		//asking user how many decimal places they'd like to round to
-//		rounderButton = new Button(132, 396, 54, 30, "Round how many decimal places: ", new Action() {
-//
-//			@Override
-//			public void act() 
-//			{	
-//			    int n = Integer.parseInt(roundArea.getText());
-//				if (n % 1 == 0 && n < 10) {
-//					n = roundNumber;
-//					messageArea.setText("Your answers will be rounded to " + n + " places");
-//				}
-//			}
-//		});
-//		messageArea = new TextArea(37, 37, 400, 37, "");
+		
+		soundArea = new TextLabel(37, 37, 400, 37, "Sound: ON");
+		
+		
+		
+
+		roundInput = new TextBox(140, 520, 30, 30, "");
+		//asking user how many decimal places they'd like to round to
+		rounderButton = new Button(120, 520, 75, 50, "Decimals Rounded: ", JasCustomButton.getA(), new Action() {
+
+			@Override
+			public void act() 
+			{	
+			    int n = Integer.parseInt(roundArea.getText());
+				if (n % 1 == 0 && n < 10) {
+					n = roundNumber;
+					roundArea.setText("Answers will be rounded to " + n + " decimal places");
+				}
+			}
+		});
+		roundArea = new TextLabel(37, 67, 400, 37, "Answers will be rounded to 5 decimal places");
+
 //		
 //		
 //		
@@ -140,12 +165,16 @@ public class LordSettingsScreen extends AbidCalculatorScreen {
 //		
 //		
 		viewObjects.add(background);
-//		viewObjects.add(backButton);
+		viewObjects.add(backButton);
+		
 		viewObjects.add(soundONButton);
 		viewObjects.add(soundOFFButton);
-//		viewObjects.add(roundArea);
-//		viewObjects.add(rounderButton);
-//		viewObjects.add(messageArea);
+		viewObjects.add(soundArea);
+		
+		viewObjects.add(roundArea);
+		viewObjects.add(roundInput);
+		viewObjects.add(rounderButton);
+		
 //		viewObjects.add(fontSize);
 //		viewObjects.add(fontSmall);
 //		viewObjects.add(fontLarge);

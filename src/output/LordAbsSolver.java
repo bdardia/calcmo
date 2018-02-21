@@ -3,19 +3,23 @@ package output;
 import input.DimitrisAlgebraicNode;
 import input.Solver;
 
-public class LnSolver implements Solver {
+public class LordAbsSolver implements Solver {
 
-	int precedence = Solver.PrecedenceConstants.lnSolver;
+int precedence = Solver.PrecedenceConstants.absSolver;
 	
 	public double solveNode(DimitrisAlgebraicNode lhs, DimitrisAlgebraicNode rhs) {
 		rhs.solve();
-		return java.lang.Math.log(rhs.value);
+		
+		if(rhs.value < 1) {
+			return rhs.value * -1;
+		}
+		return rhs.value;
 	}
 
 	@Override
 	public String getOperation() {
 		// TODO Auto-generated method stub
-		return "ln";
+		return "abs";
 	}
 
 	@Override
@@ -33,7 +37,7 @@ public class LnSolver implements Solver {
 	@Override
 	public Solver createNew() {
 		// TODO Auto-generated method stub
-		return new LnSolver();
+		return new LordAbsSolver();
 	}
 
 	@Override
