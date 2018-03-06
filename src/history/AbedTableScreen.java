@@ -1,12 +1,14 @@
 package history;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.ScrollablePane;
+import guiTeacher.components.TextArea;
 import guiTeacher.components.TextBox;
 import guiTeacher.interfaces.Visible;
 import input.BenInputScreen;
@@ -44,7 +46,7 @@ public class AbedTableScreen extends AbidCalculatorScreen
 
 			public void act() 
 			{
-				
+				scroll.removeAll();
 				scroll.update();
 			}
 		});
@@ -90,12 +92,23 @@ public class AbedTableScreen extends AbidCalculatorScreen
 			public void act() 
 			{
 				AbedTableBackEnd.createOutputs();
-				
+				for(int i = 0; i < AbedTableBackEnd.coordinates.size();i++)
+				{
+					scroll.add(new TextArea(i+20, i+20, i+100, i+100, modString(AbedTableBackEnd.coordinates,i),i);
+				}
 			}
 		});
+		
+		
 		JasCustomButton.circleButton(compile);
 		viewObjects.add(functionInput);
 		viewObjects.add(functionSubmit);
 		viewObjects.add(compile);
+	}
+	public String modString(ArrayList<AbedHistoryNode> a , int x)
+	{
+		String coord = "";
+		coord = Double.toString(a.get(x).getIn()) + Double.toString(a.get(x).getOut()) ; 
+		return coord;
 	}
 }
