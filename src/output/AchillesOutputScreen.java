@@ -49,10 +49,11 @@ public class AchillesOutputScreen extends AbidCalculatorScreen {
 		outputArea.setText(outputArea.getText() + output);
 		
 		
-		
+		//Abed Islam Start
 		unfinishedNodes.get(unfinishedNodes.size()-1).setOut(output);
 		JasHistoryScreen.fx.add(unfinishedNodes.get(unfinishedNodes.size()-1));
 		System.out.print(JasHistoryScreen.fx.get(JasHistoryScreen.fx.size()-1));
+		//Abed ISlam end
 	}
 	
 	

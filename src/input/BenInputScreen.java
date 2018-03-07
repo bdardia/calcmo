@@ -319,9 +319,10 @@ public class BenInputScreen extends AbidCalculatorScreen implements SwitchSound
 			{
 				
 				solverPress();
+				///Abed Islam Start
 				AchillesOutputScreen.unfinishedNodes.add(new AbedHistoryNode(inputArea.getText(),0.0));
 				AchillesOutputScreen.recieveTopNode(DimitrisNodeBuilder.compileProgram(inputArea.getText()));
-				
+				// Abed Islam end
 				switchScreen(CalcMoMain.outputScreen);
 			
 				

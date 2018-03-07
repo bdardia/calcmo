@@ -17,6 +17,7 @@ import main.CalcMoMain;
 public class AbedTableScreen extends AbidCalculatorScreen
 {
 	public static ScrollablePane scroll;
+	public static ArrayList<AbedHistoryNode> dummyList = new ArrayList<AbedHistoryNode>();
 	
 	public AbedTableScreen(int width, int height) 
 	{
@@ -95,15 +96,14 @@ public class AbedTableScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-				scroll.removeAll();
+				
 				AbedTableBackEnd.createOutputs();
-				for(int i = 0; i < AbedTableBackEnd.coordinates.size();i++)
-				{
-					scroll.addObject(new TextArea((i*2) + 10, (i * 10) +  120, 150, 150, modString(AbedTableBackEnd.coordinates,i)));
-					
-				}
+				refill();
+				scroll.update();
+				
 				
 			}
+		
 		});
 		
 		
@@ -118,4 +118,20 @@ public class AbedTableScreen extends AbidCalculatorScreen
 		coord = Double.toString(a.get(x).getIn()) + "                      " + Double.toString(a.get(x).getOut()); 
 		return coord;
 	}
+	public void refill()
+	{
+		dummyList.clear();
+		scroll.removeAll();
+		for(int i = 0; i < AbedTableBackEnd.coordinates.size();i++)
+		{
+			dummyList.add(AbedTableBackEnd.coordinates.get(i));
+		}
+		AbedTableBackEnd.coordinates.clear();
+		for(int i = 0; i < dummyList.size();i++)
+		{
+			scroll.addObject(new TextArea((i*2) + 10, (i * 10) +  120, 150, 150, modString(dummyList,i)));
+		}
+		scroll.update();
+	}
+	
 }
