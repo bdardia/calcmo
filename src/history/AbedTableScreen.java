@@ -91,6 +91,7 @@ public class AbedTableScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
+				AbedTableBackEnd.
 				AbedTableBackEnd.createOutputs();
 				for(int i = 0; i < AbedTableBackEnd.coordinates.size();i++)
 				{
