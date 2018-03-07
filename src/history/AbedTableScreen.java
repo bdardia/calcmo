@@ -95,13 +95,14 @@ public class AbedTableScreen extends AbidCalculatorScreen
 			@Override
 			public void act() 
 			{
-			
+				scroll.removeAll();
 				AbedTableBackEnd.createOutputs();
 				for(int i = 0; i < AbedTableBackEnd.coordinates.size();i++)
 				{
 					scroll.addObject(new TextArea((i*2) + 10, (i * 10) +  120, 150, 150, modString(AbedTableBackEnd.coordinates,i)));
-					scroll.update();
+					
 				}
+				
 			}
 		});
 		
