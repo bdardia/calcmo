@@ -118,8 +118,8 @@ public class AbedTableScreen extends AbidCalculatorScreen
 	public void refill()
 	{
 		scroll.removeAll();
+		scroll.update();
 		dummyList.clear();
-		scroll.removeAll();
 		for(int i = 0; i < AbedTableBackEnd.coordinates.size();i++)
 		{
 			dummyList.add(AbedTableBackEnd.coordinates.get(i));
@@ -127,9 +127,10 @@ public class AbedTableScreen extends AbidCalculatorScreen
 		AbedTableBackEnd.coordinates.clear();
 		for(int i = 0; i < dummyList.size();i++)
 		{
-			scroll.addObject(new TextArea((i*2) + 10, (i * 8) +  120, 150, 150, modString(dummyList,i)));
+			scroll.addObject(new TextArea((i*2) + 10, (i * 15) +  120, 150, 150, modString(dummyList,i)));
 		}
 		scroll.update();
+		
 	}
 	public void clearAll()
 	{	
