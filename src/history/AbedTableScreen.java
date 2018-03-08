@@ -51,17 +51,6 @@ public class AbedTableScreen extends AbidCalculatorScreen
 			
 			}
 		});
-		TextBox deleteArea = new TextBox(435, 600, 30, 30, "");
-		viewObjects.add(deleteArea);
-		Button delete = new Button(350, 600, 85, 30, "DELETE", JasCustomButton.getC(), new Action() 
-		{
-			public void act() 
-			{
-				deleteArea.setText("");
-				scroll.update();
-			}
-		});
-		viewObjects.add(delete);
 		viewObjects.add(clear);
 		viewObjects.add(scroll);
 		TextBox input = new TextBox(40, 440, 50, 50,"");
@@ -113,7 +102,7 @@ public class AbedTableScreen extends AbidCalculatorScreen
 	public String modString(ArrayList<AbedHistoryNode> a , int x)
 	{
 		String coord = "";
-		coord = Double.toString(a.get(x).getIn()) + "                                    " + Double.toString(a.get(x).getOut()); 
+		coord = Double.toString(a.get(x).getIn()) + "                         " + Double.toString(a.get(x).getOut()); 
 		return coord;
 	}
 	public void refill()
@@ -128,7 +117,7 @@ public class AbedTableScreen extends AbidCalculatorScreen
 		AbedTableBackEnd.coordinates.clear();
 		for(int i = 0; i < dummyList.size();i++)
 		{
-			scroll.addObject(new TextArea((i*2) + 10, (i * 15) +  120, 150, 150, modString(dummyList,i)));
+			scroll.addObject(new TextArea(30, (30 * i) + 30 , 60, 60, modString(dummyList,i)));
 		}
 		scroll.update();
 		

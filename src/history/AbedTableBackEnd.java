@@ -13,6 +13,7 @@ public class AbedTableBackEnd
 	public static ArrayList<Double> outputs = new ArrayList<Double>();
 	public static ArrayList<AbedHistoryNode> coordinates = new ArrayList<AbedHistoryNode>();
 	public static String function;
+	public static ArrayList<AbedHistoryNode> masterHistory = new ArrayList<AbedHistoryNode>();
 	
 	///compile on the string called first n.solve then fill
 	
@@ -23,6 +24,7 @@ public class AbedTableBackEnd
 		{
 			functionalInputs.add(i,Double.parseDouble(inputs.get(i)));
 		}
+		inputs.clear();
 		
 	}
 	
@@ -34,8 +36,10 @@ public class AbedTableBackEnd
 		{
 			System.out.println(outputs.get(i));
 			coordinates.add(new AbedHistoryNode(functionalInputs.get(i),outputs.get(i)));
-			
+			masterHistory.add(new AbedHistoryNode(functionalInputs.get(i),outputs.get(i)));
 		}
+		
+		outputs.clear();
 	}
 	
 }
