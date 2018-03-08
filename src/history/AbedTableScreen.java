@@ -72,6 +72,7 @@ public class AbedTableScreen extends AbidCalculatorScreen
 			public void act() 
 			{
 				AbedTableBackEnd.inputs.add(input.getText());
+				input.clear();
 			}
 		});
 		viewObjects.add(insert);
