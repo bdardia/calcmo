@@ -124,6 +124,8 @@ public class AbedTableScreen extends AbidCalculatorScreen
 		AbedTableBackEnd.coordinates.clear();
 		scroll.update();
 		
+		
+		
 	}
 	public void clearAll()
 	{	
