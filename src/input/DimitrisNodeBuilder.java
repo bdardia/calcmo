@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class DimitrisNodeBuilder {
 	private static String logger = "";
-	private static boolean debug = true;
+	private static boolean debug = false;
 	
 	private static ArrayList<DimitrisAlgebraicNode> parse(String currentText) {
 		ArrayList<DimitrisAlgebraicNode> parsedArray = new ArrayList<DimitrisAlgebraicNode>();
@@ -322,14 +322,15 @@ public class DimitrisNodeBuilder {
 	
 	
 	public static void main(String[] args) {
-		String testString = "log(10;100)";
-		debug = true;
-//		ArrayList<DimitrisAlgebraicNode> parsedArray = reduceParenthesis(parse(testString));
-//		System.out.println(logger);
-//		for(DimitrisAlgebraicNode n : parsedArray) {
-//			System.out.println(n.toString() + " " + n.solver.getPrecedence());
-//		}
+		String testString = "x";
+		ArrayList<Double> t = new ArrayList<Double>();
+		t.add(1.0);
+		t.add(2.0);
 		
-		compileProgram(testString);
+		for(double result: getOutputs(testString, t)) {
+			System.out.println(result);
+		}
+		
+		//debug = true;
 	}
 }

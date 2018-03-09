@@ -61,6 +61,7 @@ public class AbedTableScreen extends AbidCalculatorScreen
 			public void act() 
 			{
 				AbedTableBackEnd.inputs.add(input.getText());
+				//System.out.println("adding to inputs:" + AbedTableBackEnd.inputs.get(AbedTableBackEnd.inputs.size()-1));
 				input.clear();
 			}
 		});
@@ -102,23 +103,25 @@ public class AbedTableScreen extends AbidCalculatorScreen
 	public String modString(ArrayList<AbedHistoryNode> a , int x)
 	{
 		String coord = "";
-		coord = Double.toString(a.get(x).getIn()) + ": " + Double.toString(a.get(x).getOut()); 
+		coord = Double.toString(a.get(x).getIn()) + ": " + Double.toString(a.get(x).getput()); 
 		return coord;
 	}
 	public void refill()
 	{
 		scroll.removeAll();
 		scroll.update();
-		dummyList.clear();
 		for(int i = 0; i < AbedTableBackEnd.coordinates.size();i++)
 		{
 			dummyList.add(AbedTableBackEnd.coordinates.get(i));
+			System.out.println(dummyList.get(i).getIn());
+			System.out.println(dummyList.get(i).getput());
 		}
-		AbedTableBackEnd.coordinates.clear();
 		for(int i = 0; i < dummyList.size();i++)
 		{
 			scroll.addObject(new TextArea(30, (30 * i) + 30 , 89, 89, modString(dummyList,i)));
 		}
+		dummyList.clear();
+		AbedTableBackEnd.coordinates.clear();
 		scroll.update();
 		
 	}
