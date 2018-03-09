@@ -102,7 +102,7 @@ public class AbedTableScreen extends AbidCalculatorScreen
 	public String modString(ArrayList<AbedHistoryNode> a , int x)
 	{
 		String coord = "";
-		coord = Double.toString(a.get(x).getIn()) + "                         " + Double.toString(a.get(x).getOut()); 
+		coord = Double.toString(a.get(x).getIn()) + ": " + Double.toString(a.get(x).getOut()); 
 		return coord;
 	}
 	public void refill()
@@ -117,7 +117,7 @@ public class AbedTableScreen extends AbidCalculatorScreen
 		AbedTableBackEnd.coordinates.clear();
 		for(int i = 0; i < dummyList.size();i++)
 		{
-			scroll.addObject(new TextArea(30, (30 * i) + 30 , 60, 60, modString(dummyList,i)));
+			scroll.addObject(new TextArea(30, (30 * i) + 30 , 89, 89, modString(dummyList,i)));
 		}
 		scroll.update();
 		
